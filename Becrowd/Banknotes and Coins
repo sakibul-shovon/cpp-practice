@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    double amount;
+    cin>>amount;
+    int temp=amount*100;
+
+    int taka=temp/100;
+    int poisa=temp%100;
+    cout<<"NOTAS:"<<endl;
+    //taka
+    int arr1[6]={100, 50, 20, 10, 5, 2};
+    for(int i=0;i<6;i++){
+       cout<<taka/arr1[i]<<" nota(s) de R$ "<<arr1[i]<<".00" <<endl; 
+       taka=taka%arr1[i];
+       }
+       
+
+    cout<<"MOEDAS:"<<endl;
+    int p=(taka*100)+poisa;
+    int arr2[6]={100,50,25,10,5,1};
+    for(int i=0;i<6;i++)
+    {
+        cout<<p/arr2[i]<< " moeda(s) de R$ "<< fixed << setprecision(2)<<arr2[i]/100.0<<endl;
+        p=p%arr2[i];
+    }
+    return 0;
+    
+    
+}
