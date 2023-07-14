@@ -4,19 +4,24 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+
+bool check(int a,int b,int c,int d)
+{
+    if(b+c+d < a)
+    {
+        return true;
+    }
+}
 int main(){
     
     int t;cin>>t;
     
     while(t--)
     {
-        int arr[4]; 
-        for(int i=1;i<=4;i++) cin>>arr[i];
+        int a,b,c,d; cin>>a>>b>>c>>d;
 
-        for(int i=1;i<=4;i++)
-        {
-           bool check = checkfun(arr[i],arr[]);
-        }
+        if(a>(b+c+d) || b>(a+c+d) || c>(a+b+d) || d>(a+b+c)) cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
     }
     return 0;
 }
