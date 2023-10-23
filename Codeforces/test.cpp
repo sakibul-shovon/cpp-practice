@@ -1,23 +1,38 @@
-// File Name: test.cpp
-// Date: 2023-10-11
-// Time: 01:02:19
-
 #include <bits/stdc++.h>
 using namespace std;
-int main(){
-    
-    vector <int> myvector;
+#define endl '\n';
+int main()
+{
+   int n;
+   cin >> n;
+   string s;
+   cin >> s;
+   int a = 1;
+   for (int i = 0; i < n; i++)
+   {
+      char c = s[i];
+      
+   }
+   
 
-     int n; cin>>n;
-     for(int i=0;  i<myvector.size();i++){
-        int temp;
-        cin>>temp;
-        myvector.push_back(temp); 
-     }
+    int isPangram = 0;
 
-     for(int i=0;  i<myvector.size();i++){
-        cout<<myvector[i];
-     }
+    for (int i = 0; i <26 ; i++)
+    {
+        if (a=1)
+        {
+            isPangram = 1;
+            break;
+        }
+    }
 
-
+    if (isPangram)
+    {
+       cout << "YES" <<endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
+   return 0;
 }
