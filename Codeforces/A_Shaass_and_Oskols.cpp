@@ -1,6 +1,6 @@
-// File Name: A_Theatre_Square.cpp
-// Date: 2023-10-30
-// Time: 23:31:50
+// File Name: A_Shaass_and_Oskols.cpp
+// Date: 2023-11-04
+// Time: 04:48:27
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,15 +54,30 @@ using namespace std;
 int main()
 {
     fastio;
-    double a,b,c;in3(a,b,c);
-    double total_area = a*b;
-    double flag = c*c;
+    int n;cin>>n;
+    vint v(n+2,0);
     
-    double height = ceil(a/c) ;
-    double width = ceil(b/c);
+    for(int i=1;i<=n;i++){
+        cin>>v[i];
+    }
+    
+    
+    int t;cin>>t;
+    
+    while(t--){
+        int a,b;cin>>a>>b;//b bird num
+        int left = (b-1);
+        int right = v[a] - b;
+        v[a] = 0;
+        v[a-1] = left + v[a-1];
+        v[a+1] = right + v[a+1];
+        
 
-    ll ans = height * width;
-    cout<<ans<<endl;
 
+    }
+   
+   for(int i=1;i<=n;i++){
+    cout<<v[i]<<endl;
+   }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Theatre_Square.cpp
-// Date: 2023-10-30
-// Time: 23:31:50
+// File Name: A_Magnets.cpp
+// Date: 2023-10-31
+// Time: 20:58:31
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,16 +53,20 @@ using namespace std;
 
 int main()
 {
-    fastio;
-    double a,b,c;in3(a,b,c);
-    double total_area = a*b;
-    double flag = c*c;
-    
-    double height = ceil(a/c) ;
-    double width = ceil(b/c);
-
-    ll ans = height * width;
-    cout<<ans<<endl;
-
-    return 0;
+  vector<pair<int,int>> v;
+  int n;cin>>n;
+  int count = 0;
+  for(int i=1;i<n*2;i++)
+  {
+    if(v[i-1].second == v[i].first){
+        count++;
+    }
+    cout<<v[i].second<<" "<<v[i].first<<endl;
+  }
+   
+   
+   for (const auto& pair : v) {
+       cout << "Pair: " << v.first << ", " << v.second << endl;
+    }
+  cout<<count<<endl;
 }

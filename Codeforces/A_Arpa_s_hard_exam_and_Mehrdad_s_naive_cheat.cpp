@@ -1,6 +1,6 @@
-// File Name: A_Theatre_Square.cpp
-// Date: 2023-10-30
-// Time: 23:31:50
+// File Name: A_Arpa_s_hard_exam_and_Mehrdad_s_naive_cheat.cpp
+// Date: 2023-10-31
+// Time: 00:50:40
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,16 +53,23 @@ using namespace std;
 
 int main()
 {
+    //binary exponentiation
     fastio;
-    double a,b,c;in3(a,b,c);
-    double total_area = a*b;
-    double flag = c*c;
+    int base = 8;
     
-    double height = ceil(a/c) ;
-    double width = ceil(b/c);
+    int power ;cin>>power;
+    int result = 1;
 
-    ll ans = height * width;
-    cout<<ans<<endl;
+    while(power){
+        if(power % 2 == 1){
+            result = (result * base) % 10;
+            power--;
+        }
+        else{
+            base = (base * base ) % 10;
+            power = power/2;
+        }
+    }
+    cout<<result;
 
-    return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Theatre_Square.cpp
-// Date: 2023-10-30
-// Time: 23:31:50
+// File Name: A_Calculating_Function.cpp
+// Date: 2023-10-31
+// Time: 00:21:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,15 +54,12 @@ using namespace std;
 int main()
 {
     fastio;
-    double a,b,c;in3(a,b,c);
-    double total_area = a*b;
-    double flag = c*c;
-    
-    double height = ceil(a/c) ;
-    double width = ceil(b/c);
-
-    ll ans = height * width;
-    cout<<ans<<endl;
-
+    ll n;cin>>n;
+    if(n%2 == 0){
+        cout<<n/2<<endl;
+    }
+    else{
+        cout<<-(n+1)/2<<endl;
+    }
     return 0;
 }

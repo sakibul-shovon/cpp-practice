@@ -1,6 +1,6 @@
-// File Name: A_Theatre_Square.cpp
-// Date: 2023-10-30
-// Time: 23:31:50
+// File Name: D_Odd_Queries.cpp
+// Date: 2023-11-03
+// Time: 04:56:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,15 +54,30 @@ using namespace std;
 int main()
 {
     fastio;
-    double a,b,c;in3(a,b,c);
-    double total_area = a*b;
-    double flag = c*c;
-    
-    double height = ceil(a/c) ;
-    double width = ceil(b/c);
+    While(t){
+        ll n,query;in2(n,query);
 
-    ll ans = height * width;
-    cout<<ans<<endl;
+        vll v(n+1,0);
+        
+        for(int i=1;i<=n;i++) cin>>v[i];
+        
+        vll prefix(n+1,0);
+        for(int i=1;i<=n;i++) prefix[i] = prefix[i-1] + v[i];
 
+
+        while(query--){
+            ll l,r,k;in3(l,r,k);
+
+            ll sum = prefix[n];
+            sum = sum -  (prefix[r] - prefix[l-1]);
+            sum = sum + (r-l + 1) * k;
+            
+            if(sum % 2ll == 1ll) cout<<yes<<endl;
+            else{
+                cout<<no<<endl;
+            }
+
+        }
+    }
     return 0;
 }

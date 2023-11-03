@@ -1,6 +1,6 @@
-// File Name: A_Theatre_Square.cpp
-// Date: 2023-10-30
-// Time: 23:31:50
+// File Name: A_Football.cpp
+// Date: 2023-10-29
+// Time: 00:26:46
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,15 +54,35 @@ using namespace std;
 int main()
 {
     fastio;
-    double a,b,c;in3(a,b,c);
-    double total_area = a*b;
-    double flag = c*c;
+    map<string,int> mp;
+    vector<string> v;
+    While(t){
+        string s;cin>>s;
+        mp.insert({s,0});
+        v.push_back(s);
+
+    }
+
+  
+    int max = 0;
+    for(int i=0;i<v.size();i++){
+        mp[v[i]]++;
+        if(mp[v[i]] > max){
+            max = mp[v[i]];
+        }
+    }
     
-    double height = ceil(a/c) ;
-    double width = ceil(b/c);
+    for(auto it:mp){
+        
+        if(it.second == max){
+            cout<<it.first<<endl;
+            return 0;
+        }
+    }
+   
 
-    ll ans = height * width;
-    cout<<ans<<endl;
+    
 
+    
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Theatre_Square.cpp
-// Date: 2023-10-30
-// Time: 23:31:50
+// File Name: A_Valera_and_X.cpp
+// Date: 2023-10-29
+// Time: 01:05:17
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,15 +54,44 @@ using namespace std;
 int main()
 {
     fastio;
-    double a,b,c;in3(a,b,c);
-    double total_area = a*b;
-    double flag = c*c;
+    int n;cin>>n;
+    char arr[n][n];
+    char x;
+    set<char> st;
     
-    double height = ceil(a/c) ;
-    double width = ceil(b/c);
+    
+    char check ;
 
-    ll ans = height * width;
-    cout<<ans<<endl;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            char temp ;cin>>temp; st.insert(temp);
+            if(i==0 && j == 0) check = temp;
 
+            if(i == j || i+j == n-1)
+            {
+                if(temp != check){
+                    cout<<no<<endl;
+                    return 0;
+                }
+            }
+
+            else{
+                if(temp == check){
+                    cout<<no<<endl;
+                    return 0;
+                }
+            }
+        }
+        
+    }
+
+    if(st.size() == 2 ){
+        cout<<yes<<endl;
+    }
+    else{
+        cout<<no<<endl;
+    }
     return 0;
 }
