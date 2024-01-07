@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Counterexample.cpp
+// Date: 2023-11-22
+// Time: 16:37:26
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,22 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    ll a,b;cin>>a>>b;
 
+    if(a == b or b == a+1){
+        cout<<-1<<endl;
     }
 
-    cout<<count<<endl;
+    else if(a % 2 == 0 ){
+        out3(a,a+1,a+2);
+    }
+
+    else if(b - a > 2 ){
+       
+        out3(a+1,a+2,a+3);
+    }
+    else{
+        cout<<-1<<endl;
+    }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: B_Not_Quite_Latin_Square.cpp
+// Date: 2023-12-28
+// Time: 20:54:02
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,31 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    
+    int t;  // Declare t here
+    cin >> t;  // Input the number of test cases
+    
+    while(t--){
+       
+       map<char,int> mp;
 
+       for(ll i=0;i<9;i++){
+            char c;
+            cin >> c;
+            mp[c]++;
+       }
+
+       for (auto it = mp.begin(); it != mp.end(); ++it){
+            if(it->second == 2){  
+                cout << it->first << endl;
+                break;
+            }
+       }
     }
-
-    cout<<count<<endl;
     return 0;
 }

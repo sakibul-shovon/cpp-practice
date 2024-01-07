@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: B_Lovely_Palindromes.cpp
+// Date: 2023-12-21
+// Time: 01:51:26
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,10 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
-
-    }
-
-    cout<<count<<endl;
+    string s,s1;cin>>s;
+    s1 = s;
+    reverse(s1.begin(),s1.end());
+    cout<<s<<s1<<endl;
+    
     return 0;
 }

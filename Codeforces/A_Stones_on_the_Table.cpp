@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
+// File Name: A_Stones_on_the_Table.cpp
 // Date: 2023-11-27
-// Time: 22:12:00
+// Time: 21:27:23
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,12 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
+    ll n;cin>>n;
     string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
-
+    ll count = 0;
+    for(ll i=0;i<n-1;i++){
+        if(s[i] == s[i+1]) count++;
     }
-
     cout<<count<<endl;
     return 0;
 }

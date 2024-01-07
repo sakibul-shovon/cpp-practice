@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: C_Stripes.cpp
+// Date: 2024-01-04
+// Time: 21:45:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,23 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(n){
+        ll countR = 0;
+        ll countB = 0;
+
+        for(ll i=0;i<64;i++){
+            char t;cin>>t;
+
+            if(t == 'R') countR++;
+            else if(t == 'B') countB++;
         }
-        temp = s;
 
-    }
-
-    cout<<count<<endl;
+        //debug(countB);line;debug(countR);
+        
+         if(countB > countR) cout<<'B'<<endl;
+        else{
+            cout<<'R'<<endl;
+        }
+    } 
     return 0;
 }

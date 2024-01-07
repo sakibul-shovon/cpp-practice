@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Puzzles.cpp
+// Date: 2024-01-02
+// Time: 23:38:18
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,30 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    ll n,m;cin>>n>>m;
 
+    vll v(m);
+    for(ll i=0;i<m;i++){
+        cin>>v[i];
     }
 
-    cout<<count<<endl;
+   sort_all(v);
+   ll minn = inf;
+
+   for(ll i =0 ; i<= m - n ;i++){
+
+    ll temp = v[i+n-1] - v[i];
+    minn = min(minn,temp);
+
+    //cout<<v[i+n-1]<<" "<<v[i]<<endl;
+
+   }
+
+   cout<<minn<<endl;
     return 0;
 }

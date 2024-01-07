@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: Apartments.cpp
+// Date: 2023-11-25
+// Time: 13:47:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,38 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    
+    ll n,k,diff;
+    cin>>n>>k>>diff;
 
+    vll need(n);
+    for(ll i =0;i<n;i++) cin>>need[i];
+    vll have(k);
+    for(ll i=0;i<k;i++) cin>>have[i];
+
+    sort_all(need);sort_all(have);
+
+    ll i = 0,j=0;
+    ll count = 0;
+
+    while(i<=n && j<=k)
+    {
+        if(abs( need[i] - have[j] ) <= diff ){
+            i++;j++;count++;
+        }
+
+        else if( have[j] < need[i] - k  ){
+            j++;
+        }
+        else if() {
+            i++;
+        }
     }
 
     cout<<count<<endl;
+
+
+
+    
     return 0;
 }

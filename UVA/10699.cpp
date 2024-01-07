@@ -1,6 +1,7 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+
+// File Name: 10699.cpp
+// Date: 2023-12-02
+// Time: 00:31:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +34,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +49,37 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    
+    while(true)
+    {
+        ll n;cin>>n;
+        ll t = n;
+        ll count = 0;
+        if(n == 0) break;
+
+        for(ll i=2;i*i <= n ;i++)
+        {
+            if(n % i == 0 ){
+
+                count++;
+
+                while(n % i == 0){
+                    n = n/i;
+                }
+            }
+
+            
         }
-        temp = s;
+      
 
+        if(n > 1) count++;
+
+        cout<<t<<" : "<<count<<endl;
     }
-
-    cout<<count<<endl;
     return 0;
 }

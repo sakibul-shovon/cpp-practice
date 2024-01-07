@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Ilya_and_Bank_Account.cpp
+// Date: 2024-01-03
+// Time: 16:17:11
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,41 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
     string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    char x = s[s.length() - 1] ;
+    char y = s[s.length() - 2] ;
 
+    string t = s.substr(0, s.length() - 2);
+    string maxx = s;
+    
+
+    string check1 = t + x;
+
+    string check2 = t + y;
+
+    //cout<<check1<<" "<<check2;line
+
+    string ans ;
+
+    if(stoll (check1) > stoll(check2) ){
+        ans = check1;
+    }else{
+        ans = check2;
     }
 
-    cout<<count<<endl;
+    if(stoll(ans) > stoll(maxx)){
+        if(stoll(ans) == 0 and s[0] == '-'){
+            cout<<0<<endl;
+        }else{
+            cout<<ans<<endl;
+        }
+    }else{
+        cout<<maxx<<endl;
+    }
     return 0;
 }

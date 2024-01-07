@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_2_3_Moves.cpp
+// Date: 2023-11-20
+// Time: 17:40:47
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,16 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    ll t;cin>>t;
+    while(t--){
+        int n;cin>>n;
+
+        if(n == 1) cout<<2<<endl;
+
+        else if(n % 3 == 0) cout<< n/3<<endl;
+        else{
+            cout<<n/3 +1 <<endl;
         }
-        temp = s;
-
     }
-
-    cout<<count<<endl;
     return 0;
 }

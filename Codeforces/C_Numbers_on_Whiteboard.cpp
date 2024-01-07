@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: C_Numbers_on_Whiteboard.cpp
+// Date: 2023-12-26
+// Time: 23:58:40
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,51 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(t){
+        ll n;cin>>n;
+
+        vector<ll> v;
+        vector<pair<ll,ll>> res;
+
+        for(ll i=1;i<=n;i++){
+            v.pb(i);
         }
-        temp = s;
 
+        while(true){
+            ll size = v.size();
+
+            ll temp = ceil((v[size-1] + v[size - 2]));
+            if(temp % 2 == 0){
+                temp = temp/2;
+            }else{
+                temp = temp / 2 + 1;
+            }
+            //autoLoop(v);line;
+            
+            res.push_back(make_pair(v[size-1],v[size -2 ]));
+            v.pop_back();
+            v.pop_back();
+            v.pb(temp);
+
+            if(v.size() == 1){
+             
+                break;
+            }
+
+        }
+
+        cout<<v.back()<<endl;
+
+        for(auto it:res){
+            cout<<it.first<<" "<<it.second<<endl;
+        }
+
+        
     }
-
-    cout<<count<<endl;
     return 0;
 }

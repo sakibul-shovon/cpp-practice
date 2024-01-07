@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: Repetitions.cpp
+// Date: 2023-11-19
+// Time: 08:20:24
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,6 +36,7 @@ using namespace std;
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
 #define gcd(a, b) __gcd(a, b);
+#define isEven(n) ((n % 2) == 0);
 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
@@ -59,7 +60,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        ll temp;            \
+        int temp;           \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -67,28 +68,34 @@ using namespace std;
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
+    string s;
+    cin >> s;
 
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    ll maxx = -1;
+    char tmp = s[0];
+    ll count = 0;
+    ll i = 0;
+    while (true)
     {
+        if(s[i] != tmp){
+            maxx = max(count,maxx);
+            count = 0;
+            tmp = s[i];
+            
 
-        for (ll j = 1; j <= col; j++)
-        {
-            if (i % 2 != 0)
-            {
-                cout << '#';
-            }
-
-            else if (i % 2 == 0)
-            {
-                
-
-                continue;
-            }
         }
-        cout << endl;
+
+        else{
+            count++;
+            i++;
+        }
+
+        if( i == s.length()){
+            maxx = max(count,maxx);
+            break;
+        }
     }
+
+    cout << maxx << endl;
     return 0;
 }

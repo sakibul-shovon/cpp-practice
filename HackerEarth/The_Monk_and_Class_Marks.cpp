@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: The_Monk_and_Class_Marks.cpp
+// Date: 2023-11-15
+// Time: 23:41:05
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,34 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    
+    map<int,multiset<string>> marks;
 
+    int n;cin>>n;
+
+    for(int i=0;i<n;i++){
+        int m;string name;
+        cin>>name>>m;
+
+        marks[m].insert(name);
     }
 
-    cout<<count<<endl;
+    auto curr_it = --marks.end();
+
+    while(true){
+        auto &std =(*curr_it).second;
+        int markkk = (*curr_it).first;
+
+        for(auto student:std){
+            cout<<student<<" "<<markkk<<endl;
+        }
+
+        if(curr_it == marks.begin()) break;
+        else{
+            curr_it--;
+        }
+    }
+    
     return 0;
 }
+

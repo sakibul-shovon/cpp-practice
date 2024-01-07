@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: C_Can_I_Square.cpp
+// Date: 2023-12-28
+// Time: 21:06:24
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -64,31 +64,38 @@ using namespace std;
         v.push_back(temp);  \
     }
 
+bool isPerfectSquare(ll n) {
+    
+    double sqrt_n = sqrt(n);
+
+    
+    return (sqrt_n - floor(sqrt_n)) == 0;
+}
+
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
-
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    While(n)
     {
+        ll t;
+        cin >> t;
+        ll sum = 0;
 
-        for (ll j = 1; j <= col; j++)
+        for (ll i = 0; i < t; i++)
         {
-            if (i % 2 != 0)
-            {
-                cout << '#';
-            }
+            ll a;
+            cin >> a;
 
-            else if (i % 2 == 0)
-            {
-                
-
-                continue;
-            }
+            sum += a;
         }
-        cout << endl;
+
+        if( isPerfectSquare(sum)){
+            cout<<yes<<endl;
+        }else{
+            cout<<no<<endl;
+        }
+        
     }
-    return 0;
+
+return 0;
 }

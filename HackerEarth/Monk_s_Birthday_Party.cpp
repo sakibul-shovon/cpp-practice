@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: Monk_s_Birthday_Party.cpp
+// Date: 2023-11-15
+// Time: 23:34:17
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,18 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(t){
+        int n;cin>>n;
+        set<string>st;
+
+        for(int i=0;i<n;i++){
+            string s;cin>>s;
+            st.insert(s);
         }
-        temp = s;
 
+        for(auto it:st){
+            cout<<it<<endl;
+        }
     }
-
-    cout<<count<<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: E_Romantic_Glasses.cpp
+// Date: 2023-12-30
+// Time: 01:42:40
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,48 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(t){
+        ll n;cin>>n;
+        vll v(n);
+        vll even(n,0),odd(n,0);
+        ll j=0,k=0;
+
+        for(ll i=0;i<n;i++){
+            cin>>v[i];
+
+            if(i % 2 == 0){
+                even[j++] = v[i]; 
+            }
+            else{
+                odd[k++] = v[i];
+            }
         }
-        temp = s;
 
+        autoLoop(even);line;autoLoop(odd);
+        ll sum1=0,sum2=0; ll i =0;
+        while(true){
+            sum1 += even[i] + even[i+1];
+            sum2 += odd[i]+odd[i+1];
+
+            i++;i++;
+
+            if(sum1 == sum2){
+                cout<<yes<<endl;break;
+            }
+
+            if( (i-1)*2 >= n){
+                cout<<no<<endl;
+                break;
+            }
+
+
+
+        }
     }
-
-    cout<<count<<endl;
     return 0;
 }

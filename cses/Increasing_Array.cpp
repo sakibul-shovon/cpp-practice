@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: Increasing_Array.cpp
+// Date: 2023-11-19
+// Time: 12:22:37
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,17 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    ll n;cin>>n;
+    ll count = 0;
+    ll temp ;cin>>temp;
+    for(ll i=1;i<n;i++){
+        ll a;cin>>a;
+        if(a < temp){
+            count += temp - a;
         }
-        temp = s;
+        temp = max(temp,a);
 
     }
-
     cout<<count<<endl;
     return 0;
 }

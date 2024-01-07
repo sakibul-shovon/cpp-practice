@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Way_Too_Long_Words.cpp
+// Date: 2023-11-23
+// Time: 22:38:14
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,17 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(t){
+        string s;cin>>s;
+
+        if(s.length() <= 10 ){
+            cout<<s<<endl;
         }
-        temp = s;
 
+        else{
+            ll total = s.length() - 2;
+            cout<< s[0] <<total<<s[s.length() - 1] <<endl;
+        }
     }
-
-    cout<<count<<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Game_with_Integers.cpp
+// Date: 2023-11-17
+// Time: 20:43:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,13 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(n){
+        ll a;cin>>a;
+        if(a%3 == 0){
+            cout<<"Second"<<endl;
+        }else{
+            cout<<"First"<<endl;
         }
-        temp = s;
-
     }
-
-    cout<<count<<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: Sets_STL.cpp
+// Date: 2023-11-15
+// Time: 22:58:59
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,28 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    ll q;cin>>q;
+    
+    set<ll> st;
+    while(q--){
+        int a,b;cin>>a>>b;
 
+        if(a == 1){
+            st.insert(b);
+        }
+
+        else if(a == 2){
+            auto t = (st.find(b) !=st.end());
+            st.erase(b);
+        }
+        else{
+            if(st.find(b) != st.end()){
+                cout<<"Yes"<<endl;
+            }else{
+                cout<<"No"<<endl;
+            }
+        }
     }
 
-    cout<<count<<endl;
     return 0;
 }

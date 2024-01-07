@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: D_Balanced_Round.cpp
+// Date: 2023-12-04
+// Time: 02:14:59
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -67,28 +67,41 @@ using namespace std;
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
 
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    While(t)
     {
+        ll n, k;
+        cin >> n >> k;
 
-        for (ll j = 1; j <= col; j++)
+        vll v(n + 1);
+
+        for (ll i = 1; i <= n; i++)
         {
-            if (i % 2 != 0)
+            cin >> v[i];
+        }
+
+        sort_all(v);
+
+        ll count = 1;
+        ll maxx = -1;
+        for (ll i = 1; i < n; i++)
+        {
+            if (v[i + 1] - v[i] > k)
             {
-                cout << '#';
+
+                if (count > maxx)
+                {
+                    maxx = count;
+                }
+                count = 1;
             }
-
-            else if (i % 2 == 0)
+            else
             {
-                
-
-                continue;
+                count++;
             }
         }
-        cout << endl;
+
+        cout << n - max(maxx, count) << endl;
     }
     return 0;
 }

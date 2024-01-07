@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Rook.cpp
+// Date: 2023-12-05
+// Time: 20:46:15
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,38 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
-int main()
-{
-    fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string s;
+        cin >> s;
+
+        int n = s[1] - '0';  
+
+        for(char i = 'a';i<= 'h';i++){
+            if(i == s[0]){
+                continue;
+            }
+            else{
+                cout<<i<<n<<endl;
+            }
         }
-        temp = s;
 
+        for(ll i = 1;i<=8;i++){
+            if(i ==  n){
+                continue;
+            }else{
+                cout<<s[0]<<i<<endl;
+            }
+        }
     }
 
-    cout<<count<<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: B_Sort_the_Array.cpp
+// Date: 2023-12-21
+// Time: 02:27:26
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,6 +36,7 @@ using namespace std;
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
 #define gcd(a, b) __gcd(a, b);
+#define isEven(n) ((n % 2) == 0);
 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
@@ -59,7 +60,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        ll temp;            \
+        int temp;           \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -67,28 +68,49 @@ using namespace std;
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
+    ll n;
+    cin >> n;
 
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    vector<ll> v(n), second(n);
+
+    for (ll i = 0; i < n; i++)
     {
+        cin >> v[i];
+        second[i] = v[i];
+    }
 
-        for (ll j = 1; j <= col; j++)
+    sort(second.begin(), second.end());
+    if (v == second)
+    {
+        cout << "yes\n"
+             << "1 1\n";
+    }
+    else
+    {
+        ll first = 0, last = 0;
+        for (int i = 0; i < n - 1; i++)
         {
-            if (i % 2 != 0)
+            if (v[i] > v[i + 1])
             {
-                cout << '#';
-            }
-
-            else if (i % 2 == 0)
-            {
-                
-
-                continue;
+                first = i + 1;
+                break;
             }
         }
-        cout << endl;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (v[i] < v[i - 1])
+            {
+                last = i + 1;
+                break;
+            }
+        }
+        reverse(v.begin() + (first - 1), v.begin() + last);
+        if (v == second)
+        {
+            cout << "yes\n";
+            cout << first << " " << last << '\n';
+        }
+        else
+            cout << "no\n";
     }
-    return 0;
 }

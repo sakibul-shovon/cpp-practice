@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
+// File Name: A_Police_Recruits.cpp
 // Date: 2023-11-27
-// Time: 22:12:00
+// Time: 21:34:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,30 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
+    ll n;cin>>n;
+    vll v(n);
+
+    ll count = 0;
+    ll sum = 0 ;
+
+    for(ll i=0;i<n;i++){
+        ll temp;cin>>temp;
+        
+        if(temp == -1){
             count++;
         }
-        temp = s;
+
+        if(temp > 0){
+            sum+= temp;
+        }
+
+        if(sum > 0 and temp == -1){
+            count = count - 1;
+            sum--;
+        }
+
 
     }
-
     cout<<count<<endl;
     return 0;
 }

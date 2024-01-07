@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: Monk_and_the_Magical_Candy_Bags.cpp
+// Date: 2023-11-15
+// Time: 22:31:49
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,26 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(t){
+        ll n,k;in2(n,k);
+
+        multiset<ll> st;
+
+        for(ll i=0;i<n;i++){
+            ll a;cin>>a;st.insert(a);
         }
-        temp = s;
 
+        ll count = 0;
+
+        for(ll i=0;i<k;i++){
+            auto temp = (--st.end());//set er max value ke point korlam
+            ll t = *temp;
+
+            count += t;
+            st.erase(temp);
+            st.insert(t/2);
+        }
+        cout<<count<<endl;
     }
-
-    cout<<count<<endl;
     return 0;
 }

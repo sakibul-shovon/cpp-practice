@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: B_250_Thousand_Tons_of_TNT.cpp
+// Date: 2023-11-17
+// Time: 22:37:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,46 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+     ll n;
+        cin >> n;
+        vector<ll> v(n + 1);
+        for (ll i = 1; i <= n; i++)
+        {
+            cin >> v[i];
         }
-        temp = s;
 
-    }
+        vll div;
+        for (ll i = 2; i <= n / 2; i++)
+        {
+            if (n % i == 0)
+            {
+                div.push_back(i);
+            }
+        }
+        //autoLoop(div);
 
-    cout<<count<<endl;
+        vll Sum;
+        vll temp;
+
+        for (ll i = 0; i < div.size(); i++)
+        {
+            ll sum = 0;
+            for (ll j = 1; j <= n; j++)
+            {
+                sum += v[j];
+                if (j % div[i] == 0)
+                {
+                    // Sum.push_back(sum);
+                    temp.push_back(sum);
+                    sum = 0;
+                }
+            }
+            
+            Sum.push_back(temp.front() - temp.back());
+            temp.clear();
+        }
+
+        sort_all(Sum);
+        cout<<Sum.back()<<endl;
     return 0;
 }

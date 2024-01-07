@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: B_Chemistry.cpp
+// Date: 2023-11-20
+// Time: 16:36:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,35 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    ll t;cin>>t;
+
+    while(t--){
+        ll n,k;cin>>n>>k;
+        string s;cin>>s;
+
+        if(s.length() == 1){
+            cout<<yes<<endl;continue;
         }
-        temp = s;
+
+        map<char,int>mp;
+
+        for(int i=0;i<n;i++){
+            mp[s[i]]++;
+        }
+
+        ll count = -1;
+        for(auto it:mp){
+            if(it.second % 2 != 0){
+                count++;
+            }
+        }
+
+        if(count<= k){
+            cout<<yes<<endl;
+        }else{
+            cout<<no<<endl;
+        }
 
     }
-
-    cout<<count<<endl;
     return 0;
 }

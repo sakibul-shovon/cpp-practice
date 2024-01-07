@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: B_Laura_and_Operations.cpp
+// Date: 2023-12-04
+// Time: 13:11:45
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,35 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    While(t){
+        ll a,b,c;cin>>a>>b>>c;
+        ll one,two,three;
 
+        if(abs (a - b) % 2 == 0 ){
+            three = 1;
+        }else{
+            three = 0;
+        }
+
+        if(abs(b-c) % 2 == 0){
+            one = 1;
+        }else{
+            one = 0;
+        }
+
+        if(abs(a - c) % 2 == 0){
+            two = 1;
+        }else{
+            two = 0;
+        }
+
+        cout<<one<<" "<<two<<" "<<three<<endl;
     }
 
-    cout<<count<<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: B_Parity_Sort.cpp
+// Date: 2024-01-01
+// Time: 11:34:59
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,43 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    
+    While(t){
+        ll n;cin>>n;
+
+        vll v(n);
+        vll temp(n);
+
+        for(ll i=0;i<n;i++){
+            cin>>v[i];
+            temp[i] = v[i];
         }
-        temp = s;
 
+        
+    
+        sort_all(temp);
+        bool check  = 0;
+
+        for(ll i=0;i<n;i++){
+            if((v[i] % 2 == 0) and (temp[i] % 2 == 0))
+            {
+                continue;
+            }else if((v[i] % 2 !=0) and (temp[i] % 2 !=0)){
+                continue;
+            }else{
+                check = 1;
+                cout<<no<<endl;break;
+            }
+        }
+
+        if(check == 0){
+            cout<<yes<<endl;
+        }
     }
-
-    cout<<count<<endl;
     return 0;
 }

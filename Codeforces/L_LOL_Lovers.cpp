@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: L_LOL_Lovers.cpp
+// Date: 2023-12-21
+// Time: 20:07:09
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,6 +36,7 @@ using namespace std;
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
 #define gcd(a, b) __gcd(a, b);
+#define isEven(n) ((n % 2) == 0);
 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
@@ -59,7 +60,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        ll temp;            \
+        int temp;           \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -67,28 +68,42 @@ using namespace std;
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
 
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    ll L_count = 0, O_count = 0;
+
+    for (ll i = 0; i < n; i++)
     {
-
-        for (ll j = 1; j <= col; j++)
+        if (s[i] == 'L')
+            L_count++;
+        else
         {
-            if (i % 2 != 0)
-            {
-                cout << '#';
-            }
-
-            else if (i % 2 == 0)
-            {
-                
-
-                continue;
-            }
+            O_count++;
         }
-        cout << endl;
     }
-    return 0;
+
+    ll L_temp = 0, O_temp = 0;
+    for (ll i = 0; i < n-1; i++)
+    {
+        if (s[i] == 'L')
+        {
+            L_temp++;
+            L_count--;
+        }
+        else if (s[i] == 'O')
+        {
+            O_temp++;
+            O_count--;
+        }
+      
+
+        if( (L_count != L_temp) && (O_count != O_temp)){
+            cout<<i+1<<endl;return 0;
+        }
+    }
+
+    cout << -1 << endl;
 }

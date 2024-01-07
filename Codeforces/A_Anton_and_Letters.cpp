@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Anton_and_Letters.cpp
+// Date: 2023-11-23
+// Time: 22:26:15
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,14 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    set<ll> st;
 
+    string s; getline(cin,s);
+
+    for(ll i=0;i<s.length();i++){
+        if(s[i] >= 'a' And s[i] <= 'z') st.insert(s[i]);
     }
 
-    cout<<count<<endl;
+    cout<<st.size()  <<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: A_LCM_Problem.cpp
+// Date: 2023-12-04
+// Time: 23:26:40
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -67,28 +67,17 @@ using namespace std;
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
-
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    While(t)
     {
-
-        for (ll j = 1; j <= col; j++)
-        {
-            if (i % 2 != 0)
-            {
-                cout << '#';
-            }
-
-            else if (i % 2 == 0)
-            {
-                
-
-                continue;
-            }
+        ll l, r;
+        cin >> l >> r;
+        bool check = 0;
+        
+        if(2*l <= r){
+            cout<<l<<" "<<2*l<<endl;
+        }else{
+            cout<<-1<<" "<<-1<<endl;
         }
-        cout << endl;
     }
     return 0;
 }

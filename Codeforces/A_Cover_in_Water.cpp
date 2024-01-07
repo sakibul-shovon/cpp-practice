@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Cover_in_Water.cpp
+// Date: 2023-12-30
+// Time: 13:45:00
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,33 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    While(t){
+        ll n;cin>>n;
+
+        string s;cin>>s;
+        ll count =0;
+        bool check = false;
+
+        for(ll i=0;i<n;i++){
+            if(s[i] == '.') count++;
+
+            if(s[i] == '.' and s[i+1] == '.' and s[i+2] == '.'){
+                check = true;
+                break;
+            }
         }
-        temp = s;
 
+
+        if(check == true){
+            cout<<2<<endl;
+        }else{
+            cout<<count<<endl;
+        }
     }
-
-    cout<<count<<endl;
     return 0;
 }

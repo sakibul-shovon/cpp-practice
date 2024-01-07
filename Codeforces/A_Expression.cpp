@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Expression.cpp
+// Date: 2024-01-01
+// Time: 18:05:21
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,29 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    ll a,b,c;cin>>a>>b>>c;
 
-    }
+    ll max = -1;
+    ll A = a + (b*c);
+    if(A>max) max = A;
+    ll B = a * (b+c);
+    if(B>max) max = B;
+    ll C = a*b*c;
+    if(C>max) max = C;
+    ll D = (a+b) * c;
+    if(D>max) max = D;
 
-    cout<<count<<endl;
+    ll E = a+b+c;
+
+    if(E>max) max = E;
+    cout<<max<<endl;
+
+
+    
     return 0;
 }

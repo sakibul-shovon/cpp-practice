@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
+// File Name: A_Carrot_Cakes.cpp
 // Date: 2023-11-27
-// Time: 22:12:00
+// Time: 23:26:51
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,14 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    ll n,t,k,d;
+    cin>>n>>t>>k>>d;
 
+    ll no_oven_time = ceil( n * 1.0 / k ) * t;
+
+    for(ll i=1;;i++){
+        
     }
 
-    cout<<count<<endl;
     return 0;
 }

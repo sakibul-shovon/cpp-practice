@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Free_Ice_Cream.cpp
+// Date: 2023-11-23
+// Time: 22:43:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,26 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    ll n,sum ;
+    cin>>n>>sum;
+    ll count = 0;
+    while(n--){
+        char a;cin>>a;
+        ll b;cin>>b;
 
+        if(a == '+'){
+            sum += b;
+        }else{
+            ll tmp = sum - b;
+
+            if(tmp < 0 ){
+                count++;
+            }else{
+                sum -= b;
+            }
+        }
     }
 
-    cout<<count<<endl;
+    cout<<sum<<" "<<count<<endl;
     return 0;
 }

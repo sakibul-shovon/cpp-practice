@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: Missing_Number.cpp
+// Date: 2023-11-19
+// Time: 08:12:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,19 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
+    ll n;cin>>n;
+    ll sum = 0;
+
+    
+    for(ll i =0;i<n-1;i++){
+        ll a;cin>>a;
+        sum+= a;
 
     }
 
-    cout<<count<<endl;
+    ll nthSum =( n*(n+1))/2;
+
+    cout<<nthSum - sum <<endl;
+
     return 0;
 }

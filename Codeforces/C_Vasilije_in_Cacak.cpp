@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: C_Vasilije_in_Cacak.cpp
+// Date: 2023-11-29
+// Time: 17:23:55
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,21 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    ll t;cin>>t;
+
+    while(t--){
+        ll n,k,x;in3(n,k,x);
+
+        ll max_sum =( n * (n+1)) / 2;
+        ll first_sum = (k*(k+1)) / 2;
+        ll last_sum = max_sum - first_sum;
+
+        if(x>= first_sum and x<=last_sum){
+            cout<<yes<<endl;
+        }else{
+            cout<<no<<endl;
         }
-        temp = s;
 
     }
-
-    cout<<count<<endl;
     return 0;
 }

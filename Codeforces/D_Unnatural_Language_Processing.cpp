@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: D_Unnatural_Language_Processing.cpp
+// Date: 2023-12-28
+// Time: 21:26:32
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -33,7 +33,6 @@ using namespace std;
 #define pqb          priority_queue<int>
 #define pqs          priority_queue<int, vi, greater<int>>
 #define gcd(a, b)    __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x)       x.begin(), x.end()
 #define space        cout << ' ';
@@ -49,25 +48,60 @@ using namespace std;
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
 #define While(n)      int t; cin>>t;while(t--)
-#define WhileVecInput(v,n)   while(n--){ int temp;cin>>temp; v.push_back(temp); }
+#define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
+
+bool checkVowel(char a){
+    if(a == 'a' or a == 'e'){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
+    
+    While(t){
+        string s;
+        ll n;cin>>n;
         cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
 
+        string ans = "";
+        ll count =0;
+
+        for(ll i=0;i<s.length();i++){
+            ans +=s[i];
+            if(checkVowel(s[i])){
+                if( (checkVowel(s[i+1]) == false)  and (checkVowel (s[i+2]) == false)){
+                    ans += s[i+1];
+                    ans += '.';
+                    i++;count++;
+
+                }
+
+                else{
+                    ans += '.';count++;
+
+                }
+            }
+            
+        }
+
+        ll temp = n + count - 1;
+       
+
+        for(ll i=0;i<temp;i++){
+            cout<<ans[i];
+        }line;
+
+        
+
+        
+
+        
     }
 
-    cout<<count<<endl;
     return 0;
 }

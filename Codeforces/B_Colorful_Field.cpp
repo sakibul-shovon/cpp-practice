@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: B_Colorful_Field.cpp
+// Date: 2023-12-25
+// Time: 00:53:48
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,6 +36,7 @@ using namespace std;
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
 #define gcd(a, b) __gcd(a, b);
+#define isEven(n) ((n % 2) == 0);
 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
@@ -59,7 +60,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        ll temp;            \
+        int temp;           \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -67,28 +68,37 @@ using namespace std;
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
 
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    ll n, m, k, q;
+    cin >> n >> m >> k >> q;
+
+    vector<vector<int>> v(n, vector<int>(m, 0));
+
+    vector<pair<int, int>> vPair;
+    for (ll i = 0; i < k; i++)
     {
+        ll a, b;
+        cin >> a >> b;
 
-        for (ll j = 1; j <= col; j++)
-        {
-            if (i % 2 != 0)
-            {
-                cout << '#';
-            }
-
-            else if (i % 2 == 0)
-            {
-                
-
-                continue;
-            }
-        }
-        cout << endl;
+        vPair.push_back(make_pair(a, b));
     }
+
+    for (ll i = 0; i < q; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        pair<int, int> targetPair = {x, y};
+
+        
+        if (find(vPair.begin(), vPair.end(), targetPair) != vPair.end())
+        {
+            cout << "Waste" << endl;
+        }
+        else
+        {
+            
+        }
+    }
+
     return 0;
 }

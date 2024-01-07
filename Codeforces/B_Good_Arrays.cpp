@@ -1,6 +1,6 @@
-// File Name: A_Fox_And_Snake.cpp
-// Date: 2023-12-06
-// Time: 23:02:47
+// File Name: B_Good_Arrays.java
+// Date: 2023-12-04
+// Time: 01:32:31
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -67,28 +67,49 @@ using namespace std;
 int main()
 {
     fastio;
-    ll row, col;
-    cin >> row >> col;
 
-    bool check = 0;
-    for (ll i = 1; i <= row; i++)
+    While(t)
     {
+        ll n;
+        cin >> n;
 
-        for (ll j = 1; j <= col; j++)
+        ll sum = 0;
+        ll sum2 = 0;
+        bool flag = 1;
+
+        for (ll i = 0; i < n; i++)
         {
-            if (i % 2 != 0)
+            ll t;
+            cin >> t;
+
+            sum += t;
+
+            if (n == 1)
             {
-                cout << '#';
+                flag = 0;cout<<no<<endl;
             }
 
-            else if (i % 2 == 0)
+            if (t == 1)
             {
-                
-
-                continue;
+                sum2 += 2;
+            }
+            else
+            {
+                sum2 += 1;
             }
         }
-        cout << endl;
+
+        if (flag != 0)
+        {
+            if (sum2 <= sum)
+            {
+                cout << yes << endl;
+            }
+            else
+            {
+                cout << no << endl;
+            }
+        }
     }
     return 0;
 }

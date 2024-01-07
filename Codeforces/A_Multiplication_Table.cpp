@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: A_Multiplication_Table.cpp
+// Date: 2023-11-15
+// Time: 10:46:05
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,6 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
-        }
-        temp = s;
-
-    }
-
-    cout<<count<<endl;
+    // Your code here
     return 0;
 }

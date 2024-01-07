@@ -1,6 +1,6 @@
-// File Name: A_Magnets.cpp
-// Date: 2023-11-27
-// Time: 22:12:00
+// File Name: B_Chips_on_the_Board.cpp
+// Date: 2023-11-29
+// Time: 15:05:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,20 +54,32 @@ using namespace std;
 int main()
 {
     fastio;
-    ll n;
-    cin>>n;
-    ll count = 1;
-    string s;cin>>s;
-    string temp = s;n--;
-    while( n-- ){
-        cin>>s;
-        if(s != temp){
-            count++;
+    ll t;cin>>t;
+    
+    while(t--){
+        ll n;cin>>n;
+        vll row(n),col(n);
+        ll min_row = inf;
+        ll min_col = inf;
+        ll row_sum = 0;
+        ll col_sum = 0;
+
+        for(ll i=0;i<n;i++){
+            cin>>row[i];
+            min_row = min(row[i],min_row);
+            row_sum += row[i];
+        } 
+        for(ll i=0;i<n;i++) {
+            cin>>col[i];
+            min_col = min(col[i],min_col);
+            col_sum += col[i];
+
         }
-        temp = s;
 
+        ll ans1 = row_sum + (min_col * n);
+        ll ans2 = col_sum + (min_row * n);
+
+        cout<<min(ans1,ans2)<<endl;
     }
-
-    cout<<count<<endl;
     return 0;
 }
