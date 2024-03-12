@@ -1,6 +1,6 @@
-// File Name: C_Stripes.cpp
-// Date: 2024-01-04
-// Time: 21:45:03
+// File Name: A_Satisfying_Constraints.cpp
+// Date: 2024-01-13
+// Time: 20:42:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -28,16 +28,6 @@ using namespace std;
 #define And &&
 #define Or ||
 
-#define For(a, n) for (int i = a; i < n; i++)
-#define ForRev(a, b) for (int i = a; i > b; i--)
-#define nested_incr_loop(a, b) for (int j = a; j < b; j++)
-#define nested_decr_loop(a, b) for (int j = b; j > a; j--)
-
-#define pqb priority_queue<int>
-#define pqs priority_queue<int, vi, greater<int>>
-#define gcd(a, b) __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
-
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
 
@@ -60,57 +50,59 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        int temp;           \
+        ll temp;            \
         cin >> temp;        \
         v.push_back(temp);  \
     }
-
 int main()
 {
     fastio;
-    int t;
+    ll t;
     cin >> t;
     while (t--)
     {
-        string s[8];
-        int n = 8;
+        ll n;
+        cin >> n;
+        vector<ll> v;
+        ll maxx = inf, minn = LLONG_MIN;
+        ll t = 0;
         for (int i = 0; i < n; i++)
         {
-            cin >> s[i];
-        }
-        char c = '.';
-
-        for (int i = 0; i < n; i++)
-        {
-            if (count(s[i].begin(), s[i].end(), 'R') == n)
+            ll a, x;
+            cin >> a >> x;
+            if (a == 1)
             {
-                c = 'R';
-                break;
+                minn = max(x, minn);
+            }
+            else if (a == 2)
+            {
+                maxx = min(x, maxx);
+            }
+            else if (a == 3)
+            {
+                v.pb(x);
             }
         }
 
-        if (c == '.')
+        if (minn > maxx)
         {
-            for (int j = n - 1; j >= 0; j--)
+            cout << 0 << endl;
+            continue;
+        }
+
+        ll count = 0;
+
+        for (ll i = 0; i < v.size(); i++)
+        {
+            if (v[i] >= minn and v[i] <= maxx)
             {
-                bool check = false;
-                for (int i = 0; i < n; i++)
-                {
-                    if (s[i][j] != 'B')
-                    {
-                        check = true;
-                        break;
-                    }
-                }
-                if (check == false)
-                {
-                    c = 'B';
-                    break;
-                }
+                count++;
             }
         }
 
-        cout << c << endl;
+        //debug(count);
+
+        cout << maxx - minn + 1 - count << endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: C_Stripes.cpp
-// Date: 2024-01-04
-// Time: 21:45:03
+// File Name: C_Letters.cpp
+// Date: 2024-01-19
+// Time: 01:23:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,7 +36,6 @@ using namespace std;
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
 #define gcd(a, b) __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
@@ -60,7 +59,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        int temp;           \
+        ll temp;            \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -68,49 +67,23 @@ using namespace std;
 int main()
 {
     fastio;
-    int t;
-    cin >> t;
-    while (t--)
+     
+    ll dorm, letter;
+    cin >> dorm >> letter;
+    ll a[dorm+1];
+    a[0] = 0;
+    for(int i = 1; i <= dorm; i++)
     {
-        string s[8];
-        int n = 8;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> s[i];
-        }
-        char c = '.';
-
-        for (int i = 0; i < n; i++)
-        {
-            if (count(s[i].begin(), s[i].end(), 'R') == n)
-            {
-                c = 'R';
-                break;
-            }
-        }
-
-        if (c == '.')
-        {
-            for (int j = n - 1; j >= 0; j--)
-            {
-                bool check = false;
-                for (int i = 0; i < n; i++)
-                {
-                    if (s[i][j] != 'B')
-                    {
-                        check = true;
-                        break;
-                    }
-                }
-                if (check == false)
-                {
-                    c = 'B';
-                    break;
-                }
-            }
-        }
-
-        cout << c << endl;
+        cin >> a[i];
+        a[i] = a[i] + a[i-1];
     }
-    return 0;
+    sort(a, a+dorm);
+    
+    for(int i = 0; i < letter; i++)
+    {
+        ll t;cin>>t;
+        auto lower = lower_bound(a, a+dorm, t);
+        cout << lower - &a[0] << " "<< t - a[lower - &a[0] - 1] << endl;
+ 
+    }
 }

@@ -1,6 +1,6 @@
-// File Name: C_Stripes.cpp
-// Date: 2024-01-04
-// Time: 21:45:03
+// File Name: A_New_Year_Transportation.cpp
+// Date: 2024-01-30
+// Time: 01:48:51
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -10,37 +10,51 @@ using namespace std;
     cin.tie(0);                   \
     cout.tie(0)
 
+// Data Types
 #define ll long long int
 #define vint vector<int>
 #define vll vector<long long int>
 #define vstring vector<string>
 
+// Vector Operations
 #define pb push_back
-#define mp make_pair
-#define pii pair<int, int>
+#define maxVecElement(a) (*max_element(all(a)))
+#define minVecElement(a) (*min_element(all(a)))
+#define bin_sc(a, x) binary_search(all(a), x) // 0/1
+
+// Mathematical Constants and Functions
+#define PI 3.141592653589793238462
 #define mod 1000000007
 #define inf 1e18
-#define PI 3.141592653589793238462
+#define binpow(a, b) binpow(a, b)
+#define binpow_mod(a, b, m) binpow(a, b, m)
+#define nCr(n, r) nCr(n, r)
+#define nPr(n, r) nPr(n, r)
+#define total(v) accumulate(v.begin(), v.end(), 0)
+#define decimal(n) cout << fixed << setprecision(n);
 
-#define endl "\n"
-#define no "NO"
-#define yes "YES"
+// Logical Operations
 #define And &&
 #define Or ||
 
+// Looping Macros
 #define For(a, n) for (int i = a; i < n; i++)
 #define ForRev(a, b) for (int i = a; i > b; i--)
 #define nested_incr_loop(a, b) for (int j = a; j < b; j++)
 #define nested_decr_loop(a, b) for (int j = b; j > a; j--)
 
+// Priority Queues
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
-#define gcd(a, b) __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
+// GCD Function
+#define gcd(a, b) __gcd(a, b)
+
+// Generic Operations
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
 
+// Input/Output Macros
 #define in(x) cin >> x;
 #define in2(x, y) cin >> x >> y;
 #define in3(x, y, z) cin >> x >> y >> z;
@@ -60,7 +74,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        int temp;           \
+        ll temp;            \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -68,49 +82,15 @@ using namespace std;
 int main()
 {
     fastio;
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        string s[8];
-        int n = 8;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> s[i];
-        }
-        char c = '.';
+    ll n, a;
+    cin >> n >> a;
+    vll v(n);
+    For(0, n) cin >> v[i];
 
-        for (int i = 0; i < n; i++)
-        {
-            if (count(s[i].begin(), s[i].end(), 'R') == n)
-            {
-                c = 'R';
-                break;
-            }
-        }
-
-        if (c == '.')
-        {
-            for (int j = n - 1; j >= 0; j--)
-            {
-                bool check = false;
-                for (int i = 0; i < n; i++)
-                {
-                    if (s[i][j] != 'B')
-                    {
-                        check = true;
-                        break;
-                    }
-                }
-                if (check == false)
-                {
-                    c = 'B';
-                    break;
-                }
-            }
-        }
-
-        cout << c << endl;
+    ll i = 1; 
+    while(true){
+        ll t = i + v[i-1];
+        i++;
     }
     return 0;
 }

@@ -1,50 +1,40 @@
 // File Name: Next_Greater_Element.cpp
-// Date: 2023-12-09
-// Time: 00:30:09
+// Date: 2024-02-12
+// Time: 12:43:30
 
 #include <bits/stdc++.h>
 using namespace std;
+int main()
+{
 
-vector<int> NGE(vector<int> v){
-    stack<int>st;
-    vector<int> nge(v.size());
+    int n;
+    cin >> n;
+    vector<int> v(n), nge(n);
+    stack<int> st;
 
-    for(int i=0;i<v.size();i++){
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
 
-        while(!st.empty() and v[i] > v[st.top()]){
-            nge[st.top()] = i;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        while (!st.empty() && st.top() <= v[i])
+        {
             st.pop();
         }
 
-        st.push(i);
+        if (!st.empty())
+        {
+            nge[i] = st.top();
+        }
+        else
+        {
+            nge[i] = -1;
+        }
 
+        st.push(v[i]);
     }
-
-    while(!st.empty()){
-        nge[st.top()] = -1;
-        st.pop();
-    }
-    return nge;
-}
-
-
-int main(){
-    
-    int n;cin>>n;
-    vector<int> v(n);
-
-    for(int i=0;i<n;i++) cin>>v[i];
-
-    vector<int> nge = NGE(v);
-
-    for(int i=0;i<n;i++){
-        
-           if(nge[i] == -1 ){
-            cout<<v[i]<<" "<<-1<<endl;
-           }else{
-            cout<<v[i]<<" "<<v[nge[i]]<<endl;
-           }
-        
+    for(int i = 0 ; i < n ; i++){
+        cout<<v[i]<<" "<<nge[i]<<endl;
     }
 
     return 0;

@@ -1,6 +1,6 @@
-// File Name: C_Stripes.cpp
-// Date: 2024-01-04
-// Time: 21:45:03
+// File Name: A_Jzzhu_and_Children.cpp
+// Date: 2024-01-28
+// Time: 20:06:01
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,12 +36,14 @@ using namespace std;
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
 #define gcd(a, b) __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
 
-#define in(x) cin >> x;
+#define in(x) \
+    cin >> x; \
+    fastio;
+
 #define in2(x, y) cin >> x >> y;
 #define in3(x, y, z) cin >> x >> y >> z;
 #define out(x) cout << x;
@@ -60,7 +62,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        int temp;           \
+        ll temp;            \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -68,49 +70,39 @@ using namespace std;
 int main()
 {
     fastio;
-    int t;
-    cin >> t;
-    while (t--)
+    ll n, b;
+    cin >> n >> b;
+    vector<pair<ll, ll>> v;
+    ll maxx = -1;
+    ll x = 1;
+    for (ll i = 0; i < n; i++)
     {
-        string s[8];
-        int n = 8;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> s[i];
-        }
-        char c = '.';
-
-        for (int i = 0; i < n; i++)
-        {
-            if (count(s[i].begin(), s[i].end(), 'R') == n)
-            {
-                c = 'R';
-                break;
-            }
-        }
-
-        if (c == '.')
-        {
-            for (int j = n - 1; j >= 0; j--)
-            {
-                bool check = false;
-                for (int i = 0; i < n; i++)
-                {
-                    if (s[i][j] != 'B')
-                    {
-                        check = true;
-                        break;
-                    }
-                }
-                if (check == false)
-                {
-                    c = 'B';
-                    break;
-                }
-            }
-        }
-
-        cout << c << endl;
+        ll t;
+        cin >> t;
+        v.push_back(make_pair(t, x++));
+        maxx = max(maxx,t);
     }
+
+  
+    
+    jump:
+    for (ll i = 0; i < v.size() and v.size() > 1; i++)
+    {
+        v[i].first -= b;
+
+        if (v[i].first <= 0)
+        {
+            v.erase(v.begin() + i);
+            i--;
+        }
+       
+    }
+    if(v.size() > 1){
+        goto jump;
+    }
+    
+
+    cout << v[0].second << endl;
+
     return 0;
 }

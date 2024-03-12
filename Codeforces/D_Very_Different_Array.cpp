@@ -1,6 +1,6 @@
-// File Name: C_Stripes.cpp
-// Date: 2024-01-04
-// Time: 21:45:03
+// File Name: D_Very_Different_Array.cpp
+// Date: 2024-01-15
+// Time: 22:02:08
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -36,7 +36,6 @@ using namespace std;
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
 #define gcd(a, b) __gcd(a, b);
-#define isEven(n) ((n % 2) == 0);
 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
@@ -60,7 +59,7 @@ using namespace std;
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
-        int temp;           \
+        ll temp;            \
         cin >> temp;        \
         v.push_back(temp);  \
     }
@@ -68,49 +67,63 @@ using namespace std;
 int main()
 {
     fastio;
-    int t;
-    cin >> t;
-    while (t--)
+    While(t)
     {
-        string s[8];
-        int n = 8;
-        for (int i = 0; i < n; i++)
-        {
-            cin >> s[i];
-        }
-        char c = '.';
+        ll a, b;
+        in2(a, b);
 
-        for (int i = 0; i < n; i++)
+        vll first(a);
+        for (ll i = 0; i < a; i++)
+            cin >> first[i];
+        vll second(b);
+        for (ll i = 0; i < b; i++)
+            cin >> second[i];
+
+        sort_all(first);
+        sort(second.rbegin(), second.rend());
+        
+
+        vll v(a);
+        ll ans = 0;
+        ll n ;
+        if(a == 1){
+            n = 1;
+
+        }
+        else{
+             n = a / 2;
+        
+        }
+        
+
+        for (ll i = 0; i < n; i++)
         {
-            if (count(s[i].begin(), s[i].end(), 'R') == n)
-            {
-                c = 'R';
-                break;
+           
+            ans += abs(second[i] - first[i]);
+            
+        }
+        
+        ll temp = b - 1;
+        
+        ll x = a - 1;
+
+        ll check = a - n/2 - 1 ;
+        
+        //debug(ans);
+        
+       
+        while (true)
+        {
+            if(check == 0) {
+                cout<<ans<<endl;break;
             }
+            ans += abs(second[temp] - first [x]);
+            x--;temp--;check--;
+            
+            
         }
-
-        if (c == '.')
-        {
-            for (int j = n - 1; j >= 0; j--)
-            {
-                bool check = false;
-                for (int i = 0; i < n; i++)
-                {
-                    if (s[i][j] != 'B')
-                    {
-                        check = true;
-                        break;
-                    }
-                }
-                if (check == false)
-                {
-                    c = 'B';
-                    break;
-                }
-            }
-        }
-
-        cout << c << endl;
+        //autoLoop(second);
+        
     }
     return 0;
 }
