@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Trailing_Zeros.cpp
+// Date: 2024-03-28
+// Time: 02:59:59
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,8 +59,13 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+    ll n ;cin>>n;
+
+    ll ans = 0;
+
+    for(ll i = 5; n / i >=1 ;i = i*5){
+        ans += n/i;
     }
+    cout<<ans<<endl;
     return 0;
 }

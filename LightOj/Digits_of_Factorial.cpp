@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Digits_of_Factorial.cpp
+// Date: 2024-03-22
+// Time: 01:19:47
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,13 +54,24 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
+double log10OFnFact[1000005];
 
 int main()
 {
     fastio;
+    
+    for(ll i = 1;i<=1000000;i++){
+        log10OFnFact[i] = log10OFnFact[i-1] + log10(i);
+    }
+    ll c = 1;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        cout<<"Case "<<c++<<": ";
+        ll n,base;
+        cin>>n>>base;
+
+        ll ans = (log10OFnFact[n]/log10(base)) + 1;
+        cout<<ans<<endl;
+        
     }
     return 0;
 }

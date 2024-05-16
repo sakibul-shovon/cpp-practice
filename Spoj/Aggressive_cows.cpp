@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Aggressive_cows.cpp
+// Date: 2024-04-19
+// Time: 10:45:47
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -55,12 +55,50 @@ long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
+bool canPlaceCow(vector<ll> v,int n,int distance){
+    ll coOrd = v[0];
+    ll count = 1;
 
+    for(ll i =1;i<n;i++){
+        if(v[i] - coOrd >= distance){
+            count++;
+            coOrd = v[i];
+        }
+
+        if(count == n){
+            return true;
+        }
+    }
+    
+        return false;
+    
+}
 int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n,cows;
+        vll v(n);
+        WhileVecInput(v,n);
+        sort_all(v);
+
+        ll low = 1,high = v[n-1] - v[0];
+
+        ll mid;
+        ll result  ;
+        while(low<=high){
+            mid = (high+low) / 2;
+            if(canPlaceCow(v,n,mid)){
+                result = mid;
+                low = mid+1;
+
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+
+        cout<<result<<endl;
     }
     return 0;
 }

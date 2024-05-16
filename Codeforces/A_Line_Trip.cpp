@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Line_Trip.cpp
+// Date: 2024-03-13
+// Time: 00:56:45
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,21 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n,x;cin>>n>>x;
+        ll prev = 0 ;
+        ll ans = -1;
+        for(ll i = 0 ; i<n;i++){
+            ll curr ;cin>>curr;
+
+            ans = max (ans,(curr-prev));
+            prev = curr;
+
+
+        }
+        ans = max(ans,(x-prev)*2);
+
+        cout<<ans<<endl;
+
     }
     return 0;
 }

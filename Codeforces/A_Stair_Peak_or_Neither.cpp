@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Stair_Peak_or_Neither.cpp
+// Date: 2024-03-28
+// Time: 20:45:36
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,16 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll a,b,c;in3(a,b,c);
+
+        if(a<b and b<c){
+            cout<<"STAIR"<<endl;
+        }
+        else if(a<b and b>c){
+            cout<<"PEAK"<<endl;
+        }else{
+            cout<<"NONE"<<endl;
+        }
     }
     return 0;
 }

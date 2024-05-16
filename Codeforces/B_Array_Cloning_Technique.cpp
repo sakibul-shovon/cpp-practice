@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: B_Array_Cloning_Technique.cpp
+// Date: 2024-05-01
+// Time: 13:09:46
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,40 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n ; cin>>n;
+
+        map<ll,ll> mp;
+        ll maxx= 0;
+        for(ll i = 0 ; i  < n; i++){
+            ll t;cin>>t;
+            mp[t]++;
+            if(mp[t] > maxx){
+                maxx = mp[t];
+            }
+        }
+
+        // for(auto it:mp){
+        //     cout<<it.first<<" "<<it.second<<endl;
+        // }
+        
+        ll same = 0 ;
+        
+        while(true){
+            ll baki = n - maxx;
+            }
+            if(baki == 0 ){
+                cout<<same<<endl;
+                break;
+            }
+            same += 1+maxx;
+            maxx++;
+            debug(same);
+            debug(baki);
+
+            
+        }
+
+        
     }
     return 0;
 }

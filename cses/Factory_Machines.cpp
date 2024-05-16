@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Factory_Machines.cpp
+// Date: 2024-05-02
+// Time: 16:04:31
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,13 +54,50 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+bool canDo(vector<ll> v,ll middle,ll n,ll total )
+{
+    ll ans = 0 ;
+    
+    for(ll i = 0;i<n;i++){
+        ans += middle / v[i];
 
+        if(ans> total){
+            break;
+        }
+    }
+
+    if(ans >= total){
+        return true;
+    }else{
+        return false;
+    }
+
+}
 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+    ll n,k;cin>>n>>k;
+    vll v(n);
+    for(ll i = 0 ; i < n ; i++) cin>>v[i];
+    ll res = 0 ;
+    ll low = 0,high = inf;
+    
+    
+    while(low < high){
+        ll mid = low + (high - low) / 2;
+        
+        
+
+        if(canDo(v,mid,n,k)){
+            res = mid;
+            high = mid ;
+            
+        }
+        else{
+            low = mid+1;
+        }
     }
+    cout<<res<<endl;
     return 0;
-}
+} 

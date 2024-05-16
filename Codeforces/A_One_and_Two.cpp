@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_One_and_Two.cpp
+// Date: 2024-03-25
+// Time: 15:04:59
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,32 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n ;cin>>n;
+        vll v(n);
+        vll one,two;
+        for(ll i = 0 ;i<n;i++){
+            cin>>v[i];
+            if(v[i] == 2 ){
+                two.insert(i);
+            }else{
+                one.insert(i);
+            }
+
+        }
+
+        if(two.size() == 0 ){
+            cout<<1<<endl;
+        }else if(one.size() == 0 and two.size() % 2 == 0  ){
+            cout<<n/2<<endl;
+        }
+        else if(two.size() % 2 == 0 ){
+            ll ans = two.size() / 2  ;
+          
+            cout<<two[ans - 1 ]+1;copyL
+            
+        }else {
+            cout<<-1<<endl;
+        }
     }
     return 0;
 }

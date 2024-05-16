@@ -1,3 +1,7 @@
+// File Name: C_Assembly_via_Remainders.cpp
+// Date: 2024-05-02
+// Time: 21:10:54
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -69,44 +73,23 @@ int main()
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
+        ll n;
+        cin >> n;
+        vll v(n-1);
+        ll maxx = 0;
+        for (ll i = 0; i < n - 1; i++)
+           { cin >> v[i];
+            maxx = max(maxx,v[i]);}
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
-        {
-            no;
-            copyL;
+        vll ans;
+        ans.pb(maxx+1);
+
+        for(ll i =0 ;i<v.size();i++){
+            ll temp = ans[i]  + v[i];
+            ans.pb(temp);
         }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
-        }
+
+        autoLoop(ans);line;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Everybody_Likes_Good_Arrays.cpp
+// Date: 2024-03-28
+// Time: 20:15:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,26 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n ;cin>>n;
+        vll v(n);
+        ll even = 0 , odd = 0 ; 
+        for(ll i = 0 ;i<n;i++) {
+            cin>>v[i];
+            if(v[i] % 2 == 0 ){
+                even++;
+            }else{
+                odd++;
+            }
+        }
+
+        if(n == 1){ cout<<0<<endl;continue;}
+        if(even == odd){
+            cout<<0<<endl;
+        }
+        else{
+            ll temp = min(even,odd);
+            cout<<temp+1<<endl;
+        }
     }
     return 0;
 }

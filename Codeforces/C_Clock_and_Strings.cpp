@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: C_Clock_and_Strings.cpp
+// Date: 2024-05-13
+// Time: 11:24:56
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,18 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll a,b,c,d;
+        in3(a,b,c);cin>>d;
+
+        ll maxx = max(a,b);
+        ll minn =min(a,b);
+
+        if(min(c,d) > minn and max(c,d) > maxx){
+            cout<<"YES"<<endl;
+        }
+        else{
+            cout<<"NO"<<endl;
+        }
     }
     return 0;
 }

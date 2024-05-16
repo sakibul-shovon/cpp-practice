@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Fibsieve_s_Fantabulous_Birthday.cpp
+// Date: 2024-03-16
+// Time: 19:48:34
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,8 +59,31 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
+    ll c = 1;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n ;cin>>n;
+
+        ll row,col;
+        ll square_value = ceil(sqrt(n));
+        ll x = (square_value * square_value ) - n; //(n2-n+1)
+
+        if(x < square_value){
+            row = square_value;
+            col = x + 1 ;
+        }
+        else{
+            //5er ceye boro asle
+            col = square_value;
+            row = n - ((square_value - 1 )*(square_value - 1 ) );
+
+
+        }
+
+        if(square_value % 2 == 0 ){
+            swap(row,col);
+        }
+
+        cout<<"Case "<<c++<<": "<<col<<" "<<row<<endl;
     }
     return 0;
 }

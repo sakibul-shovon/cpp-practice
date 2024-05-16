@@ -1,3 +1,7 @@
+// File Name: B_T_primes.cpp
+// Date: 2024-04-17
+// Time: 01:02:52
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -67,46 +71,37 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
-    While(t)
-    {
-        ll n, k, x;
-        in3(n, k, x);
+    vll v(1000000, 0);
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
+    for (ll i = 2; i <= 1000000; i++)
+    {
+        if (v[i] == 0)
         {
-            no;
-            copyL;
-        }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
+            for (ll j = 2; i * j <= 1000000; j++)
             {
-                add = 1;
+                v[i * j] = 1;
             }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
         }
     }
+
+    While(t)
+    {
+        ll n;
+        cin >> n;
+        ll sq = sqrt(n);
+
+        if (n == 1)
+            cout << "NO" << endl;
+        else if (sq * sq == n and v[sq] == 0)
+        {
+            cout << "YES" << endl;
+        }
+
+        else
+        {
+            cout << "NO" << endl;
+        }
+    }
+
     return 0;
 }

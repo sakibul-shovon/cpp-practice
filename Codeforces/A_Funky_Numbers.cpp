@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Funky_Numbers.cpp
+// Date: 2024-05-16
+// Time: 23:35:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,13 +54,79 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+//first a largest n er value ber korbe
+// biyog diye dekhbo koto dorkar
+//paile yes naile no 
+
+// bool solve(ll need ){
+//     ll low = 0,high = 1e9;
+
+//     while(low < high ){
+//         ll mid = low +(high - low ) / 2;
+
+//         ll test = (mid * (mid + 1)) / 2; 
+
+//         if(test == need ) return true;
+//         if(test > need){
+//             high = mid;
+
+//         }else if(test < need){
+//             low = mid+1;
+//         }
+//     }
+
+//     return false;
+// }
+
+// int main()
+// {
+//     fastio;
+//     ll n;cin>>n;
+
+//     double temp = (-1 + sqrt(1 + 8 * n)) / 2;//b2-4ac
+//     ll temp2 = llround(temp);
+//     temp2 = (temp2 * (temp2+1)) / 2;debug(temp2);
+//     ll need = n - temp2;debug(need);
 
 
-int main()
-{
-    fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+//     bool ans = solve(need);
+
+//     if(ans == true){
+//         cout<<"YES"<<endl;
+//     }else{
+//         cout<<"NO"<<endl;
+//     }
+//     return 0;
+// }
+
+vll v;
+
+bool solve(ll n ){
+    for(ll i = 0; i<v.size()-2;i++){
+        
+       if ( binary_search(v.begin(), v.end(), n-v[i]) ){
+        return true;
+       }
     }
-    return 0;
+    return false;
+}
+int main(){
+    ll limit = 1e9;
+    ll n;cin>>n;
+    v.pb(1);
+
+    for(ll i = 1;i<=limit;i++){
+        ll temp =(i*(i+1))/2;
+        if(temp > limit) break;
+        v.pb(temp);
+    }
+
+    //autoLoop(v);
+
+    bool ans = solve(n);
+
+    if(ans == true) cout<<"YES"<<endl;
+    else{
+        cout<<"NO"<<endl;
+    }
 }

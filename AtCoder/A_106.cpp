@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_106.cpp
+// Date: 2024-04-21
+// Time: 07:15:56
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,11 +56,23 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 
 
 
-int main()
-{
-    fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+
+
+
+int main() {
+    ll N;
+    cin >> N;
+
+    for (ll a = 1; a <= 38; ++a) {
+        for (ll b = 1; b <= 26; ++b) {
+            if (binPow(3, a) + binPow(5, b) == N) {
+                cout << a << " " << b << endl;
+                return 0;
+            }
+        }
     }
+
+    cout << -1 << endl;
     return 0;
 }
+

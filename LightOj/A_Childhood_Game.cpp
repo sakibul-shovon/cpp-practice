@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Childhood_Game.cpp
+// Date: 2024-03-20
+// Time: 00:15:49
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,8 +59,34 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
+    ll c = 1;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n;
+    cin >> n;
+    string s;
+    cin >> s;
+    if(s == "Alice")
+    {
+        if(n % 3 == 1)
+        {
+            cout << "Case " << c++ << ": " << "Bob" << endl;
+        }
+        else
+        {
+            cout << "Case " << c++ << ": " << "Alice" << endl;
+        }
+    }
+    else
+    {
+        if(n % 3 == 0)
+        {
+            cout << "Case " << c++ << ": " << "Alice" << endl;
+        }
+        else
+        {
+            cout << "Case " << c++ << ": " << "Bob" << endl;
+        }
+    }
     }
     return 0;
 }

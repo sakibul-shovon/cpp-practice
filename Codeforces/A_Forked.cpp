@@ -44,9 +44,9 @@ using namespace std;
 #define out3(x, y, z) cout << x << ' ' << y << ' ' << z;
 #define line cout << endl;
 #define sort_all(v) sort(all(v));
-#define autoLoop(x) \
-    for (int u : x) \
-        cout << u << ' ';
+#define autoLoop(x)  \
+    for (auto p : x) \
+        cout << p.first << ' ' << p.second << ' ';
 #define debug(x) cout << #x << " " << x << endl;
 #define While(n) \
     int t;       \
@@ -64,49 +64,57 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+int countMatchingPairs(const set<pair<long long, long long>> &set1, const set<pair<long long, long long>> &set2)
+{
+    int count = 0;
+    for (const auto &pair : set1)
+    {
+        if (set2.find(pair) != set2.end())
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
 int main()
 {
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
+        ll a, b;
+        cin >> a >> b; // knight
+        ll kx, ky;
+        in2(kx, ky);
+        ll qx, qy;
+        in2(qx, qy);
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
-        {
-            no;
-            copyL;
-        }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
-        }
+        set<pair<ll, ll>> king;
+        set<pair<ll, ll>> queen;
+
+        king.insert({kx + a, ky + b});
+        king.insert({kx + a, ky - b});
+        king.insert({kx + b, ky + a});
+        king.insert({kx - b, ky + a});
+        king.insert({kx - a, ky + b});
+        king.insert({kx - a, ky - b});
+        king.insert({kx + b, ky - a});
+        king.insert({kx - b, ky - a});
+
+        queen.insert({qx + a, qy + b});
+        queen.insert({qx + a, qy - b});
+        queen.insert({qx + b, qy + a});
+        queen.insert({qx - b, qy + a});
+        queen.insert({qx - a, qy + b});
+        queen.insert({qx - a, qy - b});
+        queen.insert({qx + b, qy - a});
+        queen.insert({qx - b, qy - a});
+
+        //   ll ans = countMatchedPairs(king, queen);
+        //   cout<<ans<<endl;
+
+        ll ans = countMatchingPairs(king, queen);
+        cout << ans << endl;
     }
     return 0;
 }

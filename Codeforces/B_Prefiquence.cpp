@@ -1,3 +1,7 @@
+// File Name: B_Prefiquence.cpp
+// Date: 2024-05-02
+// Time: 21:00:10
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -69,44 +73,23 @@ int main()
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
-
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
+        ll n, m;
+        cin >> n >> m;
+        string a, b;
+        cin >> a >> b;
+        ll i = 0, j = 0, k = 0;
+        while (i < n and  j < m)
         {
-            no;
-            copyL;
-        }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
+            if (a[i] == b[j])
             {
-                add = 1;
+                i++;j++;k++;
             }
             else
             {
-                add = 2;
+                j++;
             }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
         }
+        cout << k << endl;
     }
     return 0;
 }

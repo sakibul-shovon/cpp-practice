@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Mathematically_Hard.cpp
+// Date: 2024-03-15
+// Time: 00:34:25
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -55,12 +55,42 @@ long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
+const int MAXN = 5000001;
+vector<ll> phi(MAXN);
+
+void calculatePhi() {
+    for (int i = 1; i < MAXN; i++) {
+        phi[i] = i;
+    }
+
+    for (int p = 2; p < MAXN; p++) {
+        if (phi[p] == p) {
+            for (int k = p; k < MAXN; k += p) {
+                phi[k] -= phi[k] / p;
+            }
+        }
+    }
+
+    for(int i = 2; i < MAXN; i++) {
+        phi[i] = phi[i] * phi[i];
+        phi[i] += phi[i - 1];
+    }
+}
 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+    calculatePhi();
+
+    ll t; cin >> t;
+    ll c = 1;
+    while(t--)
+    {
+        ll a, b;
+        cin >> a >> b;
+        ll ans = phi[b] - phi[a - 1];
+
+        cout << "Case " << c++ << ": " << ans << endl;
     }
     return 0;
 }

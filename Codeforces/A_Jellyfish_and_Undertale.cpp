@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Jellyfish_and_Undertale.cpp
+// Date: 2024-04-02
+// Time: 01:28:08
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,22 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll a,b,c;
+        in3(a,b,c);
+
+        ll ans = b;
+        for(ll i = 0 ;i<c;i++){
+            ll t;cin>>t;
+            
+            if(t+1<=a){
+                ans+=t;
+            }
+            else{
+                ans+=a-1;
+            }
+            //debug(ans);
+        }
+        cout<<ans<<endl;
     }
     return 0;
 }

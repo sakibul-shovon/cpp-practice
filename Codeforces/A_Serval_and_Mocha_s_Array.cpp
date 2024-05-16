@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Serval_and_Mocha_s_Array.cpp
+// Date: 2024-03-23
+// Time: 00:44:04
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,8 +59,28 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+    int t;
+    cin >> t;
+    while (t--) {
+        ll n;
+        cin >> n;
+
+        vll v(n);
+
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+        ll GCD = v[0];
+        for (int i = 1; i < n; ++i) {
+            GCD = gcd(GCD, v[i]);
+            
+        }
+        debug(GCD);
+        if (GCD <= n) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
+        }
+        
     }
     return 0;
 }

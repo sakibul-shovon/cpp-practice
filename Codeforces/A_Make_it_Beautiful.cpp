@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Make_it_Beautiful.cpp
+// Date: 2024-03-27
+// Time: 17:16:15
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,8 +59,35 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+    While(t)
+    {
+        ll n ;cin>>n ; 
+        vll v(n);
+        vll prefix(n);
+        cin>>v[0];
+        
+        ll check = true;
+
+        for(ll i =1;i<n;i++) {
+            cin>>v[i];
+            if(v[i] != v[0]){
+                check = false;
+            }
+            
+        }
+
+        if(check == true){
+            no;copyL
+        }
+        else{
+            yes;copyL;
+            reverse(v.begin()+1,v.end());
+            autoLoop(v);copyL
+        }
+        
+        
+        
+        
     }
     return 0;
 }

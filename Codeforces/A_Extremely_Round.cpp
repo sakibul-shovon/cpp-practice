@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Extremely_Round.cpp
+// Date: 2024-03-24
+// Time: 20:38:49
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,19 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        string s;cin>>s;
+        ll n = s.length();
+        
+        if(n ==1){
+            cout<<s[0]<<endl;
+        }
+        else{
+            
+            ll ans =  s[0] - '0';
+            ans += 9 * (n -1 );
+            
+            cout<<ans<<endl;
+        }
     }
     return 0;
 }

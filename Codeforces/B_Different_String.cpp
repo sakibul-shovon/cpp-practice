@@ -1,3 +1,7 @@
+// File Name: B_Different_String.cpp
+// Date: 2024-05-10
+// Time: 21:23:30
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -69,44 +73,27 @@ int main()
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
+        string s;
+        cin >> s;
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
+        set<char> st;
+
+        for (ll i = 0; i < s.size(); i++)
         {
-            no;
-            copyL;
+            st.insert(s[i]);
+            if (i > 0 && s[i] != s[i - 1])
+            {
+                swap(s[i], s[i - 1]);
+            }
+        }
+
+        if (st.size() != 1)
+        {
+            cout << "YES" << endl;
+            cout << s << endl;
         }
         else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
-        }
+            cout << "NO" << endl;
     }
     return 0;
 }

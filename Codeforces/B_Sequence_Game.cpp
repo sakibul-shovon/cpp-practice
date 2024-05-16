@@ -1,10 +1,14 @@
+// File Name: B_Sequence_Game.cpp
+// Date: 2024-03-13
+// Time: 19:45:00
+
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fastio                    \
-    ios_base::sync_with_stdio(0); \
-    cin.tie(0);                   \
-    cout.tie(0)
+#define fastio                   \
+   ios_base::sync_with_stdio(0); \
+   cin.tie(0);                   \
+   cout.tie(0)
 #define ll long long int
 #define vint vector<int>
 #define vll vector<long long int>
@@ -45,20 +49,20 @@ using namespace std;
 #define line cout << endl;
 #define sort_all(v) sort(all(v));
 #define autoLoop(x) \
-    for (int u : x) \
-        cout << u << ' ';
+   for (int u : x)  \
+      cout << u << ' ';
 #define debug(x) cout << #x << " " << x << endl;
 #define While(n) \
-    int t;       \
-    cin >> t;    \
-    while (t--)
+   int t;        \
+   cin >> t;     \
+   while (t--)
 #define WhileVecInput(v, n) \
-    while (n--)             \
-    {                       \
-        ll temp;            \
-        cin >> temp;        \
-        v.push_back(temp);  \
-    }
+   while (n--)              \
+   {                        \
+      ll temp;              \
+      cin >> temp;          \
+      v.push_back(temp);    \
+   }
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
@@ -66,47 +70,37 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 
 int main()
 {
-    fastio;
-    While(t)
-    {
-        ll n, k, x;
-        in3(n, k, x);
+   fastio;
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
-        {
-            no;
-            copyL;
-        }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
-        }
-    }
-    return 0;
+   While(t)
+   {
+      ll n;
+      cin >> n;
+
+      vll v(n);
+
+      for (ll i = 0; i < n; i++)
+         cin >> v[i];
+
+      
+      
+      vll result;
+      result.insert(v[0]);
+      for (ll i = 1; i < n; i++)
+      {
+         if (v[i] >= v[i - 1])
+         {
+            result.insert(v[i]);
+            
+         }
+         else
+         {
+            result.insert(v[i]);
+            result.insert(v[i]);
+         }
+      }
+      cout<<result.size()<<endl;
+      autoLoop(result);copyL;
+   }
+   return 0;
 }

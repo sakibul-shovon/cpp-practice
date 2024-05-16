@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_United_We_Stand.cpp
+// Date: 2024-03-14
+// Time: 12:48:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,85 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n ;cin>>n;
+        vll v(n);
+        vll odd,even;
+        
+        map<ll,ll>mp;
+        for(ll i = 0 ;i<n;i++) {
+            cin>>v[i];
+            mp[v[i]]++;
+
+            if(v[i] % 2 == 0 ) even.insert(v[i]);
+            else{
+                odd.insert(v[i]);
+            }
+        }
+        vll a,b;
+       sort_all(odd);sort_all(even);
+        if(mp.size() == 1 ){
+            cout<<-1<<endl;continue;
+        }
+
+        else if(odd.size()!=0 and even.size() != 0){
+                cout<<odd.size()<<" "<<even.size()<<endl;
+               autoLoop(odd);copyL;
+               autoLoop(even); copyL;
+        }
+        else{
+            
+            if(odd.size() == 0 ){
+                
+                a.insert(even[0]);
+                ll i = 1;
+                for( i = 1;i<even.size();i++){
+                    if(even[i] == even[0]){
+                        a.insert(even[i]);
+                       
+                    }else{b.insert(even[i]);
+                        break;
+                    }
+                    
+                }
+
+                
+                    i++;
+                   
+                    for(;i<even.size();i++){
+                        b.insert(even[i]);
+                    }
+                    cout<<a.size()<<" "<<b.size()<<endl;
+                   autoLoop(a);copyL;autoLoop(b);
+
+
+                
+            }
+
+            else if(even.size() == 0 ){
+                a.insert(odd[0]);
+                ll i = 1;
+                for( i = 1;i<odd.size();i++){
+                    if(odd[i] == odd[0]){
+                        a.insert(odd[i]);
+                    }else{b.insert(odd[i]);
+                        break;
+                    }
+                    
+                }
+
+                i++;
+                    
+                    for(;i<odd.size();i++){
+                        b.insert(odd[i]);
+                    }
+                cout<<a.size()<<" "<<b.size()<<endl;
+                autoLoop(a);copyL;autoLoop(b);
+
+            }
+
+        }
+        
+      
     }
     return 0;
 }

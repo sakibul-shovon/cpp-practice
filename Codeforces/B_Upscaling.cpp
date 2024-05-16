@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: B_Upscaling.cpp
+// Date: 2024-03-28
+// Time: 20:49:39
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,13 +54,31 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+void solve(){
+    ll n; cin >> n;
+    char hash = '#';
 
+    for (ll i = 0; i < n; i++){
+        if (i%2) hash = '.';
+        else hash = '#';
 
+        string copyL = "";
+
+        for (ll j = 0; j < n; j++){
+            copyL += hash;
+            copyL += hash;
+
+            if (hash == '#') hash = '.';
+            else hash = '#';
+        }
+        cout << copyL << endl << copyL;line 
+    }
+};
 int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        solve();
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Grasshopper_on_a_Line.cpp
+// Date: 2024-03-18
+// Time: 00:37:57
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,23 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll x,k;cin>>x>>k;
+
+        if(x%k!=0){
+            cout<<1<<endl;
+            cout<<x<<endl;
+        }
+        else if(k>x){
+            cout<<1<<endl;
+            cout<<x<<endl;
+
+        }
+        else{
+            ll ans = k * (x/k)-1;
+            ll ans2 = x - ans;
+            cout<<2<<endl;
+            cout<<ans<<" "<<ans2<<endl;
+        }
     }
     return 0;
 }

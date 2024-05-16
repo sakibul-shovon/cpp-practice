@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Doremy_s_Paint_3.cpp
+// Date: 2024-03-13
+// Time: 01:37:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,52 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n;cin>>n;
+        map<ll,ll> mp;
+
+        for(ll i = 0;i<n;i++) {
+            ll a;cin>>a;
+            mp[a]++;
+        }
+
+      
+
+        if(n == 2 or mp.size() == 1){
+            yes;copyL;
+        }
+        else if(mp.size() > 2){
+            no;copyL;
+        }
+        else{
+
+            
+
+            auto first = mp.begin();
+            auto second = first;
+            second++;
+
+            int result = abs(first->second - second->second);
+            
+
+
+            if(result == 1 and n % 2 != 0){
+            
+                yes;copyL;
+            }
+            else if(result == 0 and n % 2 == 0){
+                yes;copyL;
+            }
+            
+            else{
+                no;copyL;
+            }
+
+
+
+        }
+
+
+
     }
     return 0;
 }

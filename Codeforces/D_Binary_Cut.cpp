@@ -1,3 +1,7 @@
+// File Name: D_Binary_Cut.cpp
+// Date: 2024-05-10
+// Time: 21:28:58
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -69,44 +73,41 @@ int main()
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
+        string s;
+        cin >> s;
+        bool condition1 = false;
+        ll segments = 1, flag = 0, zeroes = 0;
+        for (ll i = 0; i < s.size() - 1; i++)
         {
-            no;
-            copyL;
+            if (condition1 == false && (s[i] <= s[i + 1]))
+            {
+                if (s[i] == '0')
+                    zeroes++;
+                continue;
+            }
+            else if (condition1 == false && (s[i] > s[i + 1]))
+            {
+                condition1 = true;
+                segments++;
+            }
+            else if (condition1 == true)
+            {
+                if (s[i] == '0' and s[i + 1] == '1')
+                {
+                    flag = 1;
+                }
+                if (s[i] != s[i + 1])
+                {
+                    segments++;
+                }
+            }
         }
-        else
+        if (flag == 1 and zeroes == 0)
         {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
+            segments--;
         }
+        cout << segments << endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: D_Deletive_Editing.cpp
+// Date: 2024-04-26
+// Time: 09:59:27
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,35 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        string s,t;
+        cin>>s>>t;
+
+        vll v(26+1,0);
+
+        for(ll i = 0 ; i < t.size();i++){
+            ll ts = t[i] - 'A' +1;
+            v[ts]++;
+        }
+
+        string ans = "";
+
+        for(ll i = s.size() -1;i>=0;i--)
+        {
+            ll test = s[i] - 'A' + 1;
+            if(v[test] > 0){
+                ans += s[i];
+                v[test]--;
+            }
+        }
+        reverse(ans.begin(),ans.end());
+        
+        if(ans == t){
+            cout<<"YES"<<endl;
+        }else{
+            cout<<"NO"<<endl;
+        }
+
+       
     }
     return 0;
 }

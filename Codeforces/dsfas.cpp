@@ -1,3 +1,7 @@
+// File Name: B_Different_String.cpp
+// Date: 2024-05-10
+// Time: 21:08:26
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -64,49 +68,45 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+
+void solve(){
+    ll a, b, c, d; cin >> a >> b >> c >> d;
+    vll v;
+    ll lo = min(a, b);
+    ll hi = max(a, b);
+    bool c1, c2;
+    c1 = false;
+    c2 = false;
+    for(ll i = lo; i <= hi; i++)
+    {
+        v.push_back(i);
+        if(i == c)
+            c1 = true;
+        if(i == d)
+            c2 = true;
+    }
+    //autoLoop(v); line
+    if(c1 == true && c2 == true)
+    {
+        no;
+    }
+    else if(c1 == false && c2 == false)
+    {
+       no;
+    }
+    else
+    {
+        yes;
+    }
+
+}
+
 int main()
 {
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
-
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
-        {
-            no;
-            copyL;
-        }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
-        }
+        solve();
     }
     return 0;
 }

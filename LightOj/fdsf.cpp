@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: fdsf.cpp
+// Date: 2024-03-15
+// Time: 00:49:02
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,11 +56,29 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 
 
 
-int main()
-{
-    fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+
+ll eulerTotient(ll n) {
+    ll ans = n;
+
+    for (ll i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            while (n % i == 0) {
+                n = n / i;
+            }
+            ans -= ans / i;
+        }
     }
+
+    if (n > 1) {
+        ans -= ans / n;
+    }
+
+    return ans;
+}
+
+int main() {
+    ll n = 7;
+    cout << "Euler Totient of " << n << " is: " << eulerTotient(n) << endl;
     return 0;
 }
+

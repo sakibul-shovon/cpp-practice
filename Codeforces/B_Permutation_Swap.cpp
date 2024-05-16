@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: B_Permutation_Swap.cpp
+// Date: 2024-04-05
+// Time: 06:04:47
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,15 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n;cin>>n;
+        vll v(n+1);
+        for(ll i = 01;i<=n ;i++) cin>>v[i];
+        ll ans = 0;
+
+        for(ll i=1;i<=n;i++){
+            ans = gcd(ans,abs(v[i] - i));
+        }
+        cout<<ans<<endl;
     }
     return 0;
 }

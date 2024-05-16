@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_AvtoBus.cpp
+// Date: 2024-04-20
+// Time: 05:28:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,22 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n ;cin>>n;
+
+        ll maxx,minn;
+
+        if(n%2!=0 or n<4) {
+            cout<<-1<<endl;continue;
+        }
+
+        maxx = n/4;
+
+        if(n%6==2 or n%6 == 4){
+            minn = n/6+1;
+        }else{
+            minn = n/6;
+        }
+        cout<<minn<<" "<<maxx<<endl;
     }
     return 0;
 }

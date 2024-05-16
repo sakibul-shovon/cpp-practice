@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: 2nd D_Product_of_Binary_Decimals.cpp
+// Date: 2024-03-28
+// Time: 22:14:08
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,13 +54,67 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
-
-int main()
-{
-    fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+bool isBinary(int num) {
+    while (num > 0) {
+        int digit = num % 10;
+        if (digit != 0 && digit != 1) {
+            return false;
+        }
+        num /= 10;
     }
+    return true;
+}
+
+
+vector<int> primeFactors(int n) {
+    vector<int> primeFactors;
+    
+    // Divide n by 2 until it is divisible
+    while (n % 2 == 0) {
+        primeFactors.push_back(2);
+        n /= 2;
+    }
+    
+    // n must be odd at this point, so we can skip even numbers
+    for (int i = 3; i * i <= n; i += 2) {
+        while (n % i == 0) {
+            primeFactors.push_back(i);
+            n /= i;
+        }
+    }
+    
+    // If n is a prime greater than 2, add it to primeFactors
+    if (n > 2) {
+        primeFactors.push_back(n);
+    }
+    
+    return primeFactors;
+}
+
+bool check(ll n ){
+    vector<int> factors = primeFactors(n);
+
+    
+    for (int factor : factors) {
+        if (factor != 2 && !isBinary(factor)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+int main() {
+    int n;
+    
+    cin >> n;
+    
+    if(check){
+        yes;
+    }else{
+        no;
+    }line;
+    
     return 0;
 }

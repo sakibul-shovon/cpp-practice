@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Permutation_Disturbance.cpp
+// Date: 2024-03-21
+// Time: 14:27:12
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,20 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n ;cin>>n;
+        vll v(n);
+
+        for(ll i =0;i<n;i++){
+            cin>>v[i];
+        }
+        ll ans = 0 ;
+        for(ll i = 0 ; i < n ; i++){
+            if(v[i] == i+1){
+                ans++;i++;
+            }
+        }
+
+        cout<<ans<<endl;
     }
     return 0;
 }

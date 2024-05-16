@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: Rooks.cpp
+// Date: 2024-03-14
+// Time: 01:31:31
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -47,20 +47,58 @@ using namespace std;
 #define sort_all(v)  sort(all(v));
 #define autoLoop(x)  for(int u : x) cout << u << ' ';
 #define debug(x)     cout << #x << " "<< x <<endl;
-#define While(n)      int t; cin>>t;while(t--)
+#define While(n)      ll t; cin>>t;while(t--)
 #define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
-ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+
+
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
+ll factorial(ll num) {
+   ll i;
+   ll fact = 1;
+   for (i = 2; i <= num; i++)
+       fact *= i;
+   return fact;
+}
 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+    ll c = 1;
+    ll t;cin>>t;
+    while(t--){
+        ll n ,k;cin>>n>>k;
+
+       // ll ans = 1;
+        
+        
+        
+         //cout<<factorial(k);line
+        if(k > n){
+            cout<<"Case "<<c++<<": "<<0<<endl;continue;
+        }
+
+        ll k_fact = factorial(k);
+        ll res = 1;
+        while(k--)
+        {
+            ll gcd = __gcd(n * n, k_fact);
+
+            ll tem = (n * n) / gcd;
+            k_fact /= gcd;
+            res *= tem;
+            n--;
+
+
+        }
+
+
+        ll ans = res / k_fact;
+      
+        //debug(k_fact);line
+       
+        cout<<"Case "<<c++<<": "<<ans<<endl;
+       
     }
     return 0;
 }

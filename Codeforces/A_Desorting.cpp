@@ -1,3 +1,7 @@
+// File Name: A_Desorting.cpp
+// Date: 2024-03-16
+// Time: 00:35:55
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -69,44 +73,28 @@ int main()
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
+        ll n;
+        cin >> n;
+        vll v(n);
+        ll minn = inf;
+        ll index;
+        cin >> v[0];
+        bool check = true;
+        for (ll i = 1; i < n; i++)
+        {
+            cin >> v[i];
+            
+        }
+        ll ans = LLONG_MAX ;
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
-        {
-            no;
-            copyL;
-        }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
-        }
+       for(int i=1;i<n;i++){
+         if(v[i]<v[i-1]){
+            ans=0;
+            break;
+         }
+         ans=min(ans,((v[i]-v[i-1])/2LL)+1LL);
+      }
+      cout<<ans<<endl;
     }
     return 0;
 }

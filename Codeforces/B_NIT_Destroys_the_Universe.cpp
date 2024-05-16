@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: B_NIT_Destroys_the_Universe.cpp
+// Date: 2024-04-16
+// Time: 07:23:45
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,37 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n;cin>>n;
+        vll v(n);
+        ll count = 0 ;
+        for(ll i = 0 ; i < n ; i++){
+            cin>>v[i];
+            
+        }
+
+        while(v.size() > 0 and v[0] ==0){
+            v.erase(v.begin());
+        }
+
+        while(v.size() > 0 and v[v.size()-1] == 0){
+            v.pop_back();
+        }
+
+        for(ll i = 0 ; i<v.size();i++){
+            if(v[i] == 0){
+                count++;
+            }
+        }
+
+        if(v.size() == 0 ){
+            cout<<0<<endl;
+        }
+        else if(count !=0){
+            cout<<2<<endl;
+        }
+        else{
+            cout<<1<<endl;
+        }
     }
     return 0;
 }

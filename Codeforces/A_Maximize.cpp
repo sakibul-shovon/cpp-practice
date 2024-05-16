@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Maximize.cpp
+// Date: 2024-05-02
+// Time: 20:47:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,8 +59,22 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+   While(t){
+    ll n;cin>>n;
+
+    ll maxx = 0 ;
+    ll ans;
+
+    for(ll i = 1; i<n;i++){
+        ll t = gcd(i,n) ;
+        if(t+i > maxx){
+            maxx = t+i;
+            ans = i;
+        }
     }
+    cout<<ans<<endl;
+   }
+
+   
     return 0;
 }

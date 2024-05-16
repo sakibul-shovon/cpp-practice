@@ -1,3 +1,7 @@
+// File Name: D_Product_of_Binary_Decimals.cpp
+// Date: 2024-03-28
+// Time: 21:45:03
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -64,49 +68,72 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+bool isBinaryDecimal(int n)
+{
+
+    string numStr = to_string(n);
+    for (char digit : numStr)
+    {
+        if (digit != '0' && digit != '1')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool tryToMakeBinary(ll n)
+{
+    
+    if (n == 1)
+    {
+        return true;
+    }
+
+    for (int i = 2; i <= sqrt(n); ++i)
+    {
+
+        if (n % i == 0)
+        {
+           
+            if (isBinaryDecimal(i))
+            {
+                ll t = n/i;
+                if(t % i == 0){ return true;};
+                
+                
+            }
+        }
+    }
+    return false;
+}
+
 int main()
 {
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
+        ll n;
+        cin >> n;
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
+        bool already_binary = isBinaryDecimal(n);
+
+        if (already_binary == true)
         {
-            no;
-            copyL;
+            yes;
+            line;
+            continue;
+        }
+
+        if (tryToMakeBinary(n))
+        {
+            yes;
         }
         else
         {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
+            no;
         }
+        line
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: C_Clock_Conversion.cpp
+// Date: 2024-03-28
+// Time: 21:04:57
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -55,12 +55,32 @@ long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
+void convertTime(string s)
+{
+
+    int hours = stoi(s.substr(0, 2));
+    int minutes = stoi(s.substr(3, 2));
+
+    if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59)
+    {
+        string period = (hours < 12) ? "AM" : "PM";
+        hours = (hours == 0 || hours == 12) ? 12 : hours % 12;
+        if(hours<10){
+            cout<<0;
+        }
+        cout << hours << ":" << (minutes < 10 ? "0" : "") << minutes << " " << period << endl;
+    }
+}
+
 
 int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        string s;cin>>s;
+
+        convertTime(s);
+        
     }
     return 0;
 }

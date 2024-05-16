@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Mainak_and_Array.cpp
+// Date: 2024-04-16
+// Time: 06:40:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,33 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll n;cin>>n;
+        vll v(n);
+        for(ll i =0;i<n;i++) cin>>v[i];
+
+        if(n == 1){
+            cout<<0<<endl;continue;
+        }
+
+        ll ans= v[n-1] - v[0];
+
+        //first fixed
+        for(ll i = 1;i<n;i++){
+            ans = max(ans,v[i] - v[0]);
+        }
+
+        //last fixed
+        for(ll i = 0;i<n-1;i++){
+            ans = max(ans,v[n-1] - v[i]);
+        }
+
+        //all check
+
+        for(ll i = 1 ; i < n;i++){
+            ans = max(ans,v[i-1] - v[i]);
+        }
+
+        cout<<ans<<endl;
     }
     return 0;
 }

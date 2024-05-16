@@ -1,3 +1,7 @@
+// File Name: B_Make_It_Increasing.cpp
+// Date: 2024-04-20
+// Time: 11:37:40
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -69,44 +73,30 @@ int main()
     fastio;
     While(t)
     {
-        ll n, k, x;
-        in3(n, k, x);
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+        ll ans = 0;
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
+        for (ll i = n - 2; i >= 0; i--)
         {
-            no;
-            copyL;
+
+            if (v[i + 1] == 0)
+            {
+                ans = -1;
+                break;
+            }
+            while (v[i] >= v[i + 1])
+            {
+                v[i] /= 2;
+
+                ans++;
+            }
         }
-        else
-        {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
-        }
+
+        cout << ans << endl;
     }
     return 0;
 }

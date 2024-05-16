@@ -1,3 +1,7 @@
+// File Name: Eko.cpp
+// Date: 2024-04-19
+// Time: 01:25:44
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -64,49 +68,65 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+ll need_wood;
+ll n;
+vll v(1e6);
+
+int isWoodSufficient(int height)
+{
+    ll wood = 0;
+
+    for (ll i = 0; i < n; i++)
+    {
+        if(v[i] >=height){
+            wood += v[i] - height;
+        }
+        
+    }
+
+    if (wood >= need_wood)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 int main()
 {
     fastio;
-    While(t)
-    {
-        ll n, k, x;
-        in3(n, k, x);
+    cin >> n >> need_wood;
 
-        if ((k == 1 and x == 1) or (x == 1 and n % 2 != 0 and k == 2))
+    for (ll i = 0; i < n; i++)
+    {
+        cin>>v[i];
+    }
+
+    ll low = 0, high = 1e9, mid;
+
+    while (high - low > 1)
+    {
+        mid = (high + low) / 2;
+
+        if (isWoodSufficient(mid))
         {
-            no;
-            copyL;
+            low = mid;
         }
         else
         {
-            vll v;
-            ll sum = 0;
-            ll add;
-            if (x == 2)
-            {
-                add = 1;
-            }
-            else
-            {
-                add = 2;
-            }
-            while (true)
-            {
-                sum += add;
-                v.insert(add);
-                if (sum >= n)
-                    break;
-            }
-            if (n % 2 != 0)
-            {
-                v.back() = 1;
-            }
-            yes;
-            copyL;
-            cout << v.size() << endl;
-            autoLoop(v);
-            copyL;
+            high = mid - 1;
         }
+    }
+
+    if (isWoodSufficient(high))
+    {
+        cout << high << endl;
+    }
+    else
+    {
+        cout << low << endl;
     }
     return 0;
 }

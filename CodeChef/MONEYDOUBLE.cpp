@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: MONEYDOUBLE.cpp
+// Date: 2024-05-15
+// Time: 20:35:42
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,17 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        ll a,b;cin>>a>>b;
+
+        for(ll i = 0 ; i< b;i++){
+            if(a < 1000){
+                a+=1000;
+            }else{
+                a = a*2;
+            }
+        }
+
+        cout<<a<<endl;
     }
     return 0;
 }

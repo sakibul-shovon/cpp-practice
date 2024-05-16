@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
-// Date: 2024-03-19
-// Time: 01:48:40
+// File Name: A_Walking_Master.cpp
+// Date: 2024-03-21
+// Time: 20:12:51
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -60,7 +60,15 @@ int main()
 {
     fastio;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
-    }
+        ll a,b,c,d;
+        cin>>a>>b>>c>>d;
+
+            if( b>d or c-a > d-b){
+                cout<<-1<<endl;
+            }else{
+                cout<<2*(d-b) + (a-c)<<endl;
+            }
+        }
+    
     return 0;
 }

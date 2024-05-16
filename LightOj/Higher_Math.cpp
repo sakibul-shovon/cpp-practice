@@ -1,6 +1,6 @@
-// File Name: A_Twin_Permutations.cpp
+// File Name: Higher_Math.cpp
 // Date: 2024-03-19
-// Time: 01:48:40
+// Time: 02:30:39
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,8 +59,22 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 int main()
 {
     fastio;
+    ll c = 1;
     While(t){
-        ll n ;cin>>n;vll v(n);for(ll i = 0 ;i < n ; i ++ ) cin>>v[i];sort_all(v);autoLoop(v);copyL;
+        cout<<"Case "<<c++<<": ";
+        vll v(3);
+        for(ll i = 0;i<3;i++) cin>>v[i];
+
+        sort_all(v);
+
+        ll a = (v[0] * v[0])  + (v[1] * v[1]);
+        ll b= v[2] * v[2];
+
+        if(a == b){
+            cout<<"yes"<<endl;
+        }else{
+            cout<<"no"<<endl;
+        }
     }
     return 0;
 }
