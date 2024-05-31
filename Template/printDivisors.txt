@@ -1,0 +1,16 @@
+vll v;
+void printDivisors(long long n)
+{
+
+    for (long long i = 1; i = sqrt(n); i++)
+    {
+        if (n % i == 0)
+        {
+
+            v.pb(i);
+
+            if (i != n  i)
+                v.pb(n  i);
+        }
+    }
+}

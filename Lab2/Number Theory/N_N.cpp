@@ -1,6 +1,6 @@
-// File Name: B_Interesting_drink.cpp
-// Date: 2024-04-18
-// Time: 08:11:03
+// File Name: N_N.cpp
+// Date: 2024-05-27
+// Time: 09:09:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -55,21 +55,46 @@ long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
+#include <bits/stdc++.h>
+using namespace std;
 
+#define fastio       ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define ll           long long int
+#define vll          vector<long long int>
+#define debug(x)     cout << #x << " "<< x <<endl;
 
-int main(){
-    ll n;cin>>n; 
-    vll v(n);
-    for(ll i=0;i<n;i++) cin>>v[i];
-    sort_all(v);
-
-    ll t;cin>>t;
-    while(t--){
-        ll x;cin>>x;
-
-        ll ans = upper_bound(all(v),x) - v.begin();
-        cout<<ans<<endl;
+ll printPrimeFactors(ll n) {
+    ll count = 0;
+    ll ans = 0;
+    while (n % 2 == 0) {
+        count++;
+        n /= 2;
     }
+    ans+=count+1;
+    for (ll i = 3; i <= sqrt(n); i += 2) {
+        count = 0;
+        while (n % i == 0) {
+            count++;
+            n /= i;
+        }
+        ans+=count+1;
+    }
+    if (n > 2) ans++;
+    return ans;
+}
 
+int main() {
+    fastio;
+    ll n;
+    cin >> n;
+    vll v(n);
+    for (ll i = 0; i < n; i++) cin >> v[i];
 
+    for (auto it : v) {
+        ll temp = printPrimeFactors(it);
+        debug(temp);
+        if (temp == 2) cout << "YES" << endl;
+        else cout << "NO" << endl;
+    }
+    return 0;
 }

@@ -64,21 +64,22 @@ using namespace std;
 int main()
 {
     fastio;
-    ll a, b, diff;
-    cin>>a>>b>>diff; 
+    ll a;cin>>a;
 
-    vll appartments(a);
-    for(ll i = 0;i<a;i++) cin>>appartments[i];
+    vll boy(a);
+    for(ll i = 0;i<a;i++) cin>>boy[i];
 
      
     
-   
-    vll size(b);
-    for(ll i = 0;i<b;i++) cin>>size[i];
+    ll b;cin>>b;
+    vll girl(b);
+    for(ll i = 0;i<b;i++) cin>>girl[i];
     // debug(a);debug(b);
+
+    ll diff = 1;
     
-    sort_all(appartments);
-    sort_all(size);
+    sort_all(boy);
+    sort_all(girl);
 
     ll i = 0, j = 0;
     ll count = 0;
@@ -86,14 +87,14 @@ int main()
     while (i < a and j < b)
     {
 
-        if (abs(appartments[i] - size[j]) <= diff)
+        if (abs(boy[i] - girl[j]) <= diff)
         {
             i++;j++;count++;
         }
         else
         {
 
-            if (appartments[i] - size[j] > diff)
+            if (boy[i] - girl[j] > diff)
             {
                 j++;
             }

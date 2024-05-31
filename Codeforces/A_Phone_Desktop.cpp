@@ -1,6 +1,6 @@
-// File Name: B_Interesting_drink.cpp
-// Date: 2024-04-18
-// Time: 08:11:03
+// File Name: A_Phone_Desktop.cpp
+// Date: 2024-05-25
+// Time: 17:02:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,20 +56,36 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 
 
 
+int main()
+{
+    fastio;
+    While(t){
+        //15
+        ll a,b;cin>>a>>b;
 
-int main(){
-    ll n;cin>>n; 
-    vll v(n);
-    for(ll i=0;i<n;i++) cin>>v[i];
-    sort_all(v);
+        ll boroApp = ceil(b/2.0);
 
-    ll t;cin>>t;
-    while(t--){
-        ll x;cin>>x;
+        //boroapp er value r soman page lagbei
+        ll totalSize = (boroApp*15) - (b*4);
+        
 
-        ll ans = upper_bound(all(v),x) - v.begin();
-        cout<<ans<<endl;
+        if(totalSize > a){
+            cout<<boroApp<<endl;
+        }
+
+        //debug(totalSize);
+        else{
+            ll temp = a -totalSize;
+            ll ans = ceil(temp /15.0);
+            //debug(ans);
+            ans+= boroApp;
+            
+            
+
+           cout<<max(ans,boroApp);line
+        }
+
+
     }
-
-
+    return 0;
 }

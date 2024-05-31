@@ -1,6 +1,6 @@
-// File Name: B_Interesting_drink.cpp
-// Date: 2024-04-18
-// Time: 08:11:03
+// File Name: ac.cpp
+// Date: 2024-05-29
+// Time: 20:06:58
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -55,21 +55,29 @@ long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
+vll v;
 
-
-int main(){
-    ll n;cin>>n; 
-    vll v(n);
-    for(ll i=0;i<n;i++) cin>>v[i];
-    sort_all(v);
-
-    ll t;cin>>t;
-    while(t--){
-        ll x;cin>>x;
-
-        ll ans = upper_bound(all(v),x) - v.begin();
+int printDivisors(long long n,ll k)
+{
+    ll sum = 0;
+    for (long long i = 1; i <= sqrt(n); i++)
+    {
+        if (n % i == 0 )
+        {
+            cout<<i<<endl;
+        }
+    }
+    return sum;
+}
+int main()
+{
+    fastio;
+    While(t){
+        ll n,k;
+        cin>>n>>k;
+        ll ans = printDivisors(n,k);
         cout<<ans<<endl;
     }
-
-
+    autoLoop(v);
+    return 0;
 }

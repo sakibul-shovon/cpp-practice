@@ -1,6 +1,6 @@
-// File Name: B_Interesting_drink.cpp
-// Date: 2024-04-18
-// Time: 08:11:03
+// File Name: r.cpp
+// Date: 2024-05-23
+// Time: 00:51:32
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -57,19 +57,33 @@ int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) 
 
 
 
-int main(){
-    ll n;cin>>n; 
-    vll v(n);
-    for(ll i=0;i<n;i++) cin>>v[i];
-    sort_all(v);
+int main()
+{
+    fastio;
+    ll n, q;
+    ll test = 0;
+    while (true) {
+        cin >> n >> q;
+        if (n == 0 && q == 0) return 0;
+        cout<<"CASE# " << ++test<<":"<<endl;
 
-    ll t;cin>>t;
-    while(t--){
-        ll x;cin>>x;
+        vll v(n);
+        for (ll i = 0; i < n; i++) {
+            cin >> v[i];
+        }
+        sort_all(v);
 
-        ll ans = upper_bound(all(v),x) - v.begin();
-        cout<<ans<<endl;
+        while (q--) {
+            ll test; cin >> test;
+            if (binary_search(all(v), test)) {
+                ll ans = lower_bound(all(v), test) - v.begin();
+                cout  << test << " found at " << ans +1<< endl;
+            } else {
+                cout << test << " not found" << endl;
+            }
+
+            
+        }
     }
-
-
+    return 0;
 }

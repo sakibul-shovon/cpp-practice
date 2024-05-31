@@ -1,6 +1,6 @@
-// File Name: B_Interesting_drink.cpp
-// Date: 2024-04-18
-// Time: 08:11:03
+// File Name: A_A.cpp
+// Date: 2024-05-26
+// Time: 01:35:55
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,22 +54,37 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+const ll N = 1e5 + 100;
+bool is_prime[N];
+vector<ll> prime;
 
-
-
-int main(){
-    ll n;cin>>n; 
-    vll v(n);
-    for(ll i=0;i<n;i++) cin>>v[i];
-    sort_all(v);
-
-    ll t;cin>>t;
-    while(t--){
-        ll x;cin>>x;
-
-        ll ans = upper_bound(all(v),x) - v.begin();
-        cout<<ans<<endl;
+void sieve()
+{
+    fill(is_prime, is_prime + N, true); 
+    is_prime[0] = is_prime[1] = false;  
+    
+    prime.push_back(2);
+    for (ll i = 4; i < N; i += 2)
+        is_prime[i] = false;
+    
+    for (ll i = 3; i < N; i += 2)
+    {
+        if (is_prime[i])
+        {
+            prime.push_back(i);
+            for (ll j = i * i; j < N; j += 2 * i)
+                is_prime[j] = false;
+        }
     }
+}
 
+int main()
+{
+    fastio;
+    sieve();
+    ll n;cin>>n;
 
+    ll ans = lower_bound(all(prime),n) - prime.begin();
+    cout<<prime[ans]<<endl;
+    return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: B_Interesting_drink.cpp
-// Date: 2024-04-18
-// Time: 08:11:03
+// File Name: D_D.cpp
+// Date: 2024-05-23
+// Time: 01:14:25
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,22 +54,48 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+int main() {
+    fastio;
+    ll t; cin >> t;
+    while(t--) {
+        ll n; cin >> n;
+        vector<ll> v(n);
+        for(ll i = 0; i < n; i++) cin >> v[i];
 
+        map<ll, ll> team_weights;
 
+        
+        for(ll i = 0; i < n; i++) {
+            for(ll j = i + 1; j < n; j++) {
+                team_weights[v[i] + v[j]]++;
+            }
+        }
 
-int main(){
-    ll n;cin>>n; 
-    vll v(n);
-    for(ll i=0;i<n;i++) cin>>v[i];
-    sort_all(v);
+        
 
-    ll t;cin>>t;
-    while(t--){
-        ll x;cin>>x;
+        ll max_teams = 0;
 
-        ll ans = upper_bound(all(v),x) - v.begin();
-        cout<<ans<<endl;
+        
+        for(auto &pair : team_weights) {
+            ll weight = pair.first;
+            vector<bool> used(n, false);
+            ll count = 0;
+
+            for(ll i = 0; i < n; i++) {
+                if(used[i]) continue;
+                for(ll j = i + 1; j < n; j++) {
+                    if(!used[j] and v[i] + v[j] == weight) {
+                        used[i] = used[j] = true;
+                        count++;
+                        break;
+                    }
+                }
+            }
+
+            max_teams = max(max_teams, count);
+        }
+
+        cout << max_teams << endl;
     }
-
-
+    return 0;
 }
