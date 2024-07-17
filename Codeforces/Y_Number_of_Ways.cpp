@@ -1,6 +1,6 @@
-// File Name: A_Raising_Bacteria.cpp
-// Date: 2024-01-11
-// Time: 11:40:18
+// File Name: Y_Number_of_Ways.cpp
+// Date: 2024-07-09
+// Time: 23:10:47
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,37 +9,37 @@ using namespace std;
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0)
-
 #define ll long long int
 #define vint vector<int>
 #define vll vector<long long int>
 #define vstring vector<string>
-
 #define pb push_back
-#define mp make_pair
-#define pii pair<int, int>
+#define maxVecElement(a) (*max_element(all(a)))
+#define minVecElement(a) (*min_element(all(a)))
+#define bin_sc(a, x) binary_search(all(a), x) // 0/1
+#define PI 3.141592653589793238462
 #define mod 1000000007
 #define inf 1e18
-#define PI 3.141592653589793238462
-
-#define endl "\n"
-#define no "NO"
-#define yes "YES"
+#define binpow(a, b) binpow(a, b)
+#define binpow_mod(a, b, m) binpow(a, b, m)
+#define nCr(n, r) nCr(n, r)
+#define nPr(n, r) nPr(n, r)
+#define total(v) accumulate(v.begin(), v.end(), 0)
+#define decimal(n) cout << fixed << setprecision(n);
 #define And &&
 #define Or ||
-
+#define no cout << "NO";
+#define yes cout << "YES";
 #define For(a, n) for (int i = a; i < n; i++)
 #define ForRev(a, b) for (int i = a; i > b; i--)
 #define nested_incr_loop(a, b) for (int j = a; j < b; j++)
 #define nested_decr_loop(a, b) for (int j = b; j > a; j--)
-
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
-#define gcd(a, b) __gcd(a, b);
-
+#define gcd(a, b) __gcd(a, b)
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
-
+#define ok cout << "ok";
 #define in(x) cin >> x;
 #define in2(x, y) cin >> x >> y;
 #define in3(x, y, z) cin >> x >> y >> z;
@@ -63,47 +63,25 @@ using namespace std;
         cin >> temp;        \
         v.push_back(temp);  \
     }
+ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
+long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
+long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-// int main()
-// {
-//     fastio;
-//     ll n;cin>>n;
-//     ll i = 1;
-//     ll count = 0;
-//     while(true){
-//         i = i * 2; debug(i);
-//         if(i > n) {
-//             i = i / 2;
-//             break;
-//         }
-
-//         if( i == n){
-//             cout<<1<<endl;return 0;
-//         }
-
-//         //count++;debug(i);
-
-//     }
-//     cout<< n - i +  1<<endl;
-//     return 0;
-// }
-
-bool check_power_of_2(ll x)
+ll ways(ll start, ll end)
 {
-    return x && !(x & (x - 1));
+    if(start == end) return 1;
+    if(start>end) return 0;
+
+    return ways(start+1,end)+ways(start+2,end)+ways(start+3,end);
 }
 
 int main()
 {
     fastio;
-    ll n;
-    cin >> n;
-    ll count = 0;
-
-    while (n)
-    {
-        if(n & 1 == 1) count++;
-        n = n/2;
-    }
-    cout<<count<<endl;
+    ll start, end;
+    cin >> start >> end;
+    ll ans = ways(start, end);
+    cout << ans << endl;
+    return 0;
 }
