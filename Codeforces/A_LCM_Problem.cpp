@@ -69,15 +69,10 @@ int main()
     fastio;
     While(t)
     {
-        ll l, r;
-        cin >> l >> r;
-        bool check = 0;
-        
-        if(2*l <= r){
-            cout<<l<<" "<<2*l<<endl;
-        }else{
-            cout<<-1<<" "<<-1<<endl;
-        }
+        ll low,high;cin>>low>>high;
+
+        if(low * 2 <= high) cout<<low<<" "<<low*2<<endl;
+        else cout<<-1<<" "<<-1<<endl;
     }
     return 0;
 }
