@@ -1,0 +1,10 @@
+
+bool customCompare(pair<ll, ll> a, pair<ll, ll> b)
+{
+    if (a.first < b.first || (a.first == b.first && a.second > b.second )) 
+        return true;
+    else 
+        return false;
+}
+
+   sort(v.begin(), v.end(), customComparator);
