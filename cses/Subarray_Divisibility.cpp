@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: Subarray_Divisibility.cpp
+// Date: 2024-08-25
+// Time: 08:23:14
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,33 +59,24 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
+    ll n;cin>>n;
+    map<ll,ll>mp;
+    ll prefix = 0;
+    mp[0] = 1;
+    ll total = 0;
 
-    ll low = 0, high = 1e18;
-    ll ans = high;  
-
-    while (low <= high) 
+    for(ll i=0;i<n;i++)
     {
-        ll mid = low + (high - low) / 2;
-
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
-        }
-
-        if (sum >= total) {
-            ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
+        ll x;cin>>x;
+        prefix += x;
+        ll temp = (prefix % n + n) % n;
+        if(mp[temp]){
+            total += mp[temp];;
+            mp[temp]++;
+        }else{
+            mp[temp] = 1;
         }
     }
-
-    cout << ans << endl;
+    cout<<total<<endl;
     return 0;
 }

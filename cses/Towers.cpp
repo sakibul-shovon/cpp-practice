@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: Towers.cpp
+// Date: 2024-08-21
+// Time: 20:13:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,33 +59,21 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
+    ll n;cin>>n;
+    multiset<ll>st;
+    for(ll i=0;i<n;i++){
+        ll x;cin>>x;
 
-    ll low = 0, high = 1e18;
-    ll ans = high;  
+        auto it = st.upper_bound(x);
 
-    while (low <= high) 
-    {
-        ll mid = low + (high - low) / 2;
-
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
-        }
-
-        if (sum >= total) {
-            ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
+        if(it == st.end()){
+            st.insert(x);
+        }else{
+            st.erase(it);
+            st.insert(x);
         }
     }
 
-    cout << ans << endl;
+    cout<<st.size()<<endl;
     return 0;
 }

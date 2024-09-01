@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: A_Turtle_and_Good_Strings.cpp
+// Date: 2024-08-26
+// Time: 00:19:34
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,33 +59,15 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
+    While(t){
+        ll n;cin>>n;
+        string s;cin>>s;
 
-    ll low = 0, high = 1e18;
-    ll ans = high;  
-
-    while (low <= high) 
-    {
-        ll mid = low + (high - low) / 2;
-
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
-        }
-
-        if (sum >= total) {
-            ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
+        if(s.size() >=2 and s[0] != s[s.size()-1]){
+            cout<<"YES"<<endl;
+        }else{
+            cout<<"NO"<<endl;
         }
     }
-
-    cout << ans << endl;
     return 0;
 }

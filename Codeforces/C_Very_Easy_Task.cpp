@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: C_Very_Easy_Task.cpp
+// Date: 2024-08-31
+// Time: 06:48:56
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -50,42 +50,53 @@ using namespace std;
 #define While(n)      int t; cin>>t;while(t--)
 #define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
+ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
+bool canDo(ll mid, ll total ,ll first,ll second)
+{
+    ll minn = min(first,second);
+    ll maxx = max(first,second);
+
+    ll x = mid / minn;
+    ll y = (mid-minn )/ maxx;
+    ll check = x+y;
+    
+    // debug(mid);debug(minn);debug(maxx);
+    // debug(x);debug(y);debug(total);debug(x+y);
+
+    if(check >= total) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
+    ll total , first , second ; in3(total,first,second);
 
-    ll low = 0, high = 1e18;
-    ll ans = high;  
+    ll low = 1,high = 1e9+10;
+    ll ans = high;
 
-    while (low <= high) 
-    {
+    while(low < high){
         ll mid = low + (high - low) / 2;
 
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
+        if(canDo(mid, total,first,second)){
+            ans = mid;
+            high = mid;
+        }
+        else{
+            low = mid +1 ;
         }
 
-        if (sum >= total) {
-            ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
-        }
+       
     }
 
-    cout << ans << endl;
+    cout<<ans<<endl;
     return 0;
 }

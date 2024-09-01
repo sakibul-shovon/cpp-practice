@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: E_Equation.cpp
+// Date: 2024-09-01
+// Time: 00:42:32
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -50,8 +50,8 @@ using namespace std;
 #define While(n)      int t; cin>>t;while(t--)
 #define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
+ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
@@ -59,33 +59,23 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
+    double c;
+    cin >> c;
 
-    ll low = 0, high = 1e18;
-    ll ans = high;  
+    double low = 0, high = c, mid, ans = 0;
 
-    while (low <= high) 
-    {
-        ll mid = low + (high - low) / 2;
+    while (high - low > 1e-7) {
+        mid = low + (high - low) / 2;
+        double check = (mid * mid) + sqrt(mid);
 
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
-        }
-
-        if (sum >= total) {
+        if (check >= c) {
             ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
+            high = mid;
+        } else {
+            low = mid;
         }
     }
 
-    cout << ans << endl;
+    cout << fixed << setprecision(7) << ans << endl;
     return 0;
 }

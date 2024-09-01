@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: D_Fast_search.cpp
+// Date: 2024-08-28
+// Time: 23:41:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,33 +59,18 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
+    ll n;cin>>n;
     vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
-
-    ll low = 0, high = 1e18;
-    ll ans = high;  
-
-    while (low <= high) 
-    {
-        ll mid = low + (high - low) / 2;
-
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
-        }
-
-        if (sum >= total) {
-            ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
-        }
+    for(ll i=0;i<n;i++) cin>>v[i];
+    sort_all(v);
+    
+    While(T){
+        ll a,b;cin>>a>>b;
+        auto first = lower_bound(all(v),a);
+        auto last = upper_bound(all(v),b);
+        //last--;
+        
+        cout<<(last - v.begin() )- (first - v.begin())<<" ";
     }
-
-    cout << ans << endl;
     return 0;
 }

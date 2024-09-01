@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: Chef_of_the_Year.cpp
+// Date: 2024-08-28
+// Time: 06:55:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,33 +59,45 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
+    ll input,output;in2(input,output);
+    map<string,string> mp;
+    
+    while(input--){
+        string a,b;cin>>a>>b;
+        mp[a] = b;
+        
+    }
 
-    ll low = 0, high = 1e18;
-    ll ans = high;  
+    //vote
+    map<string,ll> c,n;
+    while(output--){
+        string s;cin>>s;
+        n[s]++;
+        c[mp[s]]++;
 
-    while (low <= high) 
-    {
-        ll mid = low + (high - low) / 2;
+    }
+    string country,name;
+    ll maxC = -1;
+    string CCC,NNN;
 
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
-        }
-
-        if (sum >= total) {
-            ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
+    for(auto it:c){
+        //cout<<it.first<<" "<<it.second<<endl;
+        if(it.second > maxC) {
+            CCC = it.first;
+            maxC = it.second;
         }
     }
 
-    cout << ans << endl;
+    
+    ll maxN = -1;
+     for(auto it:n){
+        //cout<<it.first<<" "<<it.second<<endl;
+        if(it.second > maxN){
+            NNN = it.first;
+            maxN = it.second;
+        }
+    }
+
+    cout<<CCC<<endl<<NNN<<endl;
     return 0;
 }

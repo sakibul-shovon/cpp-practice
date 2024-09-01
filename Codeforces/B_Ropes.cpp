@@ -1,6 +1,6 @@
-// File Name: Factory_Machines.cpp
-// Date: 2024-08-29
-// Time: 00:32:39
+// File Name: B_Ropes.cpp
+// Date: 2024-09-01
+// Time: 00:27:10
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -50,8 +50,8 @@ using namespace std;
 #define While(n)      int t; cin>>t;while(t--)
 #define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
+ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
@@ -62,30 +62,32 @@ int main()
     ll n, total;
     cin >> n >> total;
     vll v(n);
-    for (ll i = 0; i < n; i++) cin >> v[i];
+    ll maxx = -1;
+    for (ll i = 0; i < n; i++) {
+        cin >> v[i];
+        maxx = max(maxx, v[i]);
+    }
 
-    ll low = 0, high = 1e18;
-    ll ans = high;  
+    double low = 0, high = maxx;
+    double ans = 0;
 
-    while (low <= high) 
-    {
-        ll mid = low + (high - low) / 2;
+    while (high - low > 1e-6) {
+        double mid = low + (high - low) / 2;
+        ll check = 0;
 
-        ll sum = 0;
-        for (ll i = 0; i < v.size(); i++) {
-            sum += mid / v[i];
-            if (sum > total) break;
+        for (ll i = 0; i < n; i++) {
+            check += v[i] / mid;
         }
 
-        if (sum >= total) {
-            ans = mid;
-            high = mid - 1;
-        }
-        else {
-            low = mid + 1;
+        if (check >= total) {
+            ans = mid;   // Store the current mid as a potential answer
+            low = mid;   // Try to find a longer length
+        } else {
+            high = mid;  // Try to find a shorter length
         }
     }
 
-    cout << ans << endl;
+    
+    cout << fixed << setprecision(1) << ans << endl;
     return 0;
 }
