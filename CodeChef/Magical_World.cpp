@@ -1,6 +1,6 @@
-// File Name: C_Can_I_Square.cpp
-// Date: 2023-12-28
-// Time: 21:06:24
+// File Name: Magical_World.cpp
+// Date: 2024-09-02
+// Time: 15:23:25
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,37 +9,37 @@ using namespace std;
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0)
-
 #define ll long long int
 #define vint vector<int>
 #define vll vector<long long int>
 #define vstring vector<string>
-
 #define pb push_back
-#define mp make_pair
-#define pii pair<int, int>
+#define maxVecElement(a) (*max_element(all(a)))
+#define minVecElement(a) (*min_element(all(a)))
+#define bin_sc(a, x) binary_search(all(a), x) // 0/1
+#define PI 3.141592653589793238462
 #define mod 1000000007
 #define inf 1e18
-#define PI 3.141592653589793238462
-
-#define endl "\n"
-#define no "NO"
-#define yes "YES"
+#define binpow(a, b) binpow(a, b)
+#define binpow_mod(a, b, m) binpow(a, b, m)
+#define nCr(n, r) nCr(n, r)
+#define nPr(n, r) nPr(n, r)
+#define total(v) accumulate(v.begin(), v.end(), 0)
+#define decimal(n) cout << fixed << setprecision(n);
 #define And &&
 #define Or ||
-
+#define no cout << "NO";
+#define yes cout << "YES";
 #define For(a, n) for (int i = a; i < n; i++)
 #define ForRev(a, b) for (int i = a; i > b; i--)
 #define nested_incr_loop(a, b) for (int j = a; j < b; j++)
 #define nested_decr_loop(a, b) for (int j = b; j > a; j--)
-
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vi, greater<int>>
-#define gcd(a, b) __gcd(a, b);
-
+#define gcd(a, b) __gcd(a, b)
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
-
+#define ok cout << "ok";
 #define in(x) cin >> x;
 #define in2(x, y) cin >> x >> y;
 #define in3(x, y, z) cin >> x >> y >> z;
@@ -63,39 +63,34 @@ using namespace std;
         cin >> temp;        \
         v.push_back(temp);  \
     }
-
-bool sq(ll n) {
-    
-    double sqrt_n = sqrt(n);
-
-    
-    return (sqrt_n - floor(sqrt_n)) == 0;
-}
+ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
+ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
+ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 int main()
 {
     fastio;
-    While(n)
+    While(t)
     {
-        ll t;
-        cin >> t;
-        ll sum = 0;
-
-        for (ll i = 0; i < t; i++)
+        ll a, b, c;
+        cin >> a >> b >> c;
+        ll red = a * b;
+        ll blue = c * c;
+        if (red <= blue)
         {
-            ll a;
-            cin >> a;
-
-            sum += a;
+            cout << 0 << endl;
+           continue;
         }
+        else{
 
-        if( sq(sum)){
-            cout<<yes<<endl;
-        }else{
-            cout<<no<<endl;
+            if(b<= blue or a <= blue){
+                cout<<1<<endl;
+            }else{
+                cout<<2<<endl;
+            }
         }
-        
     }
 
-return 0;
+    return 0;
 }

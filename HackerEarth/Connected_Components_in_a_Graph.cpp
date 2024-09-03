@@ -1,6 +1,6 @@
-// File Name: B_Ropes.cpp
+// File Name: Connected_Components_in_a_Graph.cpp
 // Date: 2024-09-01
-// Time: 00:27:10
+// Time: 11:32:36
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,40 +54,43 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+const ll N = 1e5+10;
+vector<ll> g[N];
+bool visited[N] = {false};
 
+void dfs(ll nodes){
+    visited[nodes] = true;
+
+    for(ll child : g[nodes]){
+        if(visited[child]) continue;
+        else{
+            dfs(child);
+        }
+    }
+    
+}
 
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    ll maxx = -1;
-    for (ll i = 0; i < n; i++) {
-        cin >> v[i];
-        maxx = max(maxx, v[i]);
+    ll edge,vertex;cin>>edge>>vertex;
+    for(ll i=0;i<vertex;i++){
+        ll a,b;cin>>a>>b;
+        g[a].push_back(b);
+        g[b].push_back(a);
     }
 
-    double low = 0, high = maxx;
-    double ans = 0;
+    ll count = 0 ;
 
-    while (high - low > 1e-6) {
-        double mid = low + (high - low) / 2;
-        ll check = 0;//lll
-
-        for (ll i = 0; i < n; i++) {
-            check += v[i] / mid;
-        }
-
-        if (check >= total) {
-            ans = mid;   
-            low = mid;   
-        } else {
-            high = mid;  
+    for(ll i=1;i<=edge;i++){
+        debug(i);
+        if(visited[i] == true) continue;
+        else{
+            count++;
+            dfs(i);
         }
     }
 
-    
-    cout << fixed << setprecision(6) << ans << endl;
+    cout<<count<<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: B_Ropes.cpp
-// Date: 2024-09-01
-// Time: 00:27:10
+// File Name: Approximate_Answer.cpp
+// Date: 2024-09-02
+// Time: 15:03:32
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,35 +59,12 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    ll maxx = -1;
-    for (ll i = 0; i < n; i++) {
-        cin >> v[i];
-        maxx = max(maxx, v[i]);
+    ll a,b,c;cin>>a>>b>>c;
+    ll t = abs(a-b);
+    if(t <= c){
+        cout<<"Yes"<<endl;
+    }else{
+        cout<<"No"<<endl;
     }
-
-    double low = 0, high = maxx;
-    double ans = 0;
-
-    while (high - low > 1e-6) {
-        double mid = low + (high - low) / 2;
-        ll check = 0;//lll
-
-        for (ll i = 0; i < n; i++) {
-            check += v[i] / mid;
-        }
-
-        if (check >= total) {
-            ans = mid;   
-            low = mid;   
-        } else {
-            high = mid;  
-        }
-    }
-
-    
-    cout << fixed << setprecision(6) << ans << endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: B_Ropes.cpp
+// File Name: B_Square_or_Not.cpp
 // Date: 2024-09-01
-// Time: 00:27:10
+// Time: 22:00:24
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,38 +56,59 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 
 
-int main()
-{
-    fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    ll maxx = -1;
-    for (ll i = 0; i < n; i++) {
-        cin >> v[i];
-        maxx = max(maxx, v[i]);
+bool sq(ll n) {
+    ll sq = sqrt(n);
+    return sq * sq == n;
+}
+
+bool check( string& s, ll r) {
+    // first row
+    for (ll i = 0; i < r; ++i) {
+        if (s[i] != '1') return false;
     }
 
-    double low = 0, high = maxx;
-    double ans = 0;
-
-    while (high - low > 1e-6) {
-        double mid = low + (high - low) / 2;
-        ll check = 0;//lll
-
-        for (ll i = 0; i < n; i++) {
-            check += v[i] / mid;
-        }
-
-        if (check >= total) {
-            ans = mid;   
-            low = mid;   
-        } else {
-            high = mid;  
-        }
+    //last row
+    for (ll i = (r - 1) * r; i < r * r; ++i) {
+        if (s[i] != '1') return false;
     }
 
     
-    cout << fixed << setprecision(6) << ans << endl;
+    for (ll i = 0; i < r; ++i) {
+        if (s[i * r] != '1' || s[i * r + (r - 1)] != '1') return false;
+    }
+
+    
+    for (ll i = 1; i < r - 1; ++i) {
+        for (ll j = 1; j < r - 1; ++j) {
+            if (s[i * r + j] != '0') return false;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    fastio;
+    int t;
+    cin >> t;
+    while (t--) {
+        ll n;
+        cin >> n;
+        string s;
+        cin >> s;
+
+        if (!sq(n)) {
+            cout<<"NO"<<endl;
+            continue;
+        }
+
+        ll r = sqrt(n);
+
+        if (check(s, r)) {
+           cout<<"YES"<<endl;
+        } else {
+            cout<<"NO"<<endl;
+        }
+    }
     return 0;
 }

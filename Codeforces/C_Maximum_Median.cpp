@@ -1,6 +1,6 @@
-// File Name: B_Ropes.cpp
-// Date: 2024-09-01
-// Time: 00:27:10
+// File Name: C_Maximum_Median.cpp
+// Date: 2024-09-02
+// Time: 20:49:00
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -54,40 +54,41 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
-
-int main()
-{
-    fastio;
-    ll n, total;
-    cin >> n >> total;
-    vll v(n);
-    ll maxx = -1;
-    for (ll i = 0; i < n; i++) {
-        cin >> v[i];
-        maxx = max(maxx, v[i]);
+bool canDo(vll &v, ll mid, ll k, ll n) {
+    ll count = 0;
+    for (ll i = n / 2; i < n; i++) {
+        if (mid > v[i]) {
+            count += mid - v[i];
+        }
+        if (count > k) return false;
     }
 
-    double low = 0, high = maxx;
-    double ans = 0;
-
-    while (high - low > 1e-6) {
-        double mid = low + (high - low) / 2;
-        ll check = 0;//lll
-
-        for (ll i = 0; i < n; i++) {
-            check += v[i] / mid;
-        }
-
-        if (check >= total) {
-            ans = mid;   
-            low = mid;   
-        } else {
-            high = mid;  
-        }
-    }
-
+    return true;
     
-    cout << fixed << setprecision(6) << ans << endl;
+}
+
+int main() {
+    fastio;
+    ll n, k;
+    cin >> n >> k;
+    vll v(n);
+    for (ll i = 0; i < n; i++) cin >> v[i];
+    sort_all(v);
+    
+    ll low = v[n/2], high = v[n/2] + k;
+    ll ans = low;
+    
+    while (low <= high) {
+        ll mid = low + (high - low) / 2;
+
+        if (canDo(v, mid, k, n)) {
+            ans = mid;
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    cout << ans << endl;
     return 0;
 }
