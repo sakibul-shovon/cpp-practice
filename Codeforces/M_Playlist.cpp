@@ -1,6 +1,6 @@
-// File Name: Sum_of_Two_Values.cpp
-// Date: 2024-10-01
-// Time: 01:11:01
+// File Name: M_Playlist.cpp
+// Date: 2024-10-03
+// Time: 17:13:09
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,21 +59,24 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n,sum;cin>>n>>sum;
-    map<ll,ll>mp;
+    ll n;cin>>n;
+    vll v(n);
+    for(ll i=0;i<n;i++) cin>>v[i];
+    ll start = 0 ,end = -1,count = 0;
+    map<ll,ll> mp;
 
-    for(ll i=0;i<n;i++){
-        ll x;cin>>x;
-        ll count = sum - x;
 
-        if(mp.find(count) != mp.end()){
-            cout<<mp[count]<<" "<< i+1<<endl;
-            return 0;
-
+    while(end < n)
+    {
+        end++;
+        ll x = v[end];
+        if(mp[x] == 1){
+            mp[start] = 0;
+            start++;
 
         }
-        mp[x] = i+1;
+        count = max(count , end);
+
     }
-    cout<<"IMPOSSIBLE"<<endl;
     return 0;
 }

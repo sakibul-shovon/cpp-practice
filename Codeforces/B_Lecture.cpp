@@ -1,6 +1,6 @@
-// File Name: Sum_of_Two_Values.cpp
+// File Name: B_Lecture.cpp
 // Date: 2024-10-01
-// Time: 01:11:01
+// Time: 17:49:51
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,21 +59,31 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n,sum;cin>>n>>sum;
-    map<ll,ll>mp;
+    ll total , word;cin>>total>>word;
+    map<string,string> first,second;
 
-    for(ll i=0;i<n;i++){
-        ll x;cin>>x;
-        ll count = sum - x;
+    for(ll i=0;i<word;i++){
+        string a,b;cin>>a>>b;
+        first[a] = b;
+        second[b] =a;
 
-        if(mp.find(count) != mp.end()){
-            cout<<mp[count]<<" "<< i+1<<endl;
-            return 0;
-
-
-        }
-        mp[x] = i+1;
     }
-    cout<<"IMPOSSIBLE"<<endl;
+
+    vector<string> ans ;
+
+    for(ll i=0;i<total;i++)
+    {
+        string x;cin>>x;
+        ll f = x.length();
+        ll s = first[x].length();
+
+        if(f <= s){
+            ans.pb(x);
+        }else{
+            ans.pb(first[x]);
+        }
+    }
+
+    for(ll i=0;i<ans.size();i++) cout<<ans[i]<<" ";
     return 0;
 }
