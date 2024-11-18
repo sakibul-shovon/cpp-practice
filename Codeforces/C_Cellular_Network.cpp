@@ -1,6 +1,6 @@
-// File Name: A_Candies.cpp
-// Date: 2024-11-04
-// Time: 01:30:51
+// File Name: C_Cellular_Network.cpp
+// Date: 2024-11-16
+// Time: 19:45:15
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -71,23 +71,43 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll t;
-    cin >> t;
-    while (t--)
-    {
-        ll n;
-        cin >> n;
+    ll n, t;
+    cin >> n >> t;
+    vll v(n);
+    for (ll i = 0; i < n; i++)
+        cin >> v[i];
+    vll tower(t);
+    for (ll i = 0; i < t; i++)
+        cin >> tower[i];
+    ll maxx = LLONG_MIN;
 
-        ll t = 1;
-        while(true)
+    for (ll i = 0; i < n; i++)
+    {
+        auto lb = lower_bound(all(tower), v[i]);
+
+        ll dist1, dist2;
+
+        if (lb != tower.end())
         {
-            t = t * 2 + 1; 
-            if (n % t == 0)
-            {
-                cout << n / t << endl;
-                break;
-            }
+            dist1 = abs(*lb - v[i]);
         }
+        else
+        {
+            dist1 = LLONG_MAX;
+        }
+
+        if (lb != tower.begin())
+        {
+            dist2 = abs(*(lb - 1) - v[i]);
+        }
+        else
+        {
+            dist2 = LLONG_MAX;
+        }
+
+        maxx = max(maxx, min(dist1, dist2));
     }
+
+    cout << maxx << endl;
     return 0;
 }

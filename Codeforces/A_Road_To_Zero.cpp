@@ -1,6 +1,6 @@
-// File Name: A_Candies.cpp
-// Date: 2024-11-04
-// Time: 01:30:51
+// File Name: A_Road_To_Zero.cpp
+// Date: 2024-10-24
+// Time: 02:08:48
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -71,23 +71,28 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll t;
-    cin >> t;
-    while (t--)
+    While(t)
     {
-        ll n;
-        cin >> n;
+        ll first, second;
+        cin >> first >> second;
+        ll a, b;
+        cin >> a >> b;
 
-        ll t = 1;
-        while(true)
+        ll minn = min(first, second);
+        ll maxx = max(first, second);
+        ll ans = 0;
+
+        if (b >= 2 * a)
         {
-            t = t * 2 + 1; 
-            if (n % t == 0)
-            {
-                cout << n / t << endl;
-                break;
-            }
+            ans = (maxx + minn) * a;
         }
+        else
+        {
+            ans += minn * b;
+            ans += (maxx - minn) * a;
+        }
+
+        cout << ans << endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Candies.cpp
-// Date: 2024-11-04
-// Time: 01:30:51
+// File Name: A_Perpendicular_Segments.cpp
+// Date: 2024-10-29
+// Time: 00:31:04
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -71,23 +71,13 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll t;
-    cin >> t;
-    while (t--)
+    While(t)
     {
-        ll n;
-        cin >> n;
-
-        ll t = 1;
-        while(true)
-        {
-            t = t * 2 + 1; 
-            if (n % t == 0)
-            {
-                cout << n / t << endl;
-                break;
-            }
-        }
+        ll x,y,k;
+        cin >> x >> y >> k;
+        x = min(x, y);
+        cout << "0 0 " << x << ' ' << x << endl;
+        cout << "0 " << x << ' ' << x << " 0 "<<endl;
     }
     return 0;
 }

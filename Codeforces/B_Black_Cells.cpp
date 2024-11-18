@@ -1,6 +1,6 @@
-// File Name: A_Candies.cpp
-// Date: 2024-11-04
-// Time: 01:30:51
+// File Name: B_Black_Cells.cpp
+// Date: 2024-10-31
+// Time: 02:44:31
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -71,22 +71,47 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll t;
-    cin >> t;
-    while (t--)
+    While(t)
     {
         ll n;
         cin >> n;
-
-        ll t = 1;
-        while(true)
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+        if (n == 1)
         {
-            t = t * 2 + 1; 
-            if (n % t == 0)
+            cout << "1" << "\n";
+            continue;
+        }
+        if (n % 2 == 0)
+        {
+            ll x = LLONG_MAX;
+            for (ll i = 0; i < n - 1; i += 2)
             {
-                cout << n / t << endl;
-                break;
+                x = max(x, (v[i + 1] - v[i]));
             }
+            cout << x << "\n";
+        }
+        else
+        {
+            ll x = 1e18 + 1;
+            for (ll i = 0; i < n; i += 2)
+            {
+                ll y = 1;
+                for (ll j = 0; j < n; j += 2)
+                {
+                    if (j < i)
+                    {
+                        y = max(y, v[j + 1] - v[j]);
+                    }
+                    else if (j > i)
+                    {
+                        y = max(y, v[j + 1] - v[j]);
+                    }
+                }
+                x = min(x, y);
+            }
+            cout << x << "\n";
         }
     }
     return 0;

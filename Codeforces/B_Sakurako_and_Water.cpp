@@ -1,6 +1,6 @@
-// File Name: A_Candies.cpp
-// Date: 2024-11-04
-// Time: 01:30:51
+// File Name: B_Sakurako_and_Water.cpp
+// Date: 2024-10-26
+// Time: 02:27:58
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -71,23 +71,69 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll t;
-    cin >> t;
-    while (t--)
+    While(b)
     {
         ll n;
         cin >> n;
-
-        ll t = 1;
-        while(true)
+        ll arr[n + 1][n + 1] = {0};
+        for (ll i = 1; i <= n; i++)
         {
-            t = t * 2 + 1; 
-            if (n % t == 0)
+            for (ll j = 1; j <= n; j++)
             {
-                cout << n / t << endl;
-                break;
+                cin >> arr[i][j];
             }
         }
+
+        ll ans = 0;
+
+        ll T = n;
+
+        ll m = n; // jindex
+        ll x = 1;
+        while (T--)
+        {
+            ll minn = LLONG_MAX;
+            for (ll i = x, j = 1; i <= n, j <= m; i++, j++)
+            {
+                if (arr[i][j] < 0)
+                {
+                    minn = min(minn, arr[i][j]);
+                }
+            }
+            // cout<<endl;
+            x++;
+            m--;
+            if (minn != LLONG_MAX)
+            {
+                ans += minn;
+            }
+        }
+        // line;
+        // cout<<"2nd Step"<<endl;
+        //  main diagonal er uporer part
+        ll TT = n - 1; // n-1
+        ll iIndx = n;
+        ll jindx = 2;
+        while (TT--)
+        {
+            ll minn = LLONG_MAX;
+            for (ll i = 1, j = jindx; i <= iIndx, j <= n; i++, j++)
+            {
+                if (arr[i][j] < 0)
+                {
+                    minn = min(minn, arr[i][j]);
+                }
+            }
+
+            jindx++;
+            if (minn != LLONG_MAX)
+            {
+                ans += minn;
+            }
+        }
+
+        cout << abs(ans) << endl;
     }
+
     return 0;
 }
