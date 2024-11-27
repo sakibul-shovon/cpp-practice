@@ -1,6 +1,6 @@
-// File Name: C_Superultra_s_Favorite_Permutation.cpp
-// Date: 2024-11-17
-// Time: 21:44:19
+// File Name: C_They_Are_Everywhere.cpp
+// Date: 2024-11-19
+// Time: 01:06:17
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,63 +56,33 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 
 
-vector<bool> sieveOfEratosthenes(ll limit) {
-    vector<bool> isPrime(limit + 1, true);
-    isPrime[0] = isPrime[1] = false;
-
-    for (ll i = 2; i * i <= limit; ++i) {
-        if (isPrime[i]) {
-            for (ll multiple = i * i; multiple <= limit; multiple += i) {
-                isPrime[multiple] = false;
-            }
-        }
-    }
-
-    return isPrime;
-}
-
-int main() {
+int main()
+{
     fastio;
+    ll n;cin>>n;
+    string s;cin>>s;
 
-    ll limit = 2000005;
-    vector<bool> sieve = sieveOfEratosthenes(limit);
+    set<char>st(all(s));
+    ll uniqueChar = st.size();
+    ll minn = LLONG_MAX;
+    map<char,ll>mp;
+    ll count = 0 , start = 0;
 
-    ll t;
-    cin >> t;
+    for(ll end=0;end<n;end++){
+        char c = s[end] ;
+        mp[c]++;
+        if(mp[c] == 1) count++;
 
-    while (t--) {
-        ll n;
-        cin >> n;
-
-        vll even, odd;
-        for (ll i = 2; i <= n; i += 2) {
-            even.pb(i);
+        while(count == uniqueChar){
+            minn = min(minn, end - start + 1);
+            mp[s[start]]--;
+            if(mp[s[start]] == 0 ) count--;
+            start++;
         }
 
-        ll lastEven = even.back();
-        bool compositeFound = false;
-        ll compositeOdd;
 
-        for (ll i = 1; i <= n; i += 2) {
-            if (!sieve[lastEven + i] && !compositeFound) {
-                compositeFound = true;
-                compositeOdd = i;
-            } else {
-                odd.pb(i);
-            }
-        }
-
-        if (compositeFound) {
-            for (auto it : even)
-                cout << it << ' ';
-            cout << compositeOdd << ' ';
-            for (auto it : odd)
-                cout << it << ' ';
-            cout << '\n';
-        } else {
-            cout << -1 << '\n';
-        }
     }
 
+    cout<<minn<<endl;
     return 0;
 }

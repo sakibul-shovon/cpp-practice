@@ -1,6 +1,6 @@
-// File Name: B_Sort_the_Array.cpp
-// Date: 2024-11-24
-// Time: 17:36:49
+// File Name: F_Eating_Candies.cpp
+// Date: 2024-11-19
+// Time: 12:43:55
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -74,63 +74,41 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n;
-    cin >> n;
-    vll v(n);
-    vInput(v, n);
-    ll x = 0, y = 0;
-    bool first = false, second = false;
-
-    for (ll i = 0; i < n; i++)
+    While(t)
     {
-        if (v[i + 1] < v[i] and first == false)
-        {
-            first = true;
-            x = i + 1; // debug(x);
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+
+        ll low = 0, high = n - 1;
+        ll left = 0, right = 0;
+        ll count = 0;
+        ll i = 0,j=0;
+
+        while (low <=high)
+        { 
+            if (left <= right)
+            {
+                left += v[low];
+                low++;i++;
+            }
+            else
+            {
+                right += v[high];
+                high--;j++;
+            }
+            //cout<<left<<" "<<right<<endl;
+
+            
+            if (left == right)
+            {
+                count = max(count, i+j);
+            }
         }
 
-        if (first and v[i] < v[i + 1])
-        {
-            second = true;
-            y = i + 1; // debug(y);
-
-            break;
-        }
-    }
-
-    if (x > 0 and y == 0)
-    {
-        y = n;
-    }
-    reverse(v.begin() + (x - 1), v.begin() + (y));
-
-    bool last = false;
-
-    // autoLoop(v);
-    for (ll i = 0; i < n - 1; i++)
-    {
-        if (v[i + 1] > v[i])
-            continue;
-        else
-        {
-            last = true;
-            cout << "no" << endl;
-            break;
-        }
-    }
-
-    if (!last)
-    {
-        cout << "yes" << endl;
-
-        if (x == 0 and y == 0)
-        {
-            cout << 1 << " " << 1 << endl;
-        }
-        else
-        {
-            cout << x << " " << y << endl;
-        }
+        cout << count << endl;
     }
     return 0;
 }

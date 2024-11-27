@@ -1,6 +1,6 @@
-// File Name: B_Sort_the_Array.cpp
-// Date: 2024-11-24
-// Time: 17:36:49
+// File Name: C_Three_Parts_of_the_Array.cpp
+// Date: 2024-11-20
+// Time: 02:11:28
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -78,59 +78,47 @@ int main()
     cin >> n;
     vll v(n);
     vInput(v, n);
-    ll x = 0, y = 0;
-    bool first = false, second = false;
+    ll low = 0, high = n - 1;
+    ll left = 0, right = 0;
+    ll ans = 0;
+    bool check = true;
 
-    for (ll i = 0; i < n; i++)
+    while (low <= high)
     {
-        if (v[i + 1] < v[i] and first == false)
+        if (right == left)
         {
-            first = true;
-            x = i + 1; // debug(x);
+           
+            check = false;
+            ans = max(ans, left);
         }
 
-        if (first and v[i] < v[i + 1])
+        if (left <= right)
         {
-            second = true;
-            y = i + 1; // debug(y);
-
-            break;
+            left += v[low];
+            low++;
         }
+        else if (right < left)
+        {
+            right += v[high];
+            high--;
+        }
+
+        //cout << left << " " << right << endl;
+    }
+    if (right == left)
+    {
+        
+        check = false;
+        ans = max(ans, left);
     }
 
-    if (x > 0 and y == 0)
+    if (check == false)
     {
-        y = n;
+        cout << ans << endl;
     }
-    reverse(v.begin() + (x - 1), v.begin() + (y));
-
-    bool last = false;
-
-    // autoLoop(v);
-    for (ll i = 0; i < n - 1; i++)
+    else
     {
-        if (v[i + 1] > v[i])
-            continue;
-        else
-        {
-            last = true;
-            cout << "no" << endl;
-            break;
-        }
-    }
-
-    if (!last)
-    {
-        cout << "yes" << endl;
-
-        if (x == 0 and y == 0)
-        {
-            cout << 1 << " " << 1 << endl;
-        }
-        else
-        {
-            cout << x << " " << y << endl;
-        }
+        cout << 0 << endl;
     }
     return 0;
 }

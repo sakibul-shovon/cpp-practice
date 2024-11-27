@@ -1,6 +1,6 @@
-// File Name: B_Sort_the_Array.cpp
-// Date: 2024-11-24
-// Time: 17:36:49
+// File Name: A_11_22_String.cpp
+// Date: 2024-11-22
+// Time: 20:04:16
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -76,61 +76,46 @@ int main()
     fastio;
     ll n;
     cin >> n;
-    vll v(n);
-    vInput(v, n);
-    ll x = 0, y = 0;
-    bool first = false, second = false;
+    string s;
+    cin >> s;
 
-    for (ll i = 0; i < n; i++)
+    ll mid = s.size() / 2 - 1;
+
+    string ans = "", ans2 = "";
+    ll i;
+    if (s.length() == 1)
     {
-        if (v[i + 1] < v[i] and first == false)
+        if (s[0] == '/')
         {
-            first = true;
-            x = i + 1; // debug(x);
-        }
-
-        if (first and v[i] < v[i + 1])
-        {
-            second = true;
-            y = i + 1; // debug(y);
-
-            break;
-        }
-    }
-
-    if (x > 0 and y == 0)
-    {
-        y = n;
-    }
-    reverse(v.begin() + (x - 1), v.begin() + (y));
-
-    bool last = false;
-
-    // autoLoop(v);
-    for (ll i = 0; i < n - 1; i++)
-    {
-        if (v[i + 1] > v[i])
-            continue;
-        else
-        {
-            last = true;
-            cout << "no" << endl;
-            break;
-        }
-    }
-
-    if (!last)
-    {
-        cout << "yes" << endl;
-
-        if (x == 0 and y == 0)
-        {
-            cout << 1 << " " << 1 << endl;
+            cout << "Yes" << endl;
         }
         else
         {
-            cout << x << " " << y << endl;
+            cout << "No" << endl;
         }
+
+        return 0;
     }
+
+    for (i = 0; i <= mid; i++)
+    {
+        ans += '1';
+    }
+    for (i = 0; i <= mid; i++)
+    {
+        ans2 += '2';
+    }
+
+    string final = ans + '/' + ans2;
+    if (final == s)
+    {
+        cout << "Yes" << endl;
+    }
+    else
+    {
+        cout << "No" << endl;
+    }
+
+    // cout<<final<<endl;
     return 0;
 }
