@@ -1,6 +1,6 @@
-// File Name: A_Frog_1.cpp
-// Date: 2025-01-04
-// Time: 21:54:23
+// File Name: A_Happy_New_Year_2025.cpp
+// Date: 2025-01-06
+// Time: 01:55:31
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -55,26 +55,11 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll arr[1000005];
-ll dp[1000005] ;
 
-ll fun(ll i,ll n){
-    if(i == n) return 0;
-    if(dp[i] != -1) return dp[i];
-
-    ll cost = abs(arr[i] - arr[i+1]) + fun(i+1,n);
-    if(i+2<=n){
-        cost = min(cost,abs(arr[i] - arr[i+2])+fun(i+2,n));
-
-    }
-
-    return dp[i] = cost;
-}
 int main() {
     fastio;
-    fill(dp, dp + 1000005, -1);
-    ll n;cin>>n;
-    for(ll i=1;i<=n;i++) cin>>arr[i];
-    cout<<fun(1,n)<<endl;
+    ll a,b;cin>>a>>b;
+    ll x = a+b;
+    cout<<x*x<<endl;
     return 0;
 }
