@@ -1,6 +1,6 @@
-// File Name: B_Karen_and_Coffee.cpp
-// Date: 2025-01-10
-// Time: 11:59:51
+// File Name: Hamming_equivalent.cpp
+// Date: 2025-01-15
+// Time: 21:28:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -37,7 +37,7 @@ int dCol[] = {0, 1, 0, -1};
 #define nested_decr_loop(a, b) for (int j = b; j > a; j--)
 #define pqb priority_queue<int>
 #define pqs priority_queue<int, vector<int>, greater<int>>
-#define gcd(a, b) __gcd(a, b)
+#define gcd(a, b) __gcd(a, b) 
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
 #define ok cout << "ok" << endl;
@@ -69,52 +69,55 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-vector<ll> v(200005);
+ll check(int num)
+{
+    int count = 0;
+    while (num > 0)
+    {
+        count += (num & 1); 
+        num >>= 1;          
+    }
+    return count;
+}
 
 int main()
 {
     fastio;
-    ll n, k, q;
-    cin >> n >> k >> q;
-    ll minn = LLONG_MAX, maxx = LLONG_MIN;
-
-    for (ll i = 0; i < n; i++)
+    While(t)
     {
-        ll first, second;
-        cin >> first >> second;
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
 
-        v[first]++;
-        v[second + 1]--;
+        bool flag = true;
+        vll sorted = v;
+        sort_all(sorted);
+        //autoLoop(sorted);
+
+        for (ll i = 0; i < n; i++)
+        {
+            if (v[i] == sorted[i])
+            {
+                continue;
+            }
+            else
+            {
+                ll first = (v[i]);
+                ll second = (v[v[i] - 1]);
+                //debug(first) debug(second);
+                if (check(first) == check(second))
+                {
+                    swap(v[i], v[v[i] - 1]);
+                    //autoLoop(v)line;
+                }
+               
+            }
+        }
+
+       if(v == sorted) cout<<"Yes"<<endl;
+       else cout<<"No"<<endl;
     }
-    // for(ll i=90;i<=100;i++) cout<<v[i]<<" ";
-    line;
-    vll prefix(200005, 0);
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] = prefix[i - 1] + v[i];
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-
-    {
-        prefix[i] = (prefix[i] >= k);
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] += prefix[i - 1];c
-    }
-    // autoLoop(v);
-
-    line;
-    while (q--)
-    {
-        ll x, y;
-        cin >> x >> y;
-        ll ans = prefix[y] - prefix[x - 1];
-        cout << ans << endl;
-    }
-
     return 0;
 }

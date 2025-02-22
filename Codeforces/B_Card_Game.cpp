@@ -1,7 +1,3 @@
-// File Name: B_Karen_and_Coffee.cpp
-// Date: 2025-01-10
-// Time: 11:59:51
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -57,6 +53,7 @@ int dCol[] = {0, 1, 0, -1};
     int t;       \
     cin >> t;    \
     while (t--)
+
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
@@ -69,51 +66,77 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-vector<ll> v(200005);
 
 int main()
 {
     fastio;
-    ll n, k, q;
-    cin >> n >> k >> q;
-    ll minn = LLONG_MAX, maxx = LLONG_MIN;
 
-    for (ll i = 0; i < n; i++)
+    While(t)
     {
-        ll first, second;
-        cin >> first >> second;
+        vll first(2), second(2);
+        cin >> first[0] >> first[1] >> second[0] >> second[1];
+        ll count = 0;
 
-        v[first]++;
-        v[second + 1]--;
-    }
-    // for(ll i=90;i<=100;i++) cout<<v[i]<<" ";
-    line;
-    vll prefix(200005, 0);
+        // for (ll i = 0; i <= 1; i++)
+        // {
+        //     for (ll j = 0; j <= 1; j++)
+        //     {
+        //         ll tempI = (i == 1) ? 0 : 1;
+        //         ll tempJ = (j == 1) ? 0 : 1;
+        //         // debug(i);debug(tempI);
+        //         // debug(j);debug(tempJ);
 
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] = prefix[i - 1] + v[i];
-    }
+        //         if (first[i] > second[j])
+        //         {
+        //             if (first[tempI] > second[tempJ] or first[tempI] == second[tempJ])
+        //             {
+        //                 count++;
+        //             }
+        //         }
+        //         else if (first[i] < second[j] && (first[tempI] < second[tempJ] or first[tempI] == second[tempJ] ))
+        //         { // here jasse
+        //             count--;
+        //         }
+        //         // cout<<first[i]<<" "<<second[j]<<"   "<<first[tempI]<<" "<<second[tempJ] <<endl;
 
-    for (ll i = 1; i <= 200005; i++)
+        //         // cout << first[i] << ' ' << second[j] << endl;
+        //     }
+        // }
 
-    {
-        prefix[i] = (prefix[i] >= k);
-    }
+        // if (count > 0)
+        // {
+        //     cout << count << endl;
+        // }
+        // else
+        // {
+        //     cout << 0 << endl;
+        // }
+        for (ll i = 0; i <= 1; i++)
+        {
+            for (ll j = 0; j <= 1; j++)
+            {
+                ll tempI = (i == 1) ? 0 : 1;
+                ll tempJ = (j == 1) ? 0 : 1;
 
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] += prefix[i - 1];c
-    }
-    // autoLoop(v);
+                ll suneetWins = 0;
+                ll slavicWins = 0;
 
-    line;
-    while (q--)
-    {
-        ll x, y;
-        cin >> x >> y;
-        ll ans = prefix[y] - prefix[x - 1];
-        cout << ans << endl;
+                if (first[i] > second[j])
+                    suneetWins++;
+                else if (first[i] < second[j])
+                    slavicWins++;
+
+                if (first[tempI] > second[tempJ])
+                    suneetWins++;
+                else if (first[tempI] < second[tempJ])
+                    slavicWins++;
+
+                if (suneetWins > slavicWins)
+                    count++;
+            }
+        }
+
+        cout << count << endl;
     }
 
     return 0;

@@ -1,6 +1,6 @@
-// File Name: B_Karen_and_Coffee.cpp
-// Date: 2025-01-10
-// Time: 11:59:51
+// File Name: A_Minimal_Coprime.cpp
+// Date: 2025-01-22
+// Time: 18:28:56
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -69,52 +69,30 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-vector<ll> v(200005);
 
 int main()
 {
     fastio;
-    ll n, k, q;
-    cin >> n >> k >> q;
-    ll minn = LLONG_MAX, maxx = LLONG_MIN;
-
-    for (ll i = 0; i < n; i++)
+    While(t)
     {
-        ll first, second;
-        cin >> first >> second;
 
-        v[first]++;
-        v[second + 1]--;
+        ll l, r;
+        cin >> l >> r;
+        if (l == r)
+        {
+            if (gcd(l, r) == 1)
+            {
+                cout << 1 << endl;
+            }
+            else
+            {
+                cout << 0 << endl;
+            }
+        }
+        else
+        {
+            cout << abs(r - l) << endl;
+        }
     }
-    // for(ll i=90;i<=100;i++) cout<<v[i]<<" ";
-    line;
-    vll prefix(200005, 0);
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] = prefix[i - 1] + v[i];
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-
-    {
-        prefix[i] = (prefix[i] >= k);
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] += prefix[i - 1];c
-    }
-    // autoLoop(v);
-
-    line;
-    while (q--)
-    {
-        ll x, y;
-        cin >> x >> y;
-        ll ans = prefix[y] - prefix[x - 1];
-        cout << ans << endl;
-    }
-
     return 0;
 }

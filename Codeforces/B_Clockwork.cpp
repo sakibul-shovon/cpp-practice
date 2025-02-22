@@ -1,6 +1,6 @@
-// File Name: B_Karen_and_Coffee.cpp
-// Date: 2025-01-10
-// Time: 11:59:51
+// File Name: B_Clockwork.cpp
+// Date: 2025-01-27
+// Time: 19:57:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -69,52 +69,40 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-vector<ll> v(200005);
 
 int main()
 {
     fastio;
-    ll n, k, q;
-    cin >> n >> k >> q;
-    ll minn = LLONG_MAX, maxx = LLONG_MIN;
-
-    for (ll i = 0; i < n; i++)
+    While(t)
     {
-        ll first, second;
-        cin >> first >> second;
+        ll n;
+        cin >> n;
+        vll v(n + 1, 0);
+        bool check = true;
+        for (ll i = 1; i <= n; i++)
+        {
+            cin >> v[i];
+            ll bamEjamu = i - 1; // debug(bamEjamu);
+            ll danEjamu = n - i; // debug(danEjamu);
 
-        v[first]++;
-        v[second + 1]--;
+            if (bamEjamu * 2 < v[i] and danEjamu * 2 < v[i])
+            {
+
+                continue;
+            }
+            else
+            {
+                check = false;
+            }
+        }
+        if (check)
+        {
+            cout << yes << endl;
+        }
+        else
+        {
+            cout << no << endl;
+        }
     }
-    // for(ll i=90;i<=100;i++) cout<<v[i]<<" ";
-    line;
-    vll prefix(200005, 0);
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] = prefix[i - 1] + v[i];
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-
-    {
-        prefix[i] = (prefix[i] >= k);
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] += prefix[i - 1];c
-    }
-    // autoLoop(v);
-
-    line;
-    while (q--)
-    {
-        ll x, y;
-        cin >> x >> y;
-        ll ans = prefix[y] - prefix[x - 1];
-        cout << ans << endl;
-    }
-
     return 0;
 }

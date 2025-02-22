@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: B_Farmer_John_s_Card_Game.cpp
+// Date: 2025-02-12
+// Time: 01:55:18
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,19 +58,21 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
+    While(t){
+        ll n,m;cin>>n>>m;
+        vector<pair<ll,ll>>v;
+        for(ll i=0;i<n;i++){
+            for(ll j=0;j<m;j++){
+                ll x;cin>>x;
+                v.pb({i+1,x});
+            }
+        }
+        sort_all(v);
+
+        for(auto it:v){
+            cout<<it.first<<" "<<it.second<<endl;
+        }
+        
     }
-    cout<<ans<<endl;
-    
     return 0;
 }

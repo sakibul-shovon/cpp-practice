@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: B_Crafting.cpp
+// Date: 2025-01-13
+// Time: 00:54:40
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,19 +58,41 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
+    While(t){
+        ll n;cin>>n;
+        vll first(n),second(n);
+        ll count_neg = 0;
+        for(ll i=0;i<n;i++) cin>>first[i];
+        for(ll i=0;i<n;i++) cin>>second[i];
+
+        vll diff(n);
+        for(ll i=0;i<n;i++){
+            diff[i] = first[i] - second[i];
+            if(diff[i] < 0) count_neg++;
+        }
+
+        if(count_neg>=2){
+            cout<<no<<endl;
+        }else if(count_neg ==0){
+            cout<<yes<<endl;
+        }else{
+            bool check = true;
+            vll x = diff;
+            sort_all(x);
+            ll temp = x[0];
+            //autoLoop(x);
+            for(ll i=1;i<n;i++){
+                if(x[i] < abs(temp)) check = false;break;
+            }
+            if(check){
+                cout<<yes<<endl;
+            }else{
+                cout<<no<<endl;
+            }
+         
+
+            //debug(temp);
+        }
     }
-    cout<<ans<<endl;
-    
     return 0;
 }

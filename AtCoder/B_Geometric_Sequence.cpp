@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: B_Geometric_Sequence.cpp
+// Date: 2025-01-26
+// Time: 01:49:42
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,19 +58,16 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
+    ll n;cin>>n;
+    vll v(n);
+    for(ll i=0;i<n;i++) cin>>v[i];
+
+    for(ll i=0;i<n-2;i++){
+        if(v[i]*v[i+2] != v[i+1]*v[i+1]){
+            cout<<"No"<<endl;return 0;
+        }
     }
-    cout<<ans<<endl;
-    
+
+    cout<<"Yes"<<endl;
     return 0;
 }

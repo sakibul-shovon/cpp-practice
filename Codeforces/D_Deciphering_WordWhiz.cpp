@@ -1,6 +1,6 @@
-// File Name: B_Karen_and_Coffee.cpp
-// Date: 2025-01-10
-// Time: 11:59:51
+// File Name: D_Deciphering_WordWhiz.cpp
+// Date: 2025-02-13
+// Time: 00:34:54
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -69,51 +69,62 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-vector<ll> v(200005);
 
 int main()
 {
     fastio;
-    ll n, k, q;
-    cin >> n >> k >> q;
-    ll minn = LLONG_MAX, maxx = LLONG_MIN;
-
-    for (ll i = 0; i < n; i++)
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
+    vector<string> v;
+    for (ll i = 1; i < n; i++)
     {
-        ll first, second;
-        cin >> first >> second;
-
-        v[first]++;
-        v[second + 1]--;
-    }
-    // for(ll i=90;i<=100;i++) cout<<v[i]<<" ";
-    line;
-    vll prefix(200005, 0);
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] = prefix[i - 1] + v[i];
+        string t;
+        cin >> t;
+        v.pb(t);
     }
 
-    for (ll i = 1; i <= 200005; i++)
+    // map<char, ll> mp;
+    // for (ll i = 0; i < s.size(); i++)
+    // {
+    //     mp[s[i]]++;
+    // }
 
-    {
-        prefix[i] = (prefix[i] >= k);
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] += prefix[i - 1];c
-    }
-    // autoLoop(v);
-
-    line;
+    ll q;
+    cin >> q;
     while (q--)
     {
-        ll x, y;
-        cin >> x >> y;
-        ll ans = prefix[y] - prefix[x - 1];
-        cout << ans << endl;
+        string input;cin>>input;
+        ll count = 0;
+        for (ll i = 0; i < n - 1; i++)
+        {
+            string temp = v[i];
+
+        
+
+            string newString = "";
+
+            for (ll k = 0; k < temp.size(); k++)
+            {
+                if (temp[k] == s[k])
+                {
+                    newString += '*';
+                }
+                else if (s.find(temp[k]) != string::npos)
+                {
+                    // if(s.find(temp[k]) != string::npos)
+                    newString += '!';
+                }
+                else
+                {
+                    newString += 'X';
+                }
+            }
+            if(input == "*****") count = 1;
+            else if(newString == input) count++;
+        }
+        cout<<count<<endl;
     }
 
     return 0;

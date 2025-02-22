@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: Entry_Check.cpp
+// Date: 2025-01-15
+// Time: 20:30:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,19 +58,8 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
-    }
-    cout<<ans<<endl;
-    
+    ll n;cin>>n;
+    if(n>=10) cout<<yes<<endl;
+    else cout<<no<<endl;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: D_String_Game.cpp
+// Date: 2025-02-14
+// Time: 12:39:11
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -55,22 +55,50 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
+string s,t;
+
+bool canMake(vll &v, ll mid) {
+    vector<bool> isDelete(s.length(), true);
+    
+    
+    for (ll i = 0; i < mid; i++) {
+        isDelete[v[i] - 1] = false;  
+    }
+    
+    ll count = 0;
+    for (ll i = 0; i < s.length(); i++) {
+        if (count == t.length()) break;  
+        if (s[i] == t[count] and isDelete[i]) {
+            count++;
+        }
+    }
+    
+    return (count == t.length()); 
+}
+
+bool check(vll &v,ll mid){
+    if(canMake(v,mid)) return 0;
+    return 1;
+}
 
 int main() {
     fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
+    cin>>s>>t;
+    ll n = s.size();
+    vll v(n);
+    for(ll i=0;i<n;i++) cin>>v[i];
+    ll low = 0 ,high = n+1;
+    ll ans;
+    while(low < high){
+        ll mid = low +(high-low)/2;
+        if(check(v,mid)==0){
+            ans = mid;
+            low = mid+1; 
+        }else{
+            high = mid;
+
+        }
     }
     cout<<ans<<endl;
-    
     return 0;
 }

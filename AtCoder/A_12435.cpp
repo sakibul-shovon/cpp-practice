@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: A_12435.cpp
+// Date: 2025-01-26
+// Time: 01:15:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -57,20 +57,27 @@ ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 int main() {
-    fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
+    vector<ll> v(5);
+    for (int i = 0; i < 5; i++) {
+        cin >> v[i];
     }
-    cout<<ans<<endl;
-    
+
+    vector<ll> V = {1, 2, 3, 4, 5};
+    int count = 0;
+
+    for (ll i = 0; i < 4; i++) {
+        if (v[i] > v[i+1]) {
+            swap(v[i], v[i+1]);
+            count++;
+            break; 
+        }
+    }
+
+    if (v == V and count == 1) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
+
     return 0;
 }

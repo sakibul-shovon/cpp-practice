@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: C_1_Skibidus_and_Fanum_Tax_easy_version.cpp
+// Date: 2025-02-10
+// Time: 01:26:16
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,21 +56,56 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+
+
 int main() {
     fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
-    }
-    cout<<ans<<endl;
     
+    int t;
+    cin >> t;
+    
+    while (t--) {
+        ll n, m;
+        cin >> n >> m;
+        
+        vll a(n);
+        cin >> a[0]; // Since m = 1, we don't need the second array, just b[0]
+        ll b;
+        cin >> b; // The single element of b
+        
+        // Read the array a
+        for (ll i = 1; i < n; i++) {
+            cin >> a[i];
+        }
+
+        bool possible = true;
+        
+        // Check for the possibility of sorting the array
+        for (ll i = 1; i < n; i++) {
+            autoLoop(a);line
+            
+            if (a[i] < a[i - 1]) {ok
+                // If the current element is less than the previous one, check if we can apply the operation
+                if (b - a[i-1] <= a[i - 1]) {ok
+                    // Apply the operation a[i] := b - a[i] and check if it helps
+                    a[i] = b - a[i];
+                    if (a[i] < a[i - 1]) {
+                        possible = false;
+                        break;
+                    }
+                } else {
+                    possible = false;
+                    break;
+                }
+            }
+        }
+
+        if (possible) {
+            cout << yes << endl;
+        } else {
+            cout << no << endl;
+        }
+    }
+
     return 0;
 }

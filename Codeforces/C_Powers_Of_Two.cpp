@@ -1,6 +1,6 @@
-// File Name: B_Karen_and_Coffee.cpp
-// Date: 2025-01-10
-// Time: 11:59:51
+// File Name: C_Powers_Of_Two.cpp
+// Date: 2025-02-02
+// Time: 22:47:02
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -69,52 +69,53 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-vector<ll> v(200005);
 
 int main()
 {
     fastio;
-    ll n, k, q;
-    cin >> n >> k >> q;
-    ll minn = LLONG_MAX, maxx = LLONG_MIN;
+    ll n, k;
+    cin >> n >> k;
+    vll result;
+    priority_queue<ll> pq;
+    ll bit_count = 0;
 
-    for (ll i = 0; i < n; i++)
+    for (ll i = 0; (1 << i) <= n; i++)
     {
-        ll first, second;
-        cin >> first >> second;
-
-        v[first]++;
-        v[second + 1]--;
+        if (n & (1 << i))
+        {
+            pq.push(1 << i);
+            bit_count++;
+        }
     }
-    // for(ll i=90;i<=100;i++) cout<<v[i]<<" ";
+
+    if (bit_count > k)
+    {
+        cout << no << endl;
+        
+        return 0;
+    }
+
+    while (pq.size() < k)
+    {
+        ll x = pq.top();
+        pq.pop();
+
+        if (x == 1)
+        {
+            cout << no << endl;
+            return 0;
+        }
+
+        pq.push(x / 2);
+        pq.push(x / 2);
+    }
+
+    cout << yes << endl;
+    while (pq.size() != 0)
+    {
+        cout << pq.top() << " ";
+        pq.pop();
+    }
     line;
-    vll prefix(200005, 0);
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] = prefix[i - 1] + v[i];
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-
-    {
-        prefix[i] = (prefix[i] >= k);
-    }
-
-    for (ll i = 1; i <= 200005; i++)
-    {
-        prefix[i] += prefix[i - 1];c
-    }
-    // autoLoop(v);
-
-    line;
-    while (q--)
-    {
-        ll x, y;
-        cin >> x >> y;
-        ll ans = prefix[y] - prefix[x - 1];
-        cout << ans << endl;
-    }
-
     return 0;
 }

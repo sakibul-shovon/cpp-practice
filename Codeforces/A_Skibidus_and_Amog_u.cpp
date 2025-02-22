@@ -1,6 +1,6 @@
-// File Name: Subarray_Sums_II.cpp
-// Date: 2025-01-23
-// Time: 12:19:56
+// File Name: A_Skibidus_and_Amog_u.cpp
+// Date: 2025-02-10
+// Time: 00:11:06
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,8 +41,6 @@ int dCol[] = {0, 1, 0, -1};
 #define in(x)            cin >> x;
 #define in2(x, y)        cin >> x >> y;
 #define in3(x, y, z)     cin >> x >> y >> z;
-#define out(x)           cout << x;
-#define out2(x, y)       cout << x << ' ' << y;
 #define out3(x, y, z)    cout << x << ' ' << y << ' ' << z;
 #define line             cout << endl;
 #define sort_all(v)      sort(all(v));
@@ -51,26 +49,14 @@ int dCol[] = {0, 1, 0, -1};
 #define While(t)         int t; cin >> t; while (t--)
 #define WhileVecInput(v, n) while (n--) { ll temp; cin >> temp; v.push_back(temp); }
 
-ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
-ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-
 int main() {
     fastio;
-    ll n,x;cin>>n>>x;
-    vll v(n+1,0);
-    ll pref = 0;
-    map<ll,ll>mp;
-    mp[0] = 1;
-    ll ans = 0;
-    for(ll i=1;i<=n;i++) {
-        cin>>v[i];
-        pref += v[i];
-        ans += mp[pref-x];
-        mp[pref]++;
+    While(t){
+        string s;cin>>s;
+        for(ll i=0;i<s.length()-2;i++){
+            cout<<s[i];
+        }cout<<'i'<<endl;
     }
-    cout<<ans<<endl;
-    
     return 0;
 }
+
