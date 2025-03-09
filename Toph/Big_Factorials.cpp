@@ -1,6 +1,6 @@
-// File Name: Incompatible_Crops.cpp
+// File Name: Big_Factorials.cpp
 // Date: 2025-03-05
-// Time: 01:14:42
+// Time: 02:45:12
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -72,37 +72,52 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main()
 {
-    ll row, col;
-    cin >> row >> col;
+    fastio;
+    ll n;
+    cin >> n;
+    vll v(1001, 0);
+    v[1] = 1;
+    v[2] = 2;
 
-    char grid[row + 2][col + 2];
-
-    memset(grid, '.', sizeof(grid));
-
-    for (ll i = 1; i <= row; i++)
+    for (ll i = 3; i <= 1000; i++)
     {
-        for (ll j = 1; j <= col; j++)
+        ll x = v[i - 1] * i;
+
+        string temp = to_string(x);
+        if (temp.size() > 4 and i < 20)
         {
-            cin >> grid[i][j];
+            ll firstIndex = temp.size() - 4;
+            string tt = temp.substr(firstIndex);
+            ll input = stoll(tt);
+            v[i] = input;
         }
+
+        else if (i < 20)
+        {
+            v[i] = x;
+        }
+
+         //cout << "v[" << i << "] = " << v[i] << endl;
     }
-
-    ll count = 0;
-
-    for (ll i = 1; i <= row; i++)
+    if (n >= 20)
     {
-        for (ll j = 1; j <= col; j++)
-        {
-            char a = grid[i - 1][j];
-            char b = grid[i][j - 1];
-            char c = grid[i + 1][j];
-            char d = grid[i][j + 1];
-          
-            if (a == '.' and b == '.' and c == '.' and d == '.' and grid[i][j] == '.')
-                count++;
-        }
+       
+        cout << "0000" << endl;
     }
-    cout << count << endl;
-
+    else if (n > 7)
+    {
+        string ans = to_string(v[n]);
+        ll sz = ans.length();
+        ll zeroDibo = 4 - sz;
+        for (ll i = 0; i < zeroDibo; i++)
+        {
+            cout << 0;
+        }
+        cout << v[n] << endl;
+    }
+    else
+    {
+        cout << v[n] << endl;
+    }
     return 0;
 }

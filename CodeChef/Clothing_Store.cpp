@@ -1,6 +1,6 @@
-// File Name: Incompatible_Crops.cpp
-// Date: 2025-03-05
-// Time: 01:14:42
+// File Name: Clothing_Store.cpp
+// Date: 2025-03-06
+// Time: 17:14:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -72,37 +72,50 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main()
 {
-    ll row, col;
-    cin >> row >> col;
-
-    char grid[row + 2][col + 2];
-
-    memset(grid, '.', sizeof(grid));
-
-    for (ll i = 1; i <= row; i++)
+    fastio;
+    While(t)
     {
-        for (ll j = 1; j <= col; j++)
+        ll s, l, xl, needS, needL, needXl;
+        cin >> s >> l >> xl >> needS >> needL >> needXl;
+        ll extra = 0;
+        ll xLpabo = 0, Lpabo = 0, Spabo = 0;
+        if (needXl > xl)
         {
-            cin >> grid[i][j];
+        
+                xLpabo =  xl;
         }
-    }
-
-    ll count = 0;
-
-    for (ll i = 1; i <= row; i++)
-    {
-        for (ll j = 1; j <= col; j++)
+        else
         {
-            char a = grid[i - 1][j];
-            char b = grid[i][j - 1];
-            char c = grid[i + 1][j];
-            char d = grid[i][j + 1];
-          
-            if (a == '.' and b == '.' and c == '.' and d == '.' and grid[i][j] == '.')
-                count++;
+            xLpabo = needXl;
+            extra = xl - needXl;//3-0=3
         }
-    }
-    cout << count << endl;
+     
 
+        if (needL > l + extra)
+        {
+            Lpabo = l+extra;
+            extra = 0;
+           
+        }
+        else
+        {
+            // needl kom ache
+            Lpabo = needL;
+            extra = (extra + l) - needL; //3+2=5
+        }
+
+        if (needS > s + extra)
+        {
+            Spabo = s+extra;
+            extra = 0;
+        }
+        else
+        {
+            // s kom ache
+            Spabo = needS;
+        }
+
+        cout << xLpabo + Lpabo + Spabo << endl;
+    }
     return 0;
 }

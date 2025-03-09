@@ -97,8 +97,13 @@ int main()
             char b = grid[i][j - 1];
             char c = grid[i + 1][j];
             char d = grid[i][j + 1];
-          
-            if (a == '.' and b == '.' and c == '.' and d == '.' and grid[i][j] == '.')
+            // debug(a);
+            // debug(b);
+            // debug(c);
+            // debug(d);
+            line;
+
+            if (a == '.' and b == '.' and c == '.' and d == '.')
                 count++;
         }
     }
