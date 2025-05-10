@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: B_Bobritto_Bandito.cpp
+// Date: 2025-04-13
+// Time: 22:06:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,46 +53,55 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+// int main()
+// {
+//     fastio;
+//     While(t)
+//     {
+//         ll n, m, a, b;
+//         cin >> n >> m >> a >> b;
+//         bool l_boro = false, r_boro = false;
+//         if (abs(a) > abs(b))
+//             l_boro = true;
+//         else
+//             r_boro = true;
+//         if(n == m){
+//             cout<<a<<" "<<b<<endl;
+//         }
+//         else if (a == 0)
+//         {
+//             cout << 0 << " " << m << endl;
+//         }
+//         else if (b == 0)
+//         {
+//             cout << (-1) * m << " " << 0 << endl;
+//         }
+
+//         else if (l_boro)
+//         {
+//             ll x = m - (-1) * a;
+//             ll right = x;
+//             cout << a << " " << right << endl;
+//         }
+//         else
+//         {
+//             ll x = m - b;
+//             ll left = x;
+//             cout << (-1) * left << " " << b << endl;
+//         }
+//     }
+//     return 0;
+// }
 int main()
 {
     fastio;
-    ll testt = 1;
     While(t)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
-        {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
-        }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
-        }
+        ll n, m, l, r;
+        cin >> n >> m >> l >> r;
+        ll L = max(l, -m);
+        ll R = L + m; 
+        cout << L << " " << R << endl;
     }
-
     return 0;
 }

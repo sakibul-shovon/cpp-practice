@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: A_Odd_Selection.cpp
+// Date: 2025-04-22
+// Time: 19:58:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,28 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    While(T)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        ll n, k;
+        cin >> n >> k;
+        ll odd = 0, even = 0;
+        for (ll i = 0; i < n; i++)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
+            ll x;
+            cin >> x;
+            if (x % 2 == 0)
+                even++;
+            else
+                odd++;
+        }
+        
+        if(odd == 0) cout<<"No"<<endl;
+        else if(odd == n and k%2 == 0) cout<<"No"<<endl;
+        else if(k == n and odd%2==0) cout<<"No"<<endl;
+        else if(odd > 0) cout<<yes<<endl;
+        else cout<<no<<endl;
 
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
-        }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
-        }
+       
     }
-
     return 0;
 }

@@ -1,0 +1,1 @@
+{"name":"Local: sum of 4 value","url":"c:\\Users\\Rider\\Desktop\\Code\\cpp-practice\\CSES\\sum of 4 value.cpp","tests":[{"id":1742246375973,"input":"8 15\n3 2 5 8 1 3 2 3","output":"2 4 6 7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Rider\\Desktop\\Code\\cpp-practice\\CSES\\sum of 4 value.cpp","group":"local","local":true}

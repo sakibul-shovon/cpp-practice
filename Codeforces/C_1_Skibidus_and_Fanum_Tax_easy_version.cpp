@@ -84,9 +84,9 @@ int main() {
         for (ll i = 1; i < n; i++) {
             autoLoop(a);line
             
-            if (a[i] < a[i - 1]) {ok
+            if (a[i] < a[i - 1]) {check
                 // If the current element is less than the previous one, check if we can apply the operation
-                if (b - a[i-1] <= a[i - 1]) {ok
+                if (b - a[i-1] <= a[i - 1]) {check
                     // Apply the operation a[i] := b - a[i] and check if it helps
                     a[i] = b - a[i];
                     if (a[i] < a[i - 1]) {

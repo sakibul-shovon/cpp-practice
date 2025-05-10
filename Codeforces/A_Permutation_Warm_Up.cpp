@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: A_Permutation_Warm_Up.cpp
+// Date: 2025-05-01
+// Time: 20:53:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,23 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
     While(t)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
+        ll n;cin>>n;
+         vector<ll> v ;
+         for(ll i=1;i<=n;i++) v.pb(i);
 
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
-        {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
-        }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
+        
+        do
+        {   ll x = 1;
+            ll ans = 0;
+            for (auto i : v) {ans+= i-x++; cout<<i-x;}
+            cout<<ans;
+                
             cout << endl;
-        }
-    }
+        } while (next_permutation(v.begin(), v.end()));
 
+        ll ans =( n*n/4) +1;cout<<ans<<endl;
+    }
     return 0;
 }

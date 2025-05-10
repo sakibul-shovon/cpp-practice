@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: C_Message_Route.cpp
+// Date: 2025-04-30
+// Time: 23:08:09
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,55 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    ll n, m;
+    cin >> n >> m;
+
+    vector<vector<ll>> adj(n + 1);
+
+    for (ll i = 0; i < m; i++)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
+        ll a, b;
+        cin >> a >> b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
 
-        vll ans;
+    vector<ll> distance(n + 1, -1);
+    vector<ll> prev(n + 1, -1);
+    queue<ll> q;
+    q.push(1);
+    distance[1] = 0;
 
-        for (ll i = 1; i * i <= x; i++)
+    while (!q.empty())
+    {
+        ll u = q.front();
+        q.pop();
+        for (auto it : adj[u])
         {
-            if (x % i == 0)
+            if (distance[it] == -1)
             {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
+                distance[it] = distance[u] + 1;
+                prev[it] = u;
+                q.push(it);
             }
-        }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
         }
     }
 
+    vll path;
+    ll x = n;
+    while (x != -1)
+    {
+        path.pb(x);
+        x = prev[x];
+    }
+    reverse(all(path));
+    if (distance[n] == -1)
+        cout << "IMPOSSIBLE" << endl;
+    else
+    {
+        cout << path.size() << endl;
+        autoLoop(path);
+        line;
+    }
     return 0;
 }

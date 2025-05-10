@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: Subtraction_Game_1.cpp
+// Date: 2025-04-07
+// Time: 23:16:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,24 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
     While(t)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        ll n;
+        cin >> n;
+        vll v(n);
+        bool check = true;
+        cin>>v[0];
+        ll g = v[0];
+        for (ll i = 1; i < n; i++)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
+            cin >> v[i];
+            g = gcd(g,v[i]);
 
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
+            //if(v[i]% 2 !=0) check = false;
         }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
-        }
+        // if(check) cout<<2<<endl;
+        // else cout<<1<<endl;
+        cout<<g<<endl;
     }
-
     return 0;
 }

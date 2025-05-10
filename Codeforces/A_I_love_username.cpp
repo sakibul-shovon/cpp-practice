@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: A_I_love_username.cpp
+// Date: 2025-04-01
+// Time: 20:24:21
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,28 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    ll n;
+    cin >> n;
+    vll v(n);
+    cin >> v[0];
+    ll count = 0;
+    ll maxx = v[0]; ll minn = v[0];
+    for (ll i = 1; i < n; i++)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        cin >> v[i];
+        if (v[i] > maxx)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
+            count++;
+            maxx = v[i];
         }
 
-        if (ans.empty())
+        else if (v[i] < minn)
         {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
+            minn = v[i];
+            count++;
         }
     }
 
+    cout << count << endl;
     return 0;
 }

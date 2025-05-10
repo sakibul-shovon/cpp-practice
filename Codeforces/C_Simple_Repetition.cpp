@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: C_Simple_Repetition.cpp
+// Date: 2025-04-08
+// Time: 21:47:37
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,46 +53,50 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+bool isPrime(ll n)
+{
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+    for (ll i = 5; i * i <= n; i += 6)
+    {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    }
+    return true;
+}
+
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
-        {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
+        ll n, r;
+        cin >> n >> r;
+        // string s = to_string(n), x = "";
+        // for (ll i = 0; i < r; i++)
+        //     x += s;
+        // if (x.size() > 18)
+        // {
+        //     cout << no << endl;
+            
+        //     continue;
+        // }
+        // ll num = stoll(x);
+        // if (isPrime(num))
+        //     cout << yes << endl;
+        // else
+        //     cout << no << endl;
+        if(n==1 and r ==2 ) cout<<yes<<endl;
+        else if(r == 1){
+            if(isPrime(n)) cout<<yes<<endl;
         }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
-        }
+        else cout<<no<<endl;
     }
-
     return 0;
 }

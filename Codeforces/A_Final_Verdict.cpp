@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
+// File Name: A_Final_Verdict.cpp
 // Date: 2025-03-10
-// Time: 19:43:35
+// Time: 21:12:35
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,22 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
     While(t)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        ll n, k;
+        cin >> n >> k;
+        vll v(n);
+        ll sum = 0;
+        for (ll i = 0; i < n; i++)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
+            cin >> v[i];
+            sum += v[i];
         }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
+        if(sum % n == 0 and sum / n == k) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
         }
     }
-
     return 0;
 }

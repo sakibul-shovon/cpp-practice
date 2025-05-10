@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: Pokemon_Battles.cpp
+// Date: 2025-04-23
+// Time: 16:08:15
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,38 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
     While(t)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
+        ll n;
+        cin >> n;
+        vector<pair<ll, ll>> v;
 
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        for (ll i = 0; i < n; i++)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
+            ll a;
+            cin >> a;
+            v.pb({a, 0});
+        }
+        for (ll i = 0; i < n; i++)
+        {
+            ll a;
+            cin >> a;
+            v[i].second = a;
+        }
+        sort(v.rbegin(), v.rend());
 
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
+        ll cnt = 0;
+        ll maxx = 0;
+
+        for (ll i = 0; i < n; i++)
+        {
+            if (v[i].second > maxx)
+            {
+                cnt++;
+                maxx = v[i].second;
             }
         }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
-        }
+        cout << cnt << endl;
     }
-
     return 0;
 }

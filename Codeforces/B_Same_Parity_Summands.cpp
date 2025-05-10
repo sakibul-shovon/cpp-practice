@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: B_Same_Parity_Summands.cpp
+// Date: 2025-04-19
+// Time: 02:17:32
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,26 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
     While(t)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
-        {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
+        ll n, k;
+        cin >> n >> k;
+        
+        //all odd try
+        ll x = n - (k-1);
+        ll y = n-((k-1)*2);
+        if(n >=k and x%2 != 0){
+            cout<<yes<<endl;
+            for(ll i=1;i<=k-1;i++) cout<<1<<' ';
+            cout<<x<<endl;
         }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
-        }
+        
+        else if( n >= 2*k and y%2 == 0 ){
+            cout<<yes<<endl;
+            for(ll i=1;i<=k-1;i++) cout<<2<<' ';
+            cout<<y<<endl;
+        } 
+        else cout<<no<<endl;
     }
-
     return 0;
 }

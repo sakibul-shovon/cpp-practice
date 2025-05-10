@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: C_Similar_Pairs.cpp
+// Date: 2025-04-12
+// Time: 02:29:05
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,48 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    While(T)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        ll n;
+        cin >> n;
+        vll even, odd;
+        for (ll i = 0; i < n; i++)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
+            ll x;
+            cin >> x;
+            if (x % 2 == 0)
+                even.pb(x);
+            else
+                odd.pb(x);
         }
+        // sort_all(even);
+        // sort_all(odd);
 
-        if (ans.empty())
+        if (even.size() % 2 == 0 and odd.size() % 2 == 0)
         {
-            cout << "impossible" << endl;
+            cout << yes << endl;
         }
         else
         {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
+            bool canPair = false;
+            for (ll i = 0; i < odd.size(); i++)
+            {
+                for (ll j = 0; j < even.size(); j++)
+                {
+                    if (abs(odd[i] - even[j]) == 1)
+                    {
+                        canPair = true;
+                        break;
+                    }
+                }
+                if (canPair)
+                    break;
+            }
+
+            if(canPair == true) cout<<yes<<endl;
+            else cout<<no<<endl;
+            
         }
     }
-
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: A_Counting_Rooms.cpp
+// Date: 2025-04-30
+// Time: 18:56:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,46 +53,57 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+ll n, m;
+
+void bfs(ll row, ll col, vector<vector<ll>> &vis, vector<string> &grid)
+{
+    queue<pair<ll, ll>> q;
+    q.push({row, col});
+    vis[row][col] = 1;
+
+    while (!q.empty())
+    {
+        pair<ll, ll> u = q.front();
+        q.pop();
+
+        for (ll i = 0; i < 4; i++)
+        {
+            ll r = u.first + dRow[i];
+            ll c = u.second + dCol[i];
+
+            if (r>=0 and r < n and c >= 0 and c < m and grid[r][c] == '.' and !vis[r][c])
+            {
+                vis[r][c] = 1;
+                q.push({r,c});
+
+            }
+        }
+    }
+}
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    cin >> n >> m;
+    vector<string> grid(n);
+    vector<vector<ll>> vis(n, vector<ll>(m, 0));
+    ll count = 0;
+
+    for (ll i = 0; i < n; i++)
+        cin >> grid[i];
+
+    for (ll i = 0; i < n; i++)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        for (ll j = 0; j < m; j++)
         {
-            if (x % i == 0)
+            if (grid[i][j] == '.' and !vis[i][j])
             {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
+                bfs(i, j, vis, grid);
+                count++;
             }
         }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
-        }
     }
+
+    cout << count << endl;
 
     return 0;
 }

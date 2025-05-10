@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: sum of 4 value.cpp
+// Date: 2025-03-18
+// Time: 03:19:45
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,34 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    ll n, x;
+    cin >> n >> x;
+    map<ll, pair<ll, ll>> mp;
+    vll v(n + 1, 0);
+    for (ll i = 1; i <= n; i++)
+        cin >> v[i];
+    mp[v[1] + v[2]] = {1, 2};
+
+    for (ll k = 3; k <= n; k++)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        for (ll l = k + 1; l <= n; l++)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
+            ll sum = v[k] + v[l];
+            ll rem = x - sum;
 
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
+            if (mp.count(rem))
+            {
+                cout << mp[rem].first << " " << mp[rem].second <<" "<<k<<" "<<l<< endl;
+                return 0;
             }
         }
 
-        if (ans.empty())
+        for (ll i = 1; i < k; i++)
         {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
+            mp[v[i] + v[k]] = {i, k};
         }
     }
 
+    cout<<"IMPOSSIBLE"<<endl;
     return 0;
 }

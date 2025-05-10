@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: V_Tree_Distances_I.cpp
+// Date: 2025-05-02
+// Time: 03:23:57
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,46 +53,83 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+#define N 200005
+vll adj[N];
+ll level[N];
+
+void dfs(ll u, ll parent)
+{
+    for (ll v : adj[u])
+    {
+        if (v != parent)
+        {
+            level[v] = level[u] + 1;
+            dfs(v, u);
+        }
+    }
+}
+
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
+    ll n;
+    cin >> n;
+    if (n == 1)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
+        cout << 0;
+        line;
+        return 0;
+    }
 
-        vll ans;
+    for (ll i = 0; i < n; i++)
+    {
+        ll u, v;
+        cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
 
-        for (ll i = 1; i * i <= x; i++)
+    dfs(1, 0);
+    // for(ll i=1;i<=n;i++){
+    //     cout<<level[i]<<' ';
+    //  }
+
+    ll maxLevel = 0;
+    ll max_level_node = 1;
+    for (ll i = 1; i <= n; i++)
+    {
+        if (level[i] > maxLevel)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
-        }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
+            maxLevel = level[i];
+            max_level_node = i;
         }
     }
+
+    level[max_level_node] = 0;
+    dfs(max_level_node, 0);
+
+    ll ans[n + 2];
+    ll secondMaxLevel = 0;
+    ll secondMaxNode = 1;
+    for (ll i = 1; i <= n; i++)
+    {
+        ans[i] = level[i];
+        if (level[i] > secondMaxLevel)
+        {
+            secondMaxLevel = level[i];
+            secondMaxNode = i;
+        }
+    }
+
+    // debug(secondMaxNode);
+
+    level[secondMaxNode] = 0;
+    dfs(secondMaxNode, 0);
+    for (ll i = 1; i <= n; i++)
+    {
+        cout << max(level[i], ans[i]) << ' ';
+    }
+    line;
 
     return 0;
 }

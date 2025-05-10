@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: M_Tree_Diameter.cpp
+// Date: 2025-05-02
+// Time: 01:01:08
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,47 +52,47 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
+#define N 2000005
+vll adj[N];
+ll level[N];
+
+void dfs(ll u,ll parent){
+    for(ll v:adj[u]){
+        if(v != parent){
+            level[v] = level[u] + 1;
+            dfs(v,u);
+        }
+    }
+}
 
 int main()
 {
     fastio;
-    ll testt = 1;
-    While(t)
-    {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
-
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
-        {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
-        }
-
-        if (ans.empty())
-        {
-            cout << "impossible" << endl;
-        }
-        else
-        {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
+    ll n;
+    cin >> n;
+    for(ll i=1;i<=n;i++){
+        ll u,v;cin>>u>>v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+    dfs(1,0);
+   
+    ll maxLevel = 0;
+    ll maxNode;
+    for(ll i=1;i<=n;i++){
+        if(level[i] > maxLevel){
+            maxLevel = level[i];
+            maxNode = i;
         }
     }
+
+    level[maxNode] = 0;
+    dfs(maxNode,0);
+    ll distance = 0;
+    for(ll i=1;i<=n;i++){
+        distance = max(distance,level[i]);
+    }
+    cout<<distance<<endl;
 
     return 0;
 }

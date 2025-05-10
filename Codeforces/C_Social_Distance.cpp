@@ -1,6 +1,6 @@
-// File Name: Iftar_Party.cpp
-// Date: 2025-03-10
-// Time: 19:43:35
+// File Name: C_Social_Distance.cpp
+// Date: 2025-05-09
+// Time: 19:59:40
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,43 +56,54 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll testt = 1;
     While(t)
     {
-        cout << "Case " << testt++ << ": ";
-        ll piyaju, left;
-        cin >> piyaju >> left;
-        ll x = piyaju - left;
+        ll n, k;
+        cin >> n >> k;
+        string s;
+        cin >> s;
+        ll ans = 0;
 
-        vll ans;
-
-        for (ll i = 1; i * i <= x; i++)
+        vll pos; // 1er position store;
+        for (ll i = 0; i < n; i++)
         {
-            if (x % i == 0)
-            {
-                if (i > left)
-                {
-                    ans.pb(i);
-                }
-
-                if (i != x / i and x / i > left)
-                {
-                    ans.pb(x / i);
-                }
-            }
+            if (s[i] == '1')
+                pos.pb(i + 1);
         }
 
-        if (ans.empty())
+        if (pos.size() == 0)
         {
-            cout << "impossible" << endl;
+
+            ans = (n + k) / (k + 1);
+            cout << ans << endl;
         }
         else
         {
-            sort_all(ans);
-            autoLoop(ans);
-            cout << endl;
+            // first  0 thakle
+            if (pos[0] > 1)
+            {
+                ll zero = pos[0] - 1;
+                ans += zero / (k + 1);
+            }
+
+            
+            for (ll i = 0; i + 1 < pos.size(); i++)
+            {
+                ll gap = pos[i+1] - pos[i] - 1;
+                ll check   = gap - 2*k;       
+                if (check > 0) {
+                    ans += (check + k) / (k + 1);  
+                }
+            }
+
+            
+            if (pos.back() < n)
+            {
+                ll zero = n - pos.back();
+                ans += zero / (k + 1);
+            }
+            cout<<ans<<endl;
         }
     }
-
     return 0;
 }
