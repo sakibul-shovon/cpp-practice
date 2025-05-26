@@ -1,6 +1,6 @@
-// File Name: A_Fashionable_Array.cpp
-// Date: 2025-05-24
-// Time: 21:11:16
+// File Name: C_Need_More_Arrays.cpp
+// Date: 2025-05-26
+// Time: 21:57:56
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -40,36 +40,31 @@ ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
-
-int main() {
+int main()
+{
     fastio;
-    
-   
-    While (T) {
-        int n;
+    While(t)
+    {
+        ll n;
         cin >> n;
-        vector<ll> v(n);
-        
-        for (int i = 0; i < n; i++) {
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+        {
             cin >> v[i];
         }
-        
-        sort_all(v);
-        
-        ll maxCount = 1; 
-        
-       
-        for (ll i = 0; i < n; i++) {
-            for (ll j = i; j < n; j++) {
-               
-                if ((v[i] + v[j]) % 2cpp == 0) {
-                    maxCount = max(maxCount, j - i + 1);
-                }
+
+        ll count = 1;
+        ll temp = v[0];
+        for (ll i = 1; i < n; i++)
+        {
+            if (temp + 1 < v[i])
+            {
+                count++;
+                temp = v[i];
             }
         }
-        
-        cout << n - maxCount << endl;
+
+        cout << count << endl;
     }
-    
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Fashionable_Array.cpp
-// Date: 2025-05-24
-// Time: 21:11:16
+// File Name: A_Ehab_Fails_to_Be_Thanos.cpp
+// Date: 2025-05-25
+// Time: 16:22:08
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -39,37 +39,26 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
-
 int main() {
     fastio;
-    
-   
-    While (T) {
-        int n;
-        cin >> n;
-        vector<ll> v(n);
-        
-        for (int i = 0; i < n; i++) {
-            cin >> v[i];
-        }
-        
-        sort_all(v);
-        
-        ll maxCount = 1; 
-        
-       
-        for (ll i = 0; i < n; i++) {
-            for (ll j = i; j < n; j++) {
-               
-                if ((v[i] + v[j]) % 2cpp == 0) {
-                    maxCount = max(maxCount, j - i + 1);
-                }
-            }
-        }
-        
-        cout << n - maxCount << endl;
+    ll n;cin>>n;
+    vll v(n*2);
+    ll sum = 0 ;
+    for(ll i=0;i<(n*2);i++){
+        cin>>v[i];
+        sum+=v[i];
     }
-    
+    sort_all(v);
+    ll newSum = 0  ; 
+    for(ll i=0;i<n;i++){
+        newSum += v[i];
+    }
+    sum -= newSum;
+    if(sum == newSum) {
+        cout<<-1<<endl;
+    }else{
+        autoLoop(v);
+        line ; 
+    }
     return 0;
 }
