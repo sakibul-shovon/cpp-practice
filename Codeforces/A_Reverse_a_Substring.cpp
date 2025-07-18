@@ -1,6 +1,6 @@
-// File Name: A_Fashionable_Array.cpp
-// Date: 2025-05-24
-// Time: 21:11:16
+// File Name: A_Reverse_a_Substring.cpp
+// Date: 2025-06-17
+// Time: 02:17:57
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -39,37 +39,21 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
-
 int main() {
     fastio;
-    
-   
-    While (T) {
-        int n;
-        cin >> n;
-        vector<ll> v(n);
-        
-        for (int i = 0; i < n; i++) {
-            cin >> v[i];
-        }
-        
-        sort_all(v);
-        
-        ll maxCount = 1; 
-        
+    ll n;cin>>n;
+    string s;cin>>s;
+    ll check = false;
+
+    for(ll i=0;i<n-1;i++){
        
-        for (ll i = 0; i < n; i++) {
-            for (ll j = i; j < n; j++) {
-               
-                if ((v[i] + v[j]) % 2cpp == 0) {
-                    maxCount = max(maxCount, j - i + 1);
-                }
-            }
+        if(s[i] > s[i+1]){
+            check = true;
+            cout<<yes<<endl;
+            cout<<i+1<<' '<<i+2<<endl;break;
         }
-        
-        cout << n - maxCount << endl;
     }
-    
+
+    if(!check) cout<<no<<endl;
     return 0;
 }

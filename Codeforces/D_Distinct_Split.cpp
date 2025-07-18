@@ -1,6 +1,6 @@
-// File Name: A_Fashionable_Array.cpp
-// Date: 2025-05-24
-// Time: 21:11:16
+// File Name: D_Distinct_Split.cpp
+// Date: 2025-05-29
+// Time: 19:05:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -39,37 +39,33 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
-
 int main() {
     fastio;
-    
-   
-    While (T) {
-        int n;
-        cin >> n;
-        vector<ll> v(n);
-        
-        for (int i = 0; i < n; i++) {
-            cin >> v[i];
+    While(t){
+        ll n;cin>>n;
+        string s;cin>>s;
+        vll suffix(n,0),prefix(n,0);
+        set<char>st;
+
+        for(ll i=0;i<n;i++){
+            st.insert(s[i]);
+            prefix[i] = st.size();
         }
-        
-        sort_all(v);
-        
-        ll maxCount = 1; 
-        
-       
-        for (ll i = 0; i < n; i++) {
-            for (ll j = i; j < n; j++) {
-               
-                if ((v[i] + v[j]) % 2cpp == 0) {
-                    maxCount = max(maxCount, j - i + 1);
-                }
-            }
+        st.clear();
+
+        for(ll i=n-1;i>=0;i--){
+            st.insert(s[i]);
+            suffix[i] = st.size();
+
         }
-        
-        cout << n - maxCount << endl;
+
+        ll ans = 0 ; 
+        for(ll i=0;i<n-1;i++){
+            ll temp = prefix[i]+suffix[i+1];
+            ans = max(ans, temp);
+        }
+        cout<<ans<<endl;
+
     }
-    
     return 0;
 }

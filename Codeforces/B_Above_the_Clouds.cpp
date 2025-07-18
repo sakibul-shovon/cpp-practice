@@ -1,6 +1,6 @@
-// File Name: A_Fashionable_Array.cpp
-// Date: 2025-05-24
-// Time: 21:11:16
+// File Name: B_Above_the_Clouds.cpp
+// Date: 2025-06-17
+// Time: 21:06:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -40,36 +40,41 @@ ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 
+void solve() {
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
+
+    vector<bool> left(26, false);
+    for (ll i = 0; i < n; i++) {
+        if (i >= 1 and i <= n - 2) { 
+            if (left[s[i] - 'a']) {
+                cout << yes<<endl;
+                return;
+            }
+        }
+        left[s[i] - 'a'] = true;
+    }
+
+    vector<bool> right(26, false);
+    for (ll j = n - 1; j >= 0; j--) {
+        if (j >= 1 and j <= n - 2) {
+            if (right[s[j] - 'a']) {
+                cout << yes<<endl;
+                return;
+            }
+        }
+        right[s[j] - 'a'] = true;
+    }
+
+    cout <<no<<endl;
+}
 
 int main() {
     fastio;
-    
-   
-    While (T) {
-        int n;
-        cin >> n;
-        vector<ll> v(n);
-        
-        for (int i = 0; i < n; i++) {
-            cin >> v[i];
-        }
-        
-        sort_all(v);
-        
-        ll maxCount = 1; 
-        
-       
-        for (ll i = 0; i < n; i++) {
-            for (ll j = i; j < n; j++) {
-               
-                if ((v[i] + v[j]) % 2cpp == 0) {
-                    maxCount = max(maxCount, j - i + 1);
-                }
-            }
-        }
-        
-        cout << n - maxCount << endl;
+    While (t) {
+        solve();
     }
-    
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Fashionable_Array.cpp
-// Date: 2025-05-24
-// Time: 21:11:16
+// File Name: C_Double_ended_Strings.cpp
+// Date: 2025-05-29
+// Time: 13:50:52
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -39,37 +39,28 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-
-
 int main() {
     fastio;
-    
-   
-    While (T) {
-        int n;
-        cin >> n;
-        vector<ll> v(n);
-        
-        for (int i = 0; i < n; i++) {
-            cin >> v[i];
-        }
-        
-        sort_all(v);
-        
-        ll maxCount = 1; 
-        
-       
-        for (ll i = 0; i < n; i++) {
-            for (ll j = i; j < n; j++) {
-               
-                if ((v[i] + v[j]) % 2cpp == 0) {
-                    maxCount = max(maxCount, j - i + 1);
+    While(t){
+        string a,b;cin>>a>>b;
+        ll n = a.length();
+        ll m = b.length();
+        ll lcs = 0;
+
+        for(ll length = 1;length<=min(n,m);length++){
+            for(ll i=0;i+length<=n;i++){
+                for(ll j=0;j+length<=m;j++){
+                    string subA = a.substr(i,length);
+                    string subB = b.substr(j,length);
+                    if(subA == subB){
+                        lcs = max(lcs,length);
+                    }
                 }
             }
         }
-        
-        cout << n - maxCount << endl;
+
+        ll ans = (n+m)-(2*lcs);
+        cout<<ans<<endl;
     }
-    
     return 0;
 }
