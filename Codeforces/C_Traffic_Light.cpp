@@ -61,45 +61,67 @@ int main()
         ll n;
         char ch;
         cin >> n >> ch;
-        string s;cin>>s;
+        string s;
         cin >> s;
+
         s += s;
+        if(ch == 'g') {
+            cout<<0<<endl;
+            continue;
+        }
+        if(n == 1){
+            if(ch == s[0] or ch == 'g'){
+                cout<<0<<endl;
+            } else {
+                cout<<1<<endl;  
+            }
+            continue;
+        }
+        else{
+            
+        }
 
         ll first = 0, second = 0;
         for (ll i = 0; i < n; i++)
         {
             if (s[i] == ch)
             {
-                first = i + 1;
-                second = i + 1;
+                first = i;
+                second = i;
                 break;
             }
         }
-        debug(first);
-        debug(second);
 
         ll maxx = -1;
         while (true)
         {
-            while (s[second] != 'g')
+            if (first == second)
             {
-                second++;debug(second);
+                second = first + 1;
             }
 
-            while(s[first] == ch){
-                ll x = second - first;
-                maxx = max(maxx,x);
-                debug(maxx);
+            while (s[second] != 'g')
+            {
+                second++;
+            }
+
+            if (s[first] == ch)
+            {
+                // debug(first);
+                // debug(second);
+                // line;
+
+                ll x = abs(second - first);
+
+                maxx = max(maxx, x);
             }
             first++;
 
-            if(first == second) {
-                second = first;
-            }
+            if (first == n)
+                break;
+        }
 
-            if(first > n ) break;
-
-         }
+        cout << maxx << endl;
     }
     return 0;
 }

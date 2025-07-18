@@ -1,6 +1,6 @@
-// File Name: C_Traffic_Light.cpp
-// Date: 2025-06-25
-// Time: 16:39:47
+// File Name: B_Array_merging.cpp
+// Date: 2025-06-19
+// Time: 19:35:46
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,47 +59,53 @@ int main()
     While(t)
     {
         ll n;
-        char ch;
-        cin >> n >> ch;
-        string s;cin>>s;
-        cin >> s;
-        s += s;
-
-        ll first = 0, second = 0;
+        cin >> n;
+        vll a(n), b(n);
         for (ll i = 0; i < n; i++)
         {
-            if (s[i] == ch)
+            cin >> a[i];
+        }
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> b[i];
+        }
+
+        ll max_count = 0;
+        ll count = 1;
+        ll taken = a[0];
+        ll first = 1, second = 0;
+
+        while (first < n or second < n)
+        {
+            if (first < n and a[first] == taken)
             {
-                first = i + 1;
-                second = i + 1;
-                break;
+                count++;
+                first++;
+            }
+            else if (second < n and b[second] == taken)
+            {
+                count++;
+                second++;
+            }
+            else
+            {
+                max_count = max(max_count, count);
+                count = 1;
+                if (first < n and a[first] != taken)
+                {
+                    taken = a[first];
+                    first++;
+                }
+                else if (second < n and b[second] != taken)
+                {
+                    taken = b[second];
+                    second++;
+                }
             }
         }
-        debug(first);
-        debug(second);
 
-        ll maxx = -1;
-        while (true)
-        {
-            while (s[second] != 'g')
-            {
-                second++;debug(second);
-            }
-
-            while(s[first] == ch){
-                ll x = second - first;
-                maxx = max(maxx,x);
-                debug(maxx);
-            }
-            first++;
-
-            if(first == second) {
-                second = first;
-            }
-
-            if(first > n ) break;
-
-         }
+        max_count = max(max_count, count);
+        cout << max_count << endl;
     }
     return 0;
 }
