@@ -50,34 +50,31 @@ long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-const ll N = 1e5+7;
-ll h[N];
-ll dp[N];
-ll k;
-ll fun(ll i){
-    if(i == 0) return 0;
-    if(dp[i]!=-1) return dp[i];
-    ll cost = inf;
+ll N = 1e5+10,n,k;
+vll v(N);
+vll dp(N);
+
+ll solve(ll i){
+    if(i==n) return 0;
+    ll res = inf;
+    if(dp[i] != -1) return dp[i];
 
     for(ll j=1;j<=k;j++){
-        if(i-j>=0){
-            cost = min(cost, fun(i-j) + abs(h[i]-h[i-j]));
-        }
+        if(i+j>n) break;
+        ll cost = abs(v[i]-v[i+j])+solve(i+j);
+        res = min(res,cost);
     }
-
-    return dp[i] = cost ;
-    
-    
+    dp[i] = res;
+    return res;
 }
 
 int main()
 {
-    fastio;
-    memset(dp,-1,sizeof(dp));
-    ll n;cin>>n>>k;
-    for(ll i=0;i<n;i++) cin>>h[i];
+    cin>>n>>k;
+    for(ll i=1;i<=n;i++) cin>>v[i];
+    for(ll i=1;i<=n;i++) dp[i] = -1;
     
-    cout<<fun(n-1)<<endl;
-
-    return 0;
+    ll ans = solve(1);
+    cout<<ans<<endl;
+    
 }

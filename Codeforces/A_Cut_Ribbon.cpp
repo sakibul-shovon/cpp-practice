@@ -1,6 +1,6 @@
-// File Name: Coin_Combinations_I.cpp
+// File Name: A_Cut_Ribbon.cpp
 // Date: 2025-07-23
-// Time: 01:39:32
+// Time: 03:28:39
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,44 +52,47 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
+
 vll v;
-vll dp(1e6 + 10, -1);
+ll n;
+vll dp(4005, -1);
 
 ll solve(ll x)
 {
-    if (x == 0)
+    if (x == 0 )
     {
-        return 1;
+        return 0;
+    }
+    if(x<0){
+        return LLONG_MIN;
     }
 
+    // dp[i] = i length re heightst kotovabe kata jabe
     if (dp[x] != -1)
     {
         return dp[x];
     }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
+    ll ans = LLONG_MIN;
+    
+    for(ll i=0;i<3;i++){
+        ans = max(ans,1+solve(x-v[i]));
     }
     dp[x] = ans;
     return ans;
 }
+
 int main()
 {
     fastio;
-    cin >> n >> x;
-    for (ll i = 0; i < n; i++)
+    cin >> n;
+    for (ll i = 0; i < 3; i++)
     {
         ll x;
         cin >> x;
         v.pb(x);
     }
 
-    ll ans = solve(x);
-    cout<<ans<<endl;
+    ll ans = solve(n);
+    cout << ans << endl;
     return 0;
 }

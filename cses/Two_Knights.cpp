@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: Two_Knights.cpp
+// Date: 2025-08-10
+// Time: 04:36:37
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,12 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    ll n;cin>>n;
+    for(ll i=1;i<=n;i++){
+        ll total = ((i*i)*((i*i)-1))/2;
+        ll attackPos = 4*(i-1)*(i-2);
+        ll ans = total - attackPos;
+        cout<<ans<<endl;
     }
     return 0;
 }

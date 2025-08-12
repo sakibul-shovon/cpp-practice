@@ -1,6 +1,6 @@
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
+// File Name: D_Knapsack_1.cpp
+// Date: 2025-07-19
+// Time: 22:49:30
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,44 +52,51 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
+ll n, maxWeight;
+ll N = 1e5 + 10;
+vll weight(N), value(N);
+ll dp[105][100005];
 
-ll solve(ll x)
+ll knapsack(ll itemIndex, ll remainingWeight)
 {
-    if (x == 0)
-    {
-        return 1;
-    }
+    if (itemIndex > n or remainingWeight < 0)
+        return 0;
 
-    if (dp[x] != -1)
-    {
-        return dp[x];
+    if(dp[itemIndex][remainingWeight] != -1){
+        return dp[itemIndex][remainingWeight];
     }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
+    ll result;
+    if (weight[itemIndex] <= remainingWeight)
     {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
+        ll take = value[itemIndex] + knapsack(itemIndex + 1, remainingWeight - weight[itemIndex]);
+        ll notTake = knapsack(itemIndex + 1, remainingWeight);
+        result =  max(take, notTake);
     }
-    dp[x] = ans;
-    return ans;
+    else
+    {
+        //only not take
+        result= knapsack(itemIndex + 1, remainingWeight); 
+    }
+    dp[itemIndex][remainingWeight] = result;
+    return result;
 }
+
 int main()
 {
     fastio;
-    cin >> n >> x;
-    for (ll i = 0; i < n; i++)
+    cin >> n >> maxWeight;
+    memset(dp, -1, sizeof(dp));
+
+    for (ll i = 1; i <= n; i++)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
+        ll a, b;
+        cin >> a >> b;
+        weight[i] = a;
+        value[i] = b;
     }
 
-    ll ans = solve(x);
+    ll ans = knapsack(1, maxWeight);
     cout<<ans<<endl;
+
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: B_Pick_Two.cpp
+// Date: 2025-07-20
+// Time: 00:38:51
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,18 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    string s = ".";
+    string t ;cin>>t;
+    s += t;
+
+    vll ans;
+    for(ll i=1;i<=s.size();i++){
+        if(s[i] == '#') ans.pb(i);
     }
+
+    for(ll i=0;i<ans.size();i+=2){
+        cout<<ans[i]<<','<<ans[i+1]<<endl;
+    }
+    
     return 0;
 }

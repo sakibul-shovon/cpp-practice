@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: Number_Spiral.cpp
+// Date: 2025-08-10
+// Time: 15:17:12
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -42,9 +42,26 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main() {
     fastio;
     While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+        ll a,b;cin>>a>>b;
+        ll konBox = max(a,b); // something X something matrix
+        ll calc;
+        ll A ,B;
+        ll ans ;
+        if(konBox%2 == 0){
+            A = konBox;
+            B = 1;
+            
+            calc = abs(konBox-a) + abs(1-b);
+            ans = (konBox * konBox) - calc;
+        }else{
+            A = 1;
+            B = konBox;
+            calc = abs(1-a) + abs(b-konBox);
+            ans = (konBox * konBox) - calc;
+        }
+        cout<<ans<<endl;
+
+        
     }
     return 0;
 }

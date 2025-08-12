@@ -1,6 +1,6 @@
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
+// File Name: C_Concat_X_th.cpp
+// Date: 2025-07-26
+// Time: 19:06:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,44 +52,37 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
 
-ll solve(ll x)
+vector<string> ans;
+void generate(ll pos, string curr, ll K, vector<string> &S)
 {
-    if (x == 0)
+    if (pos == K)
     {
-        return 1;
+        ans.push_back(curr);
+        return;
     }
 
-    if (dp[x] != -1)
+    for (ll i = 0; i < S.size(); i++)
     {
-        return dp[x];
+        generate(pos + 1, curr + S[i], K, S);
     }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
-    }
-    dp[x] = ans;
-    return ans;
 }
+
 int main()
 {
     fastio;
-    cin >> n >> x;
-    for (ll i = 0; i < n; i++)
+    ll N, K, X;
+    cin >> N >> K >> X;
+
+    vector<string> S(N);
+    for (ll i = 0; i < N; i++)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
+        cin >> S[i];
     }
 
-    ll ans = solve(x);
-    cout<<ans<<endl;
+    generate(0, "", K, S);
+    sort_all(ans);
+    cout << ans[X - 1] << endl;
+
     return 0;
 }

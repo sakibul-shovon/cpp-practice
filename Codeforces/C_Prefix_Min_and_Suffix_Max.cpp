@@ -1,6 +1,6 @@
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
+// File Name: C_Prefix_Min_and_Suffix_Max.cpp
+// Date: 2025-08-11
+// Time: 02:07:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -27,69 +27,60 @@ using namespace std;
 #define decimal(n) cout << fixed << setprecision(n);
 #define gcd(a, b) __gcd(a, b)
 #define lcm(a, b) ((a / gcd(a, b)) * b)
-#define autoLoop(x)  \
-    for (auto u : x) \
-        cout << u << ' ';
+#define autoLoop(x) for (auto u : x) cout << u << ' ';
 #define debug(x) cout << #x << " = " << x << endl;
-#define While(t) \
-    int t;       \
-    cin >> t;    \
-    while (t--)
-#define WhileVecInput(v, n) \
-    while (n--)             \
-    {                       \
-        ll temp;            \
-        cin >> temp;        \
-        v.pb(temp);         \
-    }
-
-int dRow[] = {-1, 0, 1, 0};
-int dCol[] = {0, 1, 0, -1};
-#define For(a, n) for (int i = a; i < n; i++)
-#define pqs priority_queue<ll, vector<ll>, greater<ll>>
+#define While(t) int t; cin >> t; while (t--)
+#define WhileVecInput(v, n) while (n--) { ll temp; cin >> temp; v.pb(temp); }
 
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
 
-ll solve(ll x)
-{
-    if (x == 0)
-    {
-        return 1;
-    }
-
-    if (dp[x] != -1)
-    {
-        return dp[x];
-    }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
-    }
-    dp[x] = ans;
-    return ans;
-}
 int main()
 {
     fastio;
-    cin >> n >> x;
-    for (ll i = 0; i < n; i++)
+    While(t)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
-    }
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> v[i];
+        }
 
-    ll ans = solve(x);
-    cout<<ans<<endl;
+        vll prefixMin(n), suffixMax(n);
+
+        prefixMin[0] = v[0];
+        for (ll i = 1; i < n; i++)
+        {
+            prefixMin[i] = min(prefixMin[i - 1], v[i]);
+        }
+
+        suffixMax[n - 1] = v[n - 1];
+        for (ll i = n - 2; i >= 0; i--)
+        {
+            suffixMax[i] = max(suffixMax[i + 1], v[i]);
+        }
+
+        string s(n, '0');
+        s[0] = '1';
+        s[n - 1] = '1';
+
+        for (ll i = 1; i < n - 1; i++)
+        {
+            if (v[i] > prefixMin[i - 1] and v[i] < suffixMax[i + 1])
+            {
+                s[i] = '0';
+            }
+            else
+            {
+                s[i] = '1';
+            }
+        }
+
+        cout << s << endl;
+    }
     return 0;
 }

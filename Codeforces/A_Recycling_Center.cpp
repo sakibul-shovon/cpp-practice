@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: A_Recycling_Center.cpp
+// Date: 2025-07-27
+// Time: 20:56:02
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -29,22 +29,34 @@ using namespace std;
 #define While(t)     int t; cin >> t; while (t--)
 #define WhileVecInput(v, n) while (n--) { ll temp; cin >> temp; v.pb(temp); }
 
-int dRow[] = {-1, 0, 1, 0};
-int dCol[] = {0, 1, 0, -1};
-#define For(a, n)    for (int i = a; i < n; i++)
-#define pqs          priority_queue<ll, vector<ll>, greater<ll>>
-
-ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
-ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
 int main() {
     fastio;
     While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+        ll n,k;cin>>n>>k;
+        vll v(n);
+        map<ll,ll>mp;
+        for(ll i=0;i<n;i++){
+            cin>>v[i];
+            ll x = k/v[i]; //debug(x);
+            if(x == 0 ) x =1;
+            mp[x]++;
+        }
+        sort_all(v);
+        //autoLoop(v);line;
+        ll gun = 0;
+        ll count = 0 ;
+        for(ll i=n-1;i>=0;i--){
+            if(v[i] > k){
+                continue;
+            }
+            if(v[i]*pow(2,gun) <= k){
+                count++;
+                gun++; 
+            }
+        }
+
+        cout<<n-count<<endl;
     }
     return 0;
 }

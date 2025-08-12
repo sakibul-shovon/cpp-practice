@@ -1,7 +1,3 @@
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -52,44 +48,74 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
 
-ll solve(ll x)
-{
-    if (x == 0)
-    {
-        return 1;
-    }
-
-    if (dp[x] != -1)
-    {
-        return dp[x];
-    }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
-    }
-    dp[x] = ans;
-    return ans;
-}
 int main()
 {
     fastio;
-    cin >> n >> x;
-    for (ll i = 0; i < n; i++)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
-    }
+        ll n, k;
+        cin >> n >> k;
+        priority_queue<ll, vector<ll>, greater<ll>> pq;
+        ll sum = 0;
+        for (ll i = 0; i < n; ++i)
+        {
+            ll x;
+            cin >> x;
+            sum += x;
+            pq.push(x);
+        }
 
-    ll ans = solve(x);
-    cout<<ans<<endl;
+        while (k > 0)
+        {
+            ll x = pq.top();
+            pq.pop();
+            ll y = pq.top();
+            pq.pop();
+
+            if (x == y)
+            {
+                pq.push(x);
+                pq.push(y);
+                break;
+            }
+
+            ll avg;
+            if ((x + y) % 2 == 0)
+            {
+                avg = (x + y) / 2;
+            }
+            else
+            {
+
+                avg = (x + y + 1) / 2;
+            }
+
+            if (avg % 2 != 0)
+            {
+                pq.push(avg * k);
+                break;
+            }
+            else if (x == y)
+            {
+                pq.push(k * x);
+                break;
+            }
+            // sum += avg;
+            k--;
+
+            pq.push(x);
+            pq.push(y);
+            pq.push(avg);
+        }
+        sum = 0;
+        while(!pq.empty()){
+            sum += pq.top();
+            pq.pop();
+        }
+        cout<<sum<<endl;
+    }
     return 0;
 }

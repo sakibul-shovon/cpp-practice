@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: A_I_m_a_teapot.cpp
+// Date: 2025-08-09
+// Time: 18:00:34
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,22 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    ll n;cin>>n;
+    string s;cin>>s;
+    string x = "";
+    ll temp = (n-1) -2;
+    if(n == 3 and s == "tea"){
+        cout<<"Yes"<<endl;
+        return 0;
+    }
+    for(ll i=temp;i<n;i++){
+        x+=s[i];
+    }
+    
+    if(x == "tea"){
+        cout<<"Yes"<<endl;
+    }else{
+        cout<<"No"<<endl;
     }
     return 0;
 }

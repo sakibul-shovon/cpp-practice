@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: A_Vacation_Validation.cpp
+// Date: 2025-07-26
+// Time: 18:00:55
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,20 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    ll n, l, r;
+    cin >> n >> l >> r;
+    string s;
+    cin >> s;
+    
+    bool check = true;
+    for(ll i = l-1; i <= r-1; i++) {
+        if(s[i] != 'o') {
+            check = false;
+            break;
+        }
     }
+    
+    if(check) cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
     return 0;
 }

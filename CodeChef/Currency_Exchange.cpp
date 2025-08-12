@@ -1,7 +1,3 @@
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -35,13 +31,6 @@ using namespace std;
     int t;       \
     cin >> t;    \
     while (t--)
-#define WhileVecInput(v, n) \
-    while (n--)             \
-    {                       \
-        ll temp;            \
-        cin >> temp;        \
-        v.pb(temp);         \
-    }
 
 int dRow[] = {-1, 0, 1, 0};
 int dCol[] = {0, 1, 0, -1};
@@ -52,44 +41,56 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
 
-ll solve(ll x)
-{
-    if (x == 0)
-    {
-        return 1;
-    }
-
-    if (dp[x] != -1)
-    {
-        return dp[x];
-    }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
-    }
-    dp[x] = ans;
-    return ans;
-}
 int main()
 {
     fastio;
-    cin >> n >> x;
-    for (ll i = 0; i < n; i++)
+    While(t)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
+        ll a1, b1, a2, b2;
+        cin >> a1 >> b1 >> a2 >> b2;
+        if (a1 == a2 and b1 == b2)
+        {
+            cout << "Yes" << endl;
+            continue;
+        }
+        if (a1 >= a2 and a1 - a2 == b1 - b2)
+        {
+            cout << "Yes" << endl;
+            continue;
+        }
+        bool check = false;
+        for (ll i = 1;; i++)
+        {
+            ll c = a1 - i;
+            ll d = b1 + i * 5;
+            if (c < 0)
+                break;
+            if (c >= a2 and c - a2 == d - b2)
+            {
+                cout << "Yes" << endl;
+                check = true;
+                break;
+            }
+        }
+        if (check)
+            continue;
+        for (int i = 1;; i++)
+        {
+            ll c = a1 + i;
+            ll d = b1 - i * 5;
+            if (d < 0)
+                break;
+            if (c >= a2 and c - a2 == d - b2)
+            {
+                cout << "Yes" << endl;
+                check = true;
+                break;
+            }
+        }
+        if (check)
+            continue;
+        cout << "No" << endl;
     }
-
-    ll ans = solve(x);
-    cout<<ans<<endl;
     return 0;
 }

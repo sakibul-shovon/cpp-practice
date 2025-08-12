@@ -1,6 +1,6 @@
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
+// File Name: D_Knapsack_1.cpp
+// Date: 2025-07-19
+// Time: 22:49:30
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,44 +52,64 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
+ll n, maxWeight;
+ll N = 1e5 + 10;
+vll weight(N), value(N);
+ll dp[105][100005];
 
-ll solve(ll x)
+ll knapsack(ll itemIndex, ll targetValue)
 {
-    if (x == 0)
+    if(targetValue == 0) return 0 ;
+    if(itemIndex > n) return inf;
+
+    if (dp[itemIndex][targetValue] != -1)
     {
-        return 1;
+        return dp[itemIndex][targetValue];
+    }
+    ll result;
+    
+    ll notTake = knapsack(itemIndex+1,targetValue);
+
+    ll take = inf;
+
+    if(value[itemIndex] <= targetValue){
+        take = weight[itemIndex] + knapsack(itemIndex+1,targetValue-value[itemIndex]);
     }
 
-    if (dp[x] != -1)
-    {
-        return dp[x];
-    }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
-    }
-    dp[x] = ans;
-    return ans;
+    result  = min(take,notTake);
+    dp[itemIndex][targetValue] = result;
+    return result;
 }
+
 int main()
 {
     fastio;
-    cin >> n >> x;
-    for (ll i = 0; i < n; i++)
+    cin >> n >> maxWeight;
+    memset(dp, -1, sizeof(dp));
+
+    for (ll i = 1; i <= n; i++)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
+        ll a, b;
+        cin >> a >> b;
+        weight[i] = a;
+        value[i] = b;
     }
 
-    ll ans = solve(x);
-    cout<<ans<<endl;
+    ll maxPossibleValue = 0;
+    for (ll i = 1; i <= n; i++)
+    {
+        maxPossibleValue += value[i];
+    }
+    ll ans = 0;
+    for (ll v = 0; v <= maxPossibleValue; v++)
+    {
+        if (knapsack(1, v) <= maxWeight)
+        {
+            ans = v;
+        }
+    }
+
+    cout << ans << endl;
+
     return 0;
 }

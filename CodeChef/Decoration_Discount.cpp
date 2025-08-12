@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: Decoration_Discount.cpp
+// Date: 2025-08-06
+// Time: 21:58:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -39,12 +39,43 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-int main() {
+int main()
+{
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    While(t)
+    {
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> v[i];
+        }
+        ll ans = inf;
+
+        for (ll i = 0; i < n; i++)
+        {
+            for (ll j = 0; j < n; j++)
+            {
+                if (i != j)
+                {
+                    ll cost = 0;
+                    if (j == i + 1)
+                    {
+
+                        cost = v[i] + v[j] / 2;
+                    }
+                    else
+                    {
+
+                        cost = v[i] + v[j];
+                    }
+                    ans = min(ans, cost);
+                }
+            }
+        }
+
+        cout << ans << endl;
     }
     return 0;
 }

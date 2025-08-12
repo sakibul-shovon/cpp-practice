@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: Coin_Piles.cpp
+// Date: 2025-08-11
+// Time: 03:50:10
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -42,9 +42,17 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main() {
     fastio;
     While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+        ll a,b;cin>>a>>b;
+        if(a%2 == 0 and b%2 == 1){
+            cout<<yes<<endl;
+        }else if(b%2 == 0 and a%2 ==1){
+            cout<<yes<<endl;
+        }
+        else if(a%2 != 0 and b%2 !=0 and (a%2 == b%2)){
+            cout<<yes<<endl;
+        }else{
+            cout<<no<<endl;
+        }
     }
     return 0;
 }

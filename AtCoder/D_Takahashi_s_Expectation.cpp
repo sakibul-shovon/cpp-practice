@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: D_Takahashi_s_Expectation.cpp
+// Date: 2025-08-02
+// Time: 18:47:28
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,31 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    ll n;
+    cin >> n;
+    vll gift(n), jog(n), biyog(n);
+    
+    for (ll i = 0; i < n; i++) {
+        cin >> gift[i] >> jog[i] >> biyog[i];
     }
+
+    ll q;
+    cin >> q;
+    while (q--) {
+        ll initial;
+        cin >> initial;
+
+        
+        for (ll i = 0; i < n; i++) {
+            if (gift[i] >= initial) {
+                initial += jog[i];
+            } else {
+                initial = max(0LL, initial - biyog[i]);
+            }
+        }
+
+        cout << initial << endl;
+    }
+
     return 0;
 }

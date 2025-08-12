@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: B_You_re_a_teapot.cpp
+// Date: 2025-08-09
+// Time: 18:33:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -39,12 +39,33 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
+
+
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    string s; 
+    cin >> s;
+    ll n = s.length();
+
+    double ans = 0.0;
+
+    for (ll i = 0; i < n; ++i) {
+        if (s[i] != 't') continue;
+        for (ll j = i + 2; j < n; ++j) {          
+            if (s[j] != 't') continue;
+
+            ll len = j - i + 1;                 
+            ll T = len - 2;           
+
+            ll x = count(s.begin() + i, s.begin() + j + 1, 't'); 
+            ll X = x - 2;
+
+            double tempAns = (double)X / T;
+            if (tempAns > ans) ans = tempAns;
+        }
     }
+
+    
+    cout<<fixed<<setprecision(17)<<ans<<endl;
     return 0;
 }

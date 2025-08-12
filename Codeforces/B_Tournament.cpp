@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: B_Tournament.cpp
+// Date: 2025-08-11
+// Time: 00:33:09
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -42,9 +42,18 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main() {
     fastio;
     While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+        ll n,kotoNumPlayer, rank;cin>>n>>kotoNumPlayer>>rank;
+        vll v(n+1,0);
+        ll player;
+        for(ll i=1;i<=n;i++) {
+            cin>>v[i];
+            if(i == kotoNumPlayer){
+                player = i;
+            }
+        }
+        debug(player);
+        sort(v.rbegin(),v.rend());
+        autoLoop(v);
     }
     return 0;
 }
