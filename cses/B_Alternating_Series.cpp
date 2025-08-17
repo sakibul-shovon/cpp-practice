@@ -1,6 +1,6 @@
-// File Name: Dice_Combinations.cpp
-// Date: 2025-07-19
-// Time: 04:23:39
+// File Name: B_Alternating_Series.cpp
+// Date: 2025-08-10
+// Time: 23:38:41
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,36 +52,35 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n;
-ll N = 1e6 + 10;
-vll dp(N, -1);
-ll count = 0;
 
-ll solve(ll n)
-{
-    if (n == 0)
-    {
-        return 1;
-    }
-    ll res = 0;
-    if(dp[n] != -1) return dp[n];
-
-    for (ll i = 1; i <= 6; i++)
-    {
-        if (n - i >= 0)
-        {
-            res = res + solve(n-i);
-        }
-    }
-    dp[n] = res;
-    return res;
-}
-
-int main()
+int main() 
 {
     fastio;
-    cin >> n;
-    ll ans = solve(n);
-    cout << ans << endl;
+    While(t)
+    {
+        ll n;
+        cin >> n;
+        if (n == 2)
+        {
+            cout << "-1 2" << endl;
+            continue;
+        }
+        for (ll i = 0; i < n; i++)
+        {
+            if (i % 2 == 0)
+                cout << -1 << ' ';
+            else
+            {
+                if (i == n - 1)
+                {
+                    cout << 2 << ' ';
+                }
+                else
+                {
+                    cout << 3 << ' ';
+                }
+            }
+        }
+    }
     return 0;
 }

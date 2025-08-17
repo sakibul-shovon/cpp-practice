@@ -1,6 +1,6 @@
-// File Name: Dice_Combinations.cpp
-// Date: 2025-07-19
-// Time: 04:23:39
+// File Name: Array_Halves.cpp
+// Date: 2025-08-17
+// Time: 17:00:19
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,36 +52,38 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n;
-ll N = 1e6 + 10;
-vll dp(N, -1);
-ll count = 0;
-
-ll solve(ll n)
-{
-    if (n == 0)
-    {
-        return 1;
-    }
-    ll res = 0;
-    if(dp[n] != -1) return dp[n];
-
-    for (ll i = 1; i <= 6; i++)
-    {
-        if (n - i >= 0)
-        {
-            res = res + solve(n-i);
-        }
-    }
-    dp[n] = res;
-    return res;
-}
 
 int main()
 {
     fastio;
-    cin >> n;
-    ll ans = solve(n);
-    cout << ans << endl;
+    While(t)
+    {
+        ll n;
+        cin >> n;
+        vll v(n + n);
+        ll count = 0;
+        vll index1,index2;
+        for (ll i = 0; i < n + n; i++)
+        {
+            cin >> v[i];
+            if (v[i] > n and i < n )
+            {
+                count++;
+                index1.pb(i + 1);
+            }else if(i>=n and v[i]<n+1){
+                index2.pb(i+1);
+                
+            }
+        }
+        
+        // autoLoop(index1);;line;
+        // autoLoop(index2);
+        ll ans = 0 ; 
+        for(ll i=0;i<index1.size();i++){
+            ans+=abs(index1[i]-index2[i]);
+        }
+        cout<<ans<<endl;
+    }
+
     return 0;
 }

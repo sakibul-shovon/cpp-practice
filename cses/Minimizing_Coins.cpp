@@ -1,6 +1,6 @@
-// File Name: Dice_Combinations.cpp
-// Date: 2025-07-19
-// Time: 04:23:39
+// File Name: Minimizing_Coins.cpp
+// Date: 2025-07-21
+// Time: 18:38:10
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,36 +52,54 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n;
-ll N = 1e6 + 10;
-vll dp(N, -1);
-ll count = 0;
 
-ll solve(ll n)
+vll v;
+ll n, x;
+
+vll dp(1e6 + 10, -1);
+
+ll fun(ll x)
 {
-    if (n == 0)
+    if (x == 0)
     {
-        return 1;
+        return 0;
     }
-    ll res = 0;
-    if(dp[n] != -1) return dp[n];
 
-    for (ll i = 1; i <= 6; i++)
+    if (dp[x] != -1)
+        return dp[x];
+    ll ans = inf;
+    for (ll i = 0; i < n; i++)
     {
-        if (n - i >= 0)
+        if (x >= v[i])
         {
-            res = res + solve(n-i);
+            ans = min(ans, 1 + fun(x - v[i]));
         }
     }
-    dp[n] = res;
-    return res;
+
+    dp[x] = ans;
+    return ans;
 }
 
 int main()
 {
     fastio;
-    cin >> n;
-    ll ans = solve(n);
-    cout << ans << endl;
+    cin >> n >> x;
+
+    for (ll i = 0; i < n; i++)
+    {
+        ll x;
+        cin >> x;
+        v.pb(x);
+    }
+
+    ll ans = fun(x);
+    if (ans == inf)
+    {
+        cout << -1 << endl;
+    }
+    else
+    {
+        cout << ans << endl;
+    }
     return 0;
 }

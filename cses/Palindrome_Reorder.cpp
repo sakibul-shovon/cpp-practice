@@ -1,6 +1,6 @@
-// File Name: Dice_Combinations.cpp
-// Date: 2025-07-19
-// Time: 04:23:39
+// File Name: Palindrome_Reorder.cpp
+// Date: 2025-08-13
+// Time: 02:40:49
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,36 +52,54 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n;
-ll N = 1e6 + 10;
-vll dp(N, -1);
-ll count = 0;
-
-ll solve(ll n)
-{
-    if (n == 0)
-    {
-        return 1;
-    }
-    ll res = 0;
-    if(dp[n] != -1) return dp[n];
-
-    for (ll i = 1; i <= 6; i++)
-    {
-        if (n - i >= 0)
-        {
-            res = res + solve(n-i);
-        }
-    }
-    dp[n] = res;
-    return res;
-}
 
 int main()
 {
     fastio;
-    cin >> n;
-    ll ans = solve(n);
-    cout << ans << endl;
+    string s;
+    cin >> s;
+    map<char, ll> mp;
+    for (ll i = 0; i < s.length(); i++)
+    {
+        mp[s[i]]++;
+    }
+
+    ll count = 0;
+    string a = "", b = "", c = "";
+    bool check = true;
+    for (auto it : mp)
+    {
+        // cout<<it.first<<' '<<it.second<<endl;
+        if (it.second % 2 != 0)
+        {
+            for (ll i = 1; i <= it.second; i++)
+            {
+                b += it.first;
+            }
+            count++;
+            if (count == 2)
+            {
+                check = false;
+                cout << "NO SOLUTION" << endl;
+                break;
+                ;
+                ;
+            }
+        }
+
+        else
+        {
+            ll x = it.second; // debug(x);
+
+            for (ll i = 0; i < x; i += 2)
+            {
+                a += it.first;
+                c += it.first;
+            }
+        }
+    }
+    reverse(all(c));
+    if (check)
+        cout << a + b + c << endl;
     return 0;
 }

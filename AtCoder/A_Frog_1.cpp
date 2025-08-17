@@ -55,26 +55,35 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll arr[1000005];
-ll dp[1000005] ;
+ll v[1000005];
+vll dp(1000005,-1) ;
+ll n;
 
-ll fun(ll i,ll n){
-    if(i == n) return 0;
-    if(dp[i] != -1) return dp[i];
+ll solve(ll i){
+   if(i == n )  return 0;
+   ll ans = inf;
 
-    ll cost = abs(arr[i] - arr[i+1]) + fun(i+1,n);
-    if(i+2<=n){
-        cost = min(cost,abs(arr[i] - arr[i+2])+fun(i+2,n));
+   if(dp[i] != -1 ) return dp[i];
 
-    }
+   ll first = solve(i+1 ) + abs(v[i] - v[i+1]);
+    ll second;
+   if(i+2 <= n){
+         second = solve(i+2) + abs(v[i] - v[i+2]);
+   }
 
-    return dp[i] = cost;
+   ans = min(first,second);
+   dp[i] = ans;
+
+   return ans;
+
+
 }
 int main() {
     fastio;
-    fill(dp, dp + 1000005, -1);
-    ll n;cin>>n;
-    for(ll i=1;i<=n;i++) cin>>arr[i];
-    cout<<fun(1,n)<<endl;
+    
+    cin>>n;
+    for(ll i=1;i<=n;i++) cin>>v[i];
+    ll ans = solve(1);
+    cout<<ans<<endl;
     return 0;
 }

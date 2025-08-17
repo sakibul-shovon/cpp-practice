@@ -1,6 +1,6 @@
-// File Name: Dice_Combinations.cpp
-// Date: 2025-07-19
-// Time: 04:23:39
+// File Name: Subtract_or_Divide.cpp
+// Date: 2025-08-14
+// Time: 02:04:41
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,36 +52,43 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n;
-ll N = 1e6 + 10;
-vll dp(N, -1);
-ll count = 0;
-
-ll solve(ll n)
-{
-    if (n == 0)
-    {
-        return 1;
-    }
-    ll res = 0;
-    if(dp[n] != -1) return dp[n];
-
-    for (ll i = 1; i <= 6; i++)
-    {
-        if (n - i >= 0)
-        {
-            res = res + solve(n-i);
-        }
-    }
-    dp[n] = res;
-    return res;
-}
 
 int main()
 {
     fastio;
-    cin >> n;
-    ll ans = solve(n);
-    cout << ans << endl;
+    While(t)
+    {
+        ll n;
+        cin >> n;
+        ll N = n;
+        if (n % 2 != 0)
+        {
+            cout << (n / 2) + 1 << endl;
+        }
+        else
+        {
+            // even
+            ll temp = n;
+            ll target ;
+            ll konSonkhanebo = n/2;
+            
+            if(konSonkhanebo % 2 == 0){
+                target = temp - 2;
+            }else{
+                target = temp;
+            }
+            //debug(temp);
+
+            ll ans1 = ((target/2) / 2) + 1;
+            ll ans2 = temp / 2;
+
+            //debug(ans1);
+            //debug(ans2);
+            cout<<ans1+ans2<<endl;
+            
+
+            
+        }
+    }
     return 0;
 }
