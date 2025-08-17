@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-// File Name: Minimizing_Coins.cpp
+// File Name: Distinct_Values_Queries.cpp
 // Date: 2025-07-21
-// Time: 18:38:10
-=======
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
+// Time: 07:05:56
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -38,7 +32,7 @@ using namespace std;
         cout << u << ' ';
 #define debug(x) cout << #x << " = " << x << endl;
 #define While(t) \
-    int t;       \
+    ll t;       \
     cin >> t;    \
     while (t--)
 #define WhileVecInput(v, n) \
@@ -49,101 +43,97 @@ using namespace std;
         v.pb(temp);         \
     }
 
-int dRow[] = {-1, 0, 1, 0};
-int dCol[] = {0, 1, 0, -1};
-#define For(a, n) for (int i = a; i < n; i++)
+ll dRow[] = {-1, 0, 1, 0};
+ll dCol[] = {0, 1, 0, -1};
+#define For(a, n) for (ll i = a; i < n; i++)
 #define pqs priority_queue<ll, vector<ll>, greater<ll>>
 
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
 
-<<<<<<< HEAD
-vll v;
-ll n, x;
-
-vll dp(1e6 + 10, -1);
-
-ll fun(ll x)
+struct BinaryIndexedTree
 {
-    if (x == 0)
+    vector<ll> tree;
+    ll n;
+
+    BinaryIndexedTree(ll size)
     {
-        
-        return 1;
+        n = size;
+        tree.assign(n + 1, 0);
     }
 
-    if (dp[x] != -1)
-        return dp[x];
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
+    void update(ll idx, ll delta)
     {
-        if (x >= v[i])
+        for (ll i = idx + 1; i <= n; i += i & (-i))
         {
-            ans +=  fun(x - v[i]);
-            ans  %= mod;
+            tree[i] += delta;
         }
     }
 
-=======
-ll solve(ll x)
-{
-    if (x == 0)
+    ll query(ll idx)
     {
-        return 1;
-    }
-
-    if (dp[x] != -1)
-    {
-        return dp[x];
-    }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
+        ll sum = 0;
+        for (ll i = idx + 1; i > 0; i -= i & (-i))
         {
-            ans += solve(x - v[i]);
+            sum += tree[i];
         }
+        return sum;
     }
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
-    dp[x] = ans;
-    return ans;
-}
+};
+
 int main()
 {
     fastio;
-    cin >> n >> x;
-<<<<<<< HEAD
 
+    ll n, q;
+    cin >> n >> q;
+
+    vector<ll> arr(n);
     for (ll i = 0; i < n; i++)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
+        cin >> arr[i];
     }
 
-    ll ans = fun(x);
-    if (ans == inf)
+    vector<vector<pair<ll, ll>>> queryGroups(n);
+    for (ll i = 0; i < q; i++)
     {
-        cout << -1 << endl;
-    }
-    else
-    {
-        cout << ans << endl;
-    }
-=======
-    for (ll i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        v.pb(x);
+        ll left, right;
+        cin >> left >> right;
+        left--;
+        right--;
+        queryGroups[left].push_back({right, i});
     }
 
-    ll ans = solve(x);
-    cout<<ans<<endl;
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
+    BinaryIndexedTree bit(n);
+    map<ll, ll> lastPosition;
+    vector<ll> answers(q);
+
+    for (ll i = n - 1; i >= 0; i--)
+    {
+        ll currentValue = arr[i];
+
+        if (lastPosition.find(currentValue) != lastPosition.end())
+        {
+            bit.update(lastPosition[currentValue], -1);
+        }
+
+        lastPosition[currentValue] = i;
+        bit.update(i, 1);
+
+        for (const auto &query : queryGroups[i])
+        {
+            ll rightEnd = query.first;
+            ll queryIndex = query.second;
+            answers[queryIndex] = bit.query(rightEnd);
+        }
+    }
+
+    for (ll answer : answers)
+    {
+        cout << answer << "\n";
+    }
+
     return 0;
 }

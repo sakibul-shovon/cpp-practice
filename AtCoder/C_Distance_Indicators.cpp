@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-// File Name: Minimizing_Coins.cpp
-// Date: 2025-07-21
-// Time: 18:38:10
-=======
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
+// File Name: C_Distance_Indicators.cpp
+// Date: 2025-08-02
+// Time: 18:21:17
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,92 +52,27 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
 
-<<<<<<< HEAD
-vll v;
-ll n, x;
-
-vll dp(1e6 + 10, -1);
-
-ll fun(ll x)
-{
-    if (x == 0)
-    {
-        
-        return 1;
-    }
-
-    if (dp[x] != -1)
-        return dp[x];
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans +=  fun(x - v[i]);
-            ans  %= mod;
-        }
-    }
-
-=======
-ll solve(ll x)
-{
-    if (x == 0)
-    {
-        return 1;
-    }
-
-    if (dp[x] != -1)
-    {
-        return dp[x];
-    }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
-    }
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
-    dp[x] = ans;
-    return ans;
-}
 int main()
 {
     fastio;
-    cin >> n >> x;
-<<<<<<< HEAD
+    ll n;
+    cin >> n;
+    vll v(n+1);
+    map<ll,ll>mp;
+    for (ll i = 1; i <= n; i++)
+    {
+        cin >> v[i];
+        ll t = i - v[i];
+        mp[t]++;
+    }
+    
+    ll ans =  0;
 
-    for (ll i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        v.pb(x);
+    for(ll i=1;i<=n;i++){
+        ll x = v[i] + i;
+        ans += mp[x];
     }
-
-    ll ans = fun(x);
-    if (ans == inf)
-    {
-        cout << -1 << endl;
-    }
-    else
-    {
-        cout << ans << endl;
-    }
-=======
-    for (ll i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        v.pb(x);
-    }
-
-    ll ans = solve(x);
     cout<<ans<<endl;
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
     return 0;
 }

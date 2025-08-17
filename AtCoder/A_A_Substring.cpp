@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: A_A_Substring.cpp
+// Date: 2025-08-02
+// Time: 18:00:34
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,11 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
-    }
+    ll n ,a,b;cin>>n>>a>>b;
+    string s;cin>>s;
+    ll first = a;
+    ll last  = (n-1) - b;
+    for(ll i=first; i<=last;i++) cout<<s[i];
+    line;
     return 0;
 }

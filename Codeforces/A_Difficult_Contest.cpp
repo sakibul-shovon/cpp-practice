@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-// File Name: Minimizing_Coins.cpp
-// Date: 2025-07-21
-// Time: 18:38:10
-=======
-// File Name: Coin_Combinations_I.cpp
-// Date: 2025-07-23
-// Time: 01:39:32
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
+// File Name: A_Difficult_Contest.cpp
+// Date: 2025-07-22
+// Time: 21:14:37
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,92 +52,68 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-ll n, x;
-vll v;
-vll dp(1e6 + 10, -1);
 
-<<<<<<< HEAD
-vll v;
-ll n, x;
-
-vll dp(1e6 + 10, -1);
-
-ll fun(ll x)
-{
-    if (x == 0)
-    {
-        
-        return 1;
-    }
-
-    if (dp[x] != -1)
-        return dp[x];
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans +=  fun(x - v[i]);
-            ans  %= mod;
-        }
-    }
-
-=======
-ll solve(ll x)
-{
-    if (x == 0)
-    {
-        return 1;
-    }
-
-    if (dp[x] != -1)
-    {
-        return dp[x];
-    }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (x >= v[i])
-        {
-            ans += solve(x - v[i]);
-        }
-    }
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
-    dp[x] = ans;
-    return ans;
-}
 int main()
 {
     fastio;
-    cin >> n >> x;
-<<<<<<< HEAD
-
-    for (ll i = 0; i < n; i++)
+    While(T)
     {
-        ll x;
-        cin >> x;
-        v.pb(x);
+        string s;
+        cin >> s;
+        map<char, ll> mp;
+        for (char c : s)
+            mp[c]++;
+        string ans;
+        while (mp['T']--)
+            ans += 'T';
+        while (mp['F']--)
+            ans += 'F';
+        while (mp['N']--)
+            ans += 'N';
+        for (char c = 'A'; c <= 'Z'; c++)
+        {
+            if (c != 'T' and c != 'F' and c != 'N')
+            {
+                while (mp[c]--)
+                    ans += c;
+            }
+        }
+        bool check = true;
+        for (ll i = 0; i + 2 < ans.size(); i++)
+        {
+            if ((ans[i] == 'F' and ans[i + 1] == 'F' and ans[i + 2] == 'T') or (ans[i] == 'N' and ans[i + 1] == 'T' and ans[i + 2] == 'T'))
+            {
+                check = false;
+                break;
+            }
+        }
+        if (check)
+        {
+            cout << ans << endl;
+        }
+        else
+        {
+            ans.clear();
+            for (char c = 'A'; c <= 'Z'; c++)
+                mp[c] = 0;
+            for (char c : s)
+                mp[c]++;
+            while (mp['F']--)
+                ans += 'F';
+            while (mp['T']--)
+                ans += 'T';
+            while (mp['N']--)
+                ans += 'N';
+            for (char c = 'A'; c <= 'Z'; c++)
+            {
+                if (c != 'T' and c != 'F' and c != 'N')
+                {
+                    while (mp[c]--)
+                        ans += c;
+                }
+            }
+            cout << ans << endl;
+        }
     }
-
-    ll ans = fun(x);
-    if (ans == inf)
-    {
-        cout << -1 << endl;
-    }
-    else
-    {
-        cout << ans << endl;
-    }
-=======
-    for (ll i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        v.pb(x);
-    }
-
-    ll ans = solve(x);
-    cout<<ans<<endl;
->>>>>>> b3ff48ad5a13c78777c45c466f02f0bcffe9e811
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: Two_Sets.cpp
+// Date: 2025-08-10
+// Time: 15:38:05
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,43 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    ll n;cin>>n;
+    ll total = (n*(n+1)) /2;
+    if(total % 2!=0){
+        cout<<no<<endl;
+        return 0;
     }
+    total = total/2;//debug(total);
+    ll sum = 0;
+    vll v;
+    map<ll,ll>mp;
+    ll temp = 0;
+    for(ll i=n;i>=0;i--){
+        
+        sum += i;//debug(i);
+        temp+= i;
+        mp[i] = 1;
+        v.pb(i);
+        ll x = total - sum;//debug(x);
+        if(x < i and ) {
+            v.pb(x);
+            temp+=x;
+            mp[x] = 1;
+            break;
+        }
+        if(temp == total) break;
+
+    }
+    cout<<yes<<endl;
+    cout<<v.size()<<endl;
+    autoLoop(v);line;
+
+    cout<<n-v.size()<<endl;
+    for(ll i=1;i<=n;i++){
+        if(mp[i]!= 1){
+            cout<<i<<' ';
+        }
+    }line;
+    
     return 0;
 }

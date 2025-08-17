@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: C_I_Will_Definitely_Make_It.cpp
+// Date: 2025-07-19
+// Time: 01:35:15
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -42,9 +42,27 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main() {
     fastio;
     While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+        ll n,k;cin>>n>>k;
+        vll v;
+        map<ll,ll>mp;
+        ll initial ;
+        
+        for(ll i=0;i<n;i++){
+            ll x;cin>>x;
+            if(i == k+1){
+                initial = x;
+            }
+            mp[x]++;
+            if(mp[x] == 1) v.pb(x);
+        }
+        sort_all(v);
+        ll curr = binary_search(all(v),initial);
+        ll panirLevel = 1;
+
+        ll i = curr;
+        autoLoop(v);line;debug(i);
+
+       
     }
     return 0;
 }

@@ -51,7 +51,7 @@ int main() {
         while(i<n){
             
             ll temp = 0 ;
-            while(v[i] == 0){
+            while(i<n and v[i] == 0){
                 i++;
                 temp++;
                 if(temp == k){

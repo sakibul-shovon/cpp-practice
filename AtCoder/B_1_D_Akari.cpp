@@ -1,6 +1,6 @@
-// File Name: A_Only_One_Digit.cpp
-// Date: 2025-07-18
-// Time: 15:29:10
+// File Name: B_1_D_Akari.cpp
+// Date: 2025-07-26
+// Time: 18:09:04
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,10 +41,26 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    While(t){
-        string s;cin>>s;
-        sort_all(s);
-        cout<<s[0]<<endl;
+    string s;cin>>s;
+    bool hash = false;
+    bool hashLagbe = false;
+    bool firstDot = false;
+    for(ll i=0;i<s.length();i++){
+        if(s[i] == '.' and firstDot == false){
+            s[i] = 'o';
+            firstDot = true;
+            hashLagbe = true;
+        }
+
+        if(s[i] == '#' and  hashLagbe == true){
+            hashLagbe = false;
+        }
+        else if(s[i] == '.' and hashLagbe == false){
+            s[i] = 'o';
+            hashLagbe = true;
+        }
+        
     }
+    cout<<s<<endl;
     return 0;
 }
