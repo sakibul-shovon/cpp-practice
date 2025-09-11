@@ -11,8 +11,7 @@ int main(){
     while(t--)
     {
         int a,b;
-        cin>>a>>b;
-
+    
         if(a>b) cout<<"LOSS"<<endl;
         else if(b>a) cout<<"PROFIT"<<endl;
         else cout<<"NEUTRAL"<<endl;

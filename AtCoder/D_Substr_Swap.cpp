@@ -1,6 +1,6 @@
-// File Name: C_Kefa_and_Park.cpp
-// Date: 2025-05-08
-// Time: 17:33:19
+// File Name: D_Substr_Swap.cpp
+// Date: 2025-08-17
+// Time: 00:39:03
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -50,52 +50,37 @@ using namespace std;
 #define While(n)      int t; cin>>t;while(t--)
 #define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
+ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-#define N 200005
-ll n,m;
-vector<ll> adj[N];
-vll cat;
-ll ans = 0;
 
-void dfs(ll u,ll parent, ll count){
-    ll c;
-    if(cat[u] == 1) {
-        c = count + 1;
-    }
-    else{
-        c = 0;
-    }
-    if(c>m) return;
-    if(adj[u].size() == 1 and u!= 1){
-        ans++;
-    }
-    
-    for(ll v:adj[u]){
-        if(v!=parent){
-            dfs(v,u,c);
-        }
-    }
 
-}
+
 int main()
 {
     fastio;
-    cin>>n>>m;
-    cat.resize(n+1);
-    for(ll i=1; i<=n; i++) {
-        cin >> cat[i];
-    }
-
-    for(ll i=0;i<n-1;i++){
-        ll u,v;cin>>u>>v;
-        adj[u].pb(v);
-        adj[v].pb(u);
+    ll n,q;cin>>n>>q;
+    string s,t;cin>>s>>t;
+    vll v(n+2,0);
+    
+    while(q--){
+        ll a,b;cin>>a>>b;
+        v[a]++;//debug(a);//debug(b);line;
+        v[b+1]--;
 
     }
+    //autoLoop(v);line;
+    vll prefix(n+2);
 
-    dfs(1,0,0);
+    for(ll i=1;i<=n;i++){
+        prefix[i] = v[i] + prefix[i-1];
+        if(prefix[i] % 2 !=0){
+            s[i-1] = t[i-1];
+        }
+    }
 
-    cout<<ans<<endl;
+      //autoLoop(prefix);line;
+      cout<<s<<endl;
+
+    return 0;
 }
