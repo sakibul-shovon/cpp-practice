@@ -1,6 +1,6 @@
-// File Name: PotatoDB_v_1_0.cpp
-// Date: 2025-08-20
-// Time: 04:11:42
+// File Name: D_Dividing_Candy.cpp
+// Date: 2025-09-01
+// Time: 23:34:04
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,53 +53,40 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-ll digitSum(ll n)
-{
-    n = abs(n);
-    ll sum = 0;
-    while (n)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
+ll maxx = 200001;
 int main()
 {
     fastio;
-    map<ll, ll> mp;
-    vll sum(1000000, 0);
-    ll total  = 0;
-    While(T)
-    {
-        char a;
-        ll n;
-        cin >> a >> n;
+    ll n;
+    cin >> n;
+    vll bit_count(maxx, 0);
 
-        if (a == 'A')
+    for (ll i = 0; i < n; i++)
+    {
+        ll x;
+        cin >> x;
+        while (bit_count[x])
         {
-            mp[n]++;
-            ll x = digitSum(n);
-            sum[x]++;
-            total++;
-            cout << total << endl;
+            bit_count[x] = 0;
+            x++;
         }
-        else if (a == 'D')
-        {
-            if (mp[n] != 0)
-            {
-                mp[n]--;
-                ll x = digitSum(n);
-                sum[x]--;
-                total--;
-            }
-            cout <<total<< endl;
-        }
-        else if (a == 'S')
-        {
-            cout << sum[n] << endl;
-        }
+        bit_count[x] = 1;
+    }
+
+    ll count = 0;
+    for (ll i = 0; i <= maxx; i++)
+    {
+        if (bit_count[i])
+            count++;
+    }
+
+    if (count == 2 or (count == 1 and n > 1))
+    {
+        cout << "Y" << endl;
+    }
+    else
+    {
+        cout << "N" << endl;
     }
     return 0;
 }

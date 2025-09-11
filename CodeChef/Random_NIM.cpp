@@ -1,6 +1,6 @@
-// File Name: PotatoDB_v_1_0.cpp
+// File Name: Random_NIM.cpp
 // Date: 2025-08-20
-// Time: 04:11:42
+// Time: 22:53:49
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -21,7 +21,7 @@ using namespace std;
 #define yes "YES"
 #define no "NO"
 #define PI 3.141592653589793238462
-#define mod 1000000007
+//#define mod 1000000007
 #define inf 1e18
 #define total(v) accumulate(v.begin(), v.end(), 0LL)
 #define decimal(n) cout << fixed << setprecision(n);
@@ -53,52 +53,38 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-ll digitSum(ll n)
-{
-    n = abs(n);
-    ll sum = 0;
-    while (n)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
 int main()
 {
     fastio;
-    map<ll, ll> mp;
-    vll sum(1000000, 0);
-    ll total  = 0;
+    ll mod = 998244353;
+    ll invmod = 499122177;
+
     While(T)
     {
-        char a;
         ll n;
-        cin >> a >> n;
-
-        if (a == 'A')
+        cin >> n;
+        bool check = true;
+        for (ll i = 0; i < n; ++i)
         {
-            mp[n]++;
-            ll x = digitSum(n);
-            sum[x]++;
-            total++;
-            cout << total << endl;
+            ll x;
+            cin >> x;
+            if (x != 1)
+               { check = false;}
         }
-        else if (a == 'D')
+        if (check)
         {
-            if (mp[n] != 0)
+            if (n % 2 == 1)
             {
-                mp[n]--;
-                ll x = digitSum(n);
-                sum[x]--;
-                total--;
+                cout << 1 << endl;
             }
-            cout <<total<< endl;
+            else
+            {
+                cout << 0 << endl;
+            }
         }
-        else if (a == 'S')
+        else
         {
-            cout << sum[n] << endl;
+            cout << invmod << endl;;
         }
     }
     return 0;

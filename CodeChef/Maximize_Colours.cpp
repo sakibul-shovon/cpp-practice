@@ -1,6 +1,6 @@
-// File Name: PotatoDB_v_1_0.cpp
-// Date: 2025-08-20
-// Time: 04:11:42
+// File Name: Maximize_Colours.cpp
+// Date: 2025-08-18
+// Time: 23:57:55
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,53 +53,54 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-ll digitSum(ll n)
-{
-    n = abs(n);
-    ll sum = 0;
-    while (n)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
 int main()
 {
     fastio;
-    map<ll, ll> mp;
-    vll sum(1000000, 0);
-    ll total  = 0;
-    While(T)
+    While(t)
     {
-        char a;
-        ll n;
-        cin >> a >> n;
+        ll a, b, c;
+        cin >> a >> b >> c;
+        vll v = {a, b, c};
 
-        if (a == 'A')
+        for (ll i = 0; i < 3; i++)
         {
-            mp[n]++;
-            ll x = digitSum(n);
-            sum[x]++;
-            total++;
-            cout << total << endl;
-        }
-        else if (a == 'D')
-        {
-            if (mp[n] != 0)
+            if (v[i] > 1)
             {
-                mp[n]--;
-                ll x = digitSum(n);
-                sum[x]--;
-                total--;
+
+                v.pb(v[i] - 1);
+                v[i] = 1;
             }
-            cout <<total<< endl;
         }
-        else if (a == 'S')
+        // autoLoop(v);
+        // line;
+        ll count = 0;
+
+        for (ll i = 3; i < v.size() - 1; i++)
         {
-            cout << sum[n] << endl;
+            for (ll j = i + 1; j < v.size(); j++)
+            {
+                if (v[i] >= 1 and v[j] >= 1)
+                {
+                    v[i]--;
+                    v[j]--;
+                    count++;
+                }
+            }
         }
+        // debug(count);
+        //autoLoop(v);
+        //line;
+        for (ll i = 3; i < v.size(); i++)
+        {
+            if (v[i] > 0)
+                count++;
+        }
+        for (ll i = 0; i < 3; i++)
+        {
+            if (v[i] == 1)
+                count++;
+        }
+        cout << count << endl;
     }
     return 0;
 }

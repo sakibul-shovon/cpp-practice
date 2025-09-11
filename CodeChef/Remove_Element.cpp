@@ -1,6 +1,6 @@
-// File Name: PotatoDB_v_1_0.cpp
-// Date: 2025-08-20
-// Time: 04:11:42
+// File Name: Remove_Element.cpp
+// Date: 2025-08-18
+// Time: 22:22:47
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,52 +53,32 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-ll digitSum(ll n)
-{
-    n = abs(n);
-    ll sum = 0;
-    while (n)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
 int main()
 {
     fastio;
-    map<ll, ll> mp;
-    vll sum(1000000, 0);
-    ll total  = 0;
-    While(T)
+    While(t)
     {
-        char a;
-        ll n;
-        cin >> a >> n;
+        ll n, k;
+        cin >> n >> k;
 
-        if (a == 'A')
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+
+        if (n == 1)
         {
-            mp[n]++;
-            ll x = digitSum(n);
-            sum[x]++;
-            total++;
-            cout << total << endl;
+            cout << yes << endl;
+            continue;
         }
-        else if (a == 'D')
+        sort_all(v);
+
+        if (v[0] + v[n - 1] <= k)
         {
-            if (mp[n] != 0)
-            {
-                mp[n]--;
-                ll x = digitSum(n);
-                sum[x]--;
-                total--;
-            }
-            cout <<total<< endl;
+            cout << yes << endl;
         }
-        else if (a == 'S')
+        else
         {
-            cout << sum[n] << endl;
+            cout << no << endl;
         }
     }
     return 0;

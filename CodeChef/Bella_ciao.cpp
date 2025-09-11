@@ -1,6 +1,6 @@
-// File Name: PotatoDB_v_1_0.cpp
-// Date: 2025-08-20
-// Time: 04:11:42
+// File Name: Bella_ciao.cpp
+// Date: 2025-08-18
+// Time: 17:48:00
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,53 +53,36 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-ll digitSum(ll n)
-{
-    n = abs(n);
-    ll sum = 0;
-    while (n)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
 int main()
 {
     fastio;
-    map<ll, ll> mp;
-    vll sum(1000000, 0);
-    ll total  = 0;
-    While(T)
+    While(t)
     {
-        char a;
-        ll n;
-        cin >> a >> n;
+        ll a, b, c, d;
+        cin >> a >> b >> c >> d;
 
-        if (a == 'A')
-        {
-            mp[n]++;
-            ll x = digitSum(n);
-            sum[x]++;
-            total++;
-            cout << total << endl;
-        }
-        else if (a == 'D')
-        {
-            if (mp[n] != 0)
-            {
-                mp[n]--;
-                ll x = digitSum(n);
-                sum[x]--;
-                total--;
-            }
-            cout <<total<< endl;
-        }
-        else if (a == 'S')
-        {
-            cout << sum[n] << endl;
-        }
+        ll first = (b * c);
+
+        ll x = a / b;
+
+        // diff
+        ll prev = b * c;
+        ll next = b * (c + d); // debug(next);
+        ll diff = next - prev;
+
+        ll last = first + (x - 1) * diff; // debug(first);debug(last);
+
+        ll total;
+        if (x % 2 == 0)
+            total = (x / 2) * (first + last);
+        else
+            total = x * ((first + last) / 2);
+
+        ll baki = a % b;
+
+        ll temp = (c + (x * d)) * (baki);
+        total = total + temp;
+        cout << total << endl;
     }
     return 0;
 }

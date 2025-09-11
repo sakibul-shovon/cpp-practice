@@ -1,6 +1,6 @@
-// File Name: PotatoDB_v_1_0.cpp
-// Date: 2025-08-20
-// Time: 04:11:42
+// File Name: Plusle_and_Minun_on_Array.cpp
+// Date: 2025-08-18
+// Time: 19:42:31
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,53 +53,35 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-ll digitSum(ll n)
-{
-    n = abs(n);
-    ll sum = 0;
-    while (n)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
 int main()
 {
     fastio;
-    map<ll, ll> mp;
-    vll sum(1000000, 0);
-    ll total  = 0;
     While(T)
     {
-        char a;
         ll n;
-        cin >> a >> n;
+        cin >> n;
+        vll jog, biyog;
 
-        if (a == 'A')
+        for (ll i = 0; i < n; i++)
         {
-            mp[n]++;
-            ll x = digitSum(n);
-            sum[x]++;
-            total++;
-            cout << total << endl;
+            ll x;
+            cin >> x;
+            if (i % 2 == 0)
+                jog.pb(abs(x));
+            else
+                biyog.pb(abs(x));
         }
-        else if (a == 'D')
+
+        sort_all(jog);
+        sort(biyog.rbegin(), biyog.rend());//autoLoop(jog);line;autoLoop(biyog);
+
+        if (!jog.empty() and !biyog.empty() and biyog[0] > jog[0])
         {
-            if (mp[n] != 0)
-            {
-                mp[n]--;
-                ll x = digitSum(n);
-                sum[x]--;
-                total--;
-            }
-            cout <<total<< endl;
+            swap(jog[0], biyog[0]);
         }
-        else if (a == 'S')
-        {
-            cout << sum[n] << endl;
-        }
+
+        ll ans = (total(jog) - total(biyog));
+        cout << ans << endl;
     }
     return 0;
 }

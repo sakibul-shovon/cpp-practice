@@ -1,0 +1,29 @@
+// ফ্যাক্টোরিয়াল বের করার ফাংশন
+long long factorial(int n)
+{
+    long long result = 1;
+    for (int i = 2; i <= n; ++i) {
+        result = (result * i) % MOD;
+    }
+    return result;
+}
+
+// মডুলার এক্সপোনেন্টিয়েশন ফাংশন
+long long mod_exp(long long base, long long exp, long long mod)
+{
+    long long result = 1;
+    while (exp > 0) {
+        if (exp % 2 == 1) {
+            result = (result * base) % mod;
+        }
+        base = (base * base) % mod;
+        exp /= 2;
+    }
+    return result;
+}
+
+// মডুলার ইনভার্স বের করার ফাংশন
+long long mod_inverse(long long n, long long mod)
+{
+    return mod_exp(n, mod - 2, mod);  // ফারম্যাটের ছোট থিওরেম ব্যবহার হচ্ছে এখানে
+}
