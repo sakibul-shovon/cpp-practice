@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: C_1_No_Cost_Too_Great_Easy_Version.cpp
+// Date: 2025-10-20
+// Time: 21:07:25
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -81,24 +81,115 @@ ll binPowMod(ll n, ll p, ll m)
 int dRow[] = {-1, 0, 1, 0};
 int dCol[] = {0, 1, 0, -1};
 
+const ll N = 200005;
+ll smallestPrime[N + 1];
+// s[i] = i number er sob ceye soto prime future_category
+
+void preComputerSmallestPrime()
+{
+    for (ll i = 2; i <= N; ++i)
+    {
+        if (smallestPrime[i] == 0)
+        {
+            // 2 4 6 .... er smallprime = 2;
+            for (ll j = 1; i * j <= N; ++j)
+            {
+                if (smallestPrime[i * j] == 0)
+                {
+                    smallestPrime[i * j] = i;
+                }
+            }
+        }
+    }
+}
+
+// prime fact function
+//  kono number er sob unique prime fact set e return kore
+//  12 = 2^2*3 -> 2 and 3
+
+set<ll> getPrimeFactor(ll num)
+{
+    set<ll> primes;
+
+    while (num > 1)
+    {
+        ll smallPrime = smallestPrime[num];
+        primes.insert(smallPrime);
+
+        while (num % smallPrime == 0)
+        {
+            num = num / smallPrime;
+        }
+    }
+
+    return primes;
+}
+
+void solve()
+{
+    ll n;
+    cin >> n;
+    vll first(n), second(n);
+    for (ll i = 0; i < n; i++)
+        cin >> first[i];
+    for (ll i = 0; i < n; i++)
+        cin >> second[i];
+
+    // x prime koto gula sonkhar vitor ache tar count
+    // mp[2] = 3 mane prime 2 ,3ta sonkhar vitor ache'
+
+    map<ll, ll> primeCount;
+
+    // sob element er prime factor ber kori
+
+    for (ll i = 0; i < n; i++)
+    {
+        set<ll> st = getPrimeFactor(first[i]);
+        // first[i] = 6hole st te return hobe 2 3
+        for (auto it : st)
+        {
+            primeCount[it]++;
+        }
+    }
+    // for 0
+    for (auto it : primeCount)
+    {
+        ll prime = it.first;
+        ll count = it.second;
+
+        if (count >= 2)
+        {
+            cout << 0 << endl;
+            return;
+        }
+    }
+
+    // eibar check debo 1 kina
+    // 1 er jonno prottekta value +1 kore dekhbo primecount konotar 2 hoi kina
+
+    for (ll i = 0; i < n; i++)
+    {
+        ll newVal = first[i] + 1;
+        set<ll> tempSt = getPrimeFactor(newVal);
+
+        for (auto it : tempSt)
+        {
+            if (primeCount[it] > 0)
+            {
+                cout << 1 << endl;
+                return;
+            }
+        }
+    }
+    cout << 2 << endl;
+}
 int main()
 {
     fastio;
+    preComputerSmallestPrime();
     While(T)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
-        {
-            st.insert(s[i]);
-            cnt += st.size();
-        }
-        cout << cnt << endl;
+        solve();
     }
     return 0;
 }

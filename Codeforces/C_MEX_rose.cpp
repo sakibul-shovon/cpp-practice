@@ -1,7 +1,3 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -84,21 +80,29 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    int T;
+    in(T);
+    while (T--)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
+        int n, k;
+        in2(n, k);
+        vint freq(n + 1, 0);
+        For(0, n)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            int val;
+            in(val);
+            if (val >= 0 && val <= n)
+                freq[val]++;
         }
-        cout << cnt << endl;
+        int missing = 0;
+        For(0, k) if (freq[i] == 0) missing++;
+        int cntk = (k <= n ? freq[k] : 0);
+        int ans;
+        if (cntk == 0)
+            ans = missing;
+        else
+            ans = max(missing, cntk);
+        out(ans) line;
     }
     return 0;
 }

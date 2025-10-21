@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: Unreachable.cpp
+// Date: 2025-09-24
+// Time: 21:28:02
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,58 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    While(t)
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        vll v(n);
+        bool check1 = true;
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> v[i];
+            if (v[i] != 1) check1 = false;
         }
-        cout << cnt << endl;
+
+        if (check1)
+        {
+            cout << "No"<<endl;
+            continue;
+        }
+
+        bool oneE = false, oneO = false;
+        for (ll i = 0; i < n; i++)
+        {
+            if (v[i] == 1)
+            {
+                if (i % 2 == 0) oneE = true;
+                else oneO = true;
+            }
+        }
+
+        bool check = false;
+        for (ll i = 0; i < n; i++)
+        {
+            if (v[i] == 2)
+            {
+                if (i % 2 == 0)
+                {
+                    if (!oneE) check = true;
+                }
+                else
+                {
+                    if (!oneO) check = true;
+                }
+            }
+        }
+
+        if (check)
+        {
+            cout << "Yes"<<endl;
+        }
+        else
+        {
+            cout << "No"<<endl;
+        }
     }
     return 0;
 }

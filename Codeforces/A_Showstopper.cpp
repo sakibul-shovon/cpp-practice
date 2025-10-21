@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Showstopper.cpp
+// Date: 2025-10-03
+// Time: 00:22:20
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,52 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    While(t)
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
+        vll first(n), second(n);
 
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> first[i];
         }
-        cout << cnt << endl;
+
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> second[i];
+        }
+       
+
+        for (ll i = 0; i < n; i++)
+        {
+            if (first[i] > first[n - 1])
+            {
+                swap(first[i], second[i]);
+            }
+            else if (second[i] > second[n - 1])
+            {
+                swap(first[i], second[i]);
+            }
+        }
+        // autoLoop(first);
+        // line;
+        // autoLoop(second);
+        // line;line;
+        bool check = true;
+        for(ll i=0;i<n-1;i++)
+        {
+            if(first[i]>first[n-1]) check = false;
+            if(second[i]>second[n-1]) check = false;
+        }
+        if(check)
+        {
+            cout<<"Yes"<<endl;
+        }else{
+            cout<<"No"<<endl;
+        }
+
+        
     }
     return 0;
 }

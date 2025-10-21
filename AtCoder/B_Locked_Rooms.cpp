@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: B_Locked_Rooms.cpp
+// Date: 2025-09-14
+// Time: 18:32:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,39 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    ll n;
+    cin >> n;
+    vll v(n);
+    for (ll i = 0; i < n; i++)
+        cin >> v[i];
+    ll first = 0, last = n;
+    for (ll i = 0; i < n; i++)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
+        if (v[i] == 0)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            first = i + 1;
         }
-        cout << cnt << endl;
+        else
+        {
+            break;
+        }
     }
+    for (ll i = n - 1; i >= 0; i--)
+    {
+        if (v[i] == 0)
+        {
+            last = i;
+        }else{
+            break;
+        }
+    }
+    // debug(first);
+    // debug(last);
+    ll ans = 0;
+    if (last > first)
+    {
+        ans = last - first - 1;
+    }
+    cout << ans << endl;
     return 0;
 }

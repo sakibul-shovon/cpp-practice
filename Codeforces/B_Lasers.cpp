@@ -1,6 +1,6 @@
-// File Name: E_E.cpp
-// Date: 2025-09-29
-// Time: 15:51:21
+// File Name: B_Lasers.cpp
+// Date: 2025-09-14
+// Time: 02:48:24
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,19 +59,19 @@ ll binPowMod(ll n, ll p, ll m) { n %= m; return p == 0 ? 1 : (p % 2 == 0 ? binPo
 int dRow[] = { -1, 0, 1, 0 };
 int dCol[] = { 0, 1, 0, -1 };
 
-struct team{
-    string name;
-    int id;
-    ll time;
-    string verdict;
-};
 int main()
 {
     fastio;
-    team testTeam;
-    testTeam.name = "Testers";
-    testTeam.id = 1;
-    testTeam.time = 12345;
-    testTeam.verdict = "Accepted";
+    While(t)
+    {
+        ll n,m,x,y;cin>>n>>m>>x>>y;
+        for(ll i=0;i<n;i++){
+            ll x;cin>>x;
+        }
+        for(ll i=0;i<m;i++){
+            ll x;cin>>x;
+        }
+        cout<<n+m<<endl;
+    }
     return 0;
 }

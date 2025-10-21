@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: Cab_Rides.cpp
+// Date: 2025-09-10
+// Time: 20:45:43
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -11,12 +11,12 @@ using namespace std;
     cout.tie(0)
 #define ll long long int
 #define vint vector<int>
-#define vll vector<long long int>
+#define vll vector<ll>
 #define vstring vector<string>
 #define pb push_back
 #define maxVecElement(a) (*max_element(all(a)))
 #define minVecElement(a) (*min_element(all(a)))
-#define bin_sc(a, x) binary_search(all(a), x) // 0/1
+#define bin_sc(a, x) binary_search(all(a), x)
 #define PI 3.141592653589793238462
 #define mod 1000000007
 #define inf 1e18
@@ -25,17 +25,17 @@ using namespace std;
 #define nCr(n, r) nCr(n, r)
 #define nPr(n, r) nPr(n, r)
 #define total(v) accumulate(v.begin(), v.end(), 0)
-#define decimal(n) cout << fixed << setprecision(n);
-#define And &&
-#define Or ||
-#define no cout << "NO";
-#define yes cout << "YES";
-#define For(a, n) for (int i = a; i < n; i++)
-#define ForRev(a, b) for (int i = a; i > b; i--)
+#define decimal(n) cout << fixed << setprecision(n)
+#define While(n) \
+    int t;       \
+    cin >> t;    \
+    while (t--)
+#define For(i, a, b) for (int i = a; i < b; i++)
+#define Rev(i, a, b) for (int i = a; i > b; i--)
 #define nested_incr_loop(a, b) for (int j = a; j < b; j++)
 #define nested_decr_loop(a, b) for (int j = b; j > a; j--)
-#define pqb priority_queue<int>
-#define pqs priority_queue<int, vi, greater<int>>
+#define pqb priority_queue<ll>
+#define pqs priority_queue<ll, vll, greater<ll>>
 #define gcd(a, b) __gcd(a, b)
 #define all(x) x.begin(), x.end()
 #define space cout << ' ';
@@ -52,10 +52,6 @@ using namespace std;
     for (int u : x) \
         cout << u << ' ';
 #define debug(x) cout << #x << " " << x << endl;
-#define While(n) \
-    int t;       \
-    cin >> t;    \
-    while (t--)
 #define WhileVecInput(v, n) \
     while (n--)             \
     {                       \
@@ -88,17 +84,36 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
 
-        for (ll i = 0; i < n; i++)
+        ll x = n / 4;
+        ll y = n % 4;
+        ll ans = 0;
+
+        if (y == 0)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            ans = x * 400;
         }
-        cout << cnt << endl;
+        else if (y == 1)
+        {
+            if (x >= 1)
+            {
+                ans = (x - 1) * 400 + 500;
+            }
+            else
+            {
+                ans = 200;
+            }
+        }
+        else if (y == 2)
+        {
+            ans = x * 400 + 200;
+        }
+        else
+        {
+            ans = x * 400 + 300;
+        }
+
+        cout << ans << endl;
     }
     return 0;
 }

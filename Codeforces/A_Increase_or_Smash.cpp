@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Increase_or_Smash.cpp
+// Date: 2025-10-03
+// Time: 20:41:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,20 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        vll v(n);
+        set<ll>st;
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> v[i];
+            st.insert(v[i]);
         }
-        cout << cnt << endl;
+       
+        if(n == 1)
+        {
+            cout<<1<<endl;continue;
+        }else{
+            cout<<(st.size()*2) - 1<<endl;
+        }
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: E_E.cpp
-// Date: 2025-09-29
-// Time: 15:51:21
+// File Name: B_Unconventional_Pairs.cpp
+// Date: 2025-09-25
+// Time: 20:46:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,19 +59,24 @@ ll binPowMod(ll n, ll p, ll m) { n %= m; return p == 0 ? 1 : (p % 2 == 0 ? binPo
 int dRow[] = { -1, 0, 1, 0 };
 int dCol[] = { 0, 1, 0, -1 };
 
-struct team{
-    string name;
-    int id;
-    ll time;
-    string verdict;
-};
 int main()
 {
     fastio;
-    team testTeam;
-    testTeam.name = "Testers";
-    testTeam.id = 1;
-    testTeam.time = 12345;
-    testTeam.verdict = "Accepted";
+    ll T;
+    cin >> T;
+    while(T--)
+    {
+        ll n;cin>>n;
+        vll v(n);
+        for(ll i=0;i<n;i++) cin>>v[i];
+        sort_all(v);
+        //autoLoop(v);line;
+        ll maxx = 0;
+        for(ll i=0;i<n-1;i=i+2)
+        {
+            maxx = max(maxx, abs(v[i]-v[i+1]));
+        }
+        cout<<maxx<<endl;
+    }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: C_Quests.cpp
+// Date: 2025-10-19
+// Time: 23:43:18
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -86,19 +86,39 @@ int main()
     fastio;
     While(T)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        ll n, k;
+        cin >> n >> k;
+        vll first(n), second(n);
+        vll prefix(n);
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> first[i];
+            if (i == 0)
+            {
+                prefix[i] = first[i];
+            }
+            else
+            {
+                prefix[i] = prefix[i - 1] + first[i];
+            }
         }
-        cout << cnt << endl;
+        for (ll i = 0; i < n; i++)
+            cin >> second[i];
+
+        ll maxx = -1;
+        ll count = 0;
+        for (ll i = 0; i < min(n, k); i++)
+        {
+            ll temp = prefix[i];
+            ll cnt = i + 1;
+            ll baki = k - cnt;
+            maxx = max(maxx, second[i]);
+            temp += maxx * baki;
+            count = max(count, temp);
+            //debug(temp);
+        }
+       
+        cout << count << endl;
     }
     return 0;
 }

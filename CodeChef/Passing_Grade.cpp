@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: Passing_Grade.cpp
+// Date: 2025-09-10
+// Time: 20:33:36
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,17 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        // ll first;cin>>first;
+        vll v(n);
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> v[i];
         }
-        cout << cnt << endl;
+        ll first = v[0];
+        sort_all(v);
+        //autoLoop(v);
+        ll ans = v.end() - lower_bound(all(v), first);
+        cout << ans << endl;
     }
     return 0;
 }

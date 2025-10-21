@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Sum_of_Three.cpp
+// Date: 2025-10-07
+// Time: 02:31:07
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,31 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
+        bool check = false;
+        for (ll i = 1; i <= n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            if (i % 3 == 0)
+                continue;
+            for (ll j = i + 1; j <= n; j++)
+            {
+                if (j % 3 == 0)
+                    continue;
+                ll k = n - (i + j);
+                if (k > 0 and k % 3 != 0 and k != i and k != j)
+                {
+                    cout << "YES" << endl;
+                    cout << i << ' ' << j << ' ' << k << endl;
+                    check = true;
+                    break;
+                }
+            }
+            if (check)
+                break;
         }
-        cout << cnt << endl;
+        if (!check)
+        {
+            cout << "NO" << endl;
+        }
     }
     return 0;
 }

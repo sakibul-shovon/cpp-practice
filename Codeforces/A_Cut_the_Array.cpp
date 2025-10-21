@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Cut_the_Array.cpp
+// Date: 2025-09-15
+// Time: 20:53:18
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,47 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        vll v(n);
         for (ll i = 0; i < n; i++)
+            cin >> v[i];
+        vll pref(n, 0);
+        pref[0] = v[0];
+        for (ll i = 1; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            pref[i] = pref[i - 1] + v[i];
         }
-        cout << cnt << endl;
+
+        bool check = false;
+        ll first = 0, second = 0;
+        for (ll l = 0; l < n - 2 and !check; l++)
+        {
+            for (ll r = l + 1; r < n - 1 and !check; r++)
+            {
+                ll s1 = pref[l] % 3;
+                ll s2 = (pref[r] - pref[l]) % 3;
+                ll s3 = (pref[n - 1] - pref[r]) % 3;
+
+                if (s1 == s2 and s2 == s3)
+                {
+                    first = l + 1;
+                    second = r + 1;
+                    check = true;
+                    break;
+                }
+
+                if (s1 != s2 and s2 != s3 and s1 != s3)
+                {
+                    first = l + 1;
+                    second = r + 1;
+                    check = true;
+                    break;
+                }
+            }
+        }
+        if (check)
+            cout << first << " " << second << endl;
+        else
+            cout << "0 0" << endl;
     }
     return 0;
 }

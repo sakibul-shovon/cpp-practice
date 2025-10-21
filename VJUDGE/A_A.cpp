@@ -68,23 +68,17 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-int main()
-{
+int X, Y;
+    cin >> X >> Y;
 
-    fastio;
-    While(t)
-    {
-        ll n;
-        cin >> n;
-        if (n >= 67 and n <= 45000)
-        {
-            cout << "YES" << endl;
-        }
-        else
-        {
-            cout << "NO" << endl;
-        }
-    }
+    // Chef watches first Y minutes at 2x speed -> takes Y/2 time
+    int time_first_part = Y / 2;
 
+    // Remaining part watched at normal speed
+    int time_remaining = X - Y;
+
+    // Total time spent
+    int total_time = time_first_part + time_remaining;
+
+    cout << total_time << endl;
     return 0;
-}

@@ -1,6 +1,6 @@
-// File Name: E_E.cpp
-// Date: 2025-09-29
-// Time: 15:51:21
+// File Name: B_Bitwise_Reversion.cpp
+// Date: 2025-10-10
+// Time: 20:57:04
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,19 +59,23 @@ ll binPowMod(ll n, ll p, ll m) { n %= m; return p == 0 ? 1 : (p % 2 == 0 ? binPo
 int dRow[] = { -1, 0, 1, 0 };
 int dCol[] = { 0, 1, 0, -1 };
 
-struct team{
-    string name;
-    int id;
-    ll time;
-    string verdict;
-};
 int main()
 {
     fastio;
-    team testTeam;
-    testTeam.name = "Testers";
-    testTeam.id = 1;
-    testTeam.time = 12345;
-    testTeam.verdict = "Accepted";
+    While(T)
+    {
+        ll x,y,z;cin>>x>>y>>z;
+        ll a = x & y;
+        ll b = y&z;
+        ll c = x &z;
+
+        if(a== b and b == c and a == c)
+        {
+            cout<<"YES"<<endl;
+        }else{
+            cout<<"NO"<<endl;
+        }
+        //cout<<a<<' '<<b<<' '<<c<<endl;
+    }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Equal_Occurrences.cpp
+// Date: 2025-09-21
+// Time: 20:38:13
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,45 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    While(t)
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        map<ll, ll> mp;
+        vll v(n);
+        ll minn = inf;
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> v[i];
+            mp[v[i]]++;
+            minn = min(minn, mp[v[i]]);
         }
-        cout << cnt << endl;
+
+        // for (auto it : mp)
+        //     cout << it.first << " " << it.second << endl;
+
+        ll maxx = -1;
+        for (auto it : mp)
+        {
+            ll x = it.second;
+            ll count = it.second;
+            for (auto it2 : mp)
+            {
+                if (it.first == it2.first)
+                {
+                    
+                    continue;
+                }
+                else if (it2.second >= it.second)
+                {
+                    // debug(it.second);
+                    // debug(it2.second);
+                    count += it.second;
+                }
+            }
+            maxx = max(count, maxx);
+        }
+        cout << maxx << endl;
     }
     return 0;
 }

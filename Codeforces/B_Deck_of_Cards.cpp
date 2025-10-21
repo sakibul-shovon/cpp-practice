@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: B_Deck_of_Cards.cpp
+// Date: 2025-10-06
+// Time: 20:57:17
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -86,19 +86,60 @@ int main()
     fastio;
     While(T)
     {
-        ll n;
-        cin >> n;
+        ll n, k;
+        cin >> n >> k;
         string s;
         cin >> s;
-        ll cnt = 0;
-        set<ll> st;
 
-        for (ll i = 0; i < n; i++)
+        ll zero = 0, one = 0, two = 0;
+        for (ll i = 0; i < s.length(); i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            if (s[i] == '0')
+            {
+                zero++;
+            }
+            else if (s[i] == '1')
+            {
+                one++;
+            }
+            else if (s[i] == '2')
+            {
+                two++;
+            }
         }
-        cout << cnt << endl;
+
+        string ans(n, '?');
+
+        for (ll i = 0; i < zero and i < n; i++)
+        {
+            ans[i] = '-';
+        }
+
+        for (ll i = n - one; i < n; i++)
+        {
+            ans[i] = '-';
+        }
+
+        if (k == n)
+        {//sob index operaiton
+            ans = string(n, '-');
+        }
+        else
+        {
+            ll top = zero + two;
+            ll bottom = one + two;
+
+            for (ll i = 0; i < n; i++)
+            {
+                ll x = i + 1;
+                if (x > top and x <= n - bottom)
+                {
+                    ans[i] = '+';
+                }
+            }
+        }
+
+        cout << ans << endl;
     }
     return 0;
 }

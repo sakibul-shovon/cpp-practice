@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: Triplet_Maximization.cpp
+// Date: 2025-09-24
+// Time: 20:51:26
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,49 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    While(t)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
+        ll a, b;
+        cin >> a >> b;
+        if (a == 0)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cout << ceil(b / 3) * 2 << endl;
         }
-        cout << cnt << endl;
+        else if (b == 0)
+        {
+            cout << ceil(a / 3) << endl;
+        }
+        else
+        {
+            ll count = 0 ;
+            //max 1 nibo
+            while(true)
+            {
+                if(a >= 2 and b>0)
+                {
+                    count+=2;
+                    a = a-2;
+                    b= b-1;
+                }
+                else{
+                    break;
+                }
+
+            }
+       
+            if(a == 0) {
+                count+= ceil(b / 3) * 2;
+            }else if(b==0){
+                count+=ceil(a / 3);
+            }
+           else{
+                count+=2;
+                b  = b-2;
+                count+=ceil(b / 3) * 2;
+                
+           }
+           cout<<count<<endl;
+        }
     }
     return 0;
 }

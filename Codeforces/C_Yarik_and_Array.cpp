@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: C_Yarik_and_Array.cpp
+// Date: 2025-10-21
+// Time: 02:51:20
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,26 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        vll v(n);
         for (ll i = 0; i < n; i++)
+            cin >> v[i];
+
+        ll ans = v[0];
+        ll cur = v[0];
+        for (ll i = 1; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+
+            if ((v[i] % 2 == 0 and v[i - 1] % 2 == 0) or (v[i] % 2 != 0 and v[i - 1] % 2 != 0))
+            {
+                cur = v[i];
+            }
+            else
+            {
+                cur = max(v[i], cur + v[i]);
+            }
+            ans = max(ans, cur);
         }
-        cout << cnt << endl;
+        cout << ans << endl;
     }
     return 0;
 }

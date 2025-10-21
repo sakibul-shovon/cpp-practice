@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: C_Monocarp_s_String.cpp
+// Date: 2025-10-09
+// Time: 03:46:37
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -90,15 +90,44 @@ int main()
         cin >> n;
         string s;
         cin >> s;
-        ll cnt = 0;
-        set<ll> st;
+        ll A = count(all(s), 'a');
+        ll B = n - A;
+        ll extraA = A - B;
+      
 
+        ll cnt = 0;
+        if (A == B)
+        {
+            cout << 0 << endl;
+            continue;
+        }
+
+        ll ans = LLONG_MAX;
+        unordered_map<ll, ll> mp;
+        mp[0] = -1;
+        bool test = false;
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            if (s[i] == 'a')
+                cnt++;
+            else
+                cnt--;
+            mp[cnt] = i;
+            ll x = cnt - extraA;
+            if (mp.count[x]) 
+            {   test = true;
+                ll check = mp[cnt] - mp[x];
+                ans = min(ans, check);
+            }
         }
-        cout << cnt << endl;
+        if (ans>=n)
+        {
+            cout << -1 << endl;
+        }
+        else
+        {
+            cout << ans << endl;
+        }
     }
     return 0;
 }

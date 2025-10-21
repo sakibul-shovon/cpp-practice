@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: B_Collecting_Game.cpp
+// Date: 2025-10-20
+// Time: 01:00:19
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,33 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
+        vll v(n);
         for (ll i = 0; i < n; i++)
+            cin >> v[i];
+        vll temp = v;
+        sort_all(temp);
+        vll prefix(n);
+        prefix[0] = temp[0];
+        for (ll i = 1; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            prefix[i] = prefix[i - 1] + temp[i];
+
         }
-        cout << cnt << endl;
+        // autoLoop(temp);line;
+        // autoLoop(prefix);line;
+        unordered_map<ll,ll> mp;
+        for(ll i=0;i<n;i++)
+        {
+            ll x = prefix[i];
+            ll index = upper_bound(all(temp),x) - temp.begin() - 1;
+            mp[temp[i]] = index;
+            //debug(index);
+        }
+        for(ll i=0;i<n;i++)
+        {
+            cout<<mp[v[i]]<<' ';
+        }
+        line;
     }
     return 0;
 }

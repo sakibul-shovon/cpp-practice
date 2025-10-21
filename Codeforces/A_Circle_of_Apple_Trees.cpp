@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Circle_of_Apple_Trees.cpp
+// Date: 2025-10-10
+// Time: 20:37:19
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,15 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
+        vll v(n + 1);
         set<ll> st;
 
         for (ll i = 0; i < n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> v[i];
+            st.insert(v[i]);
         }
-        cout << cnt << endl;
+        cout << st.size() << endl;
     }
     return 0;
 }

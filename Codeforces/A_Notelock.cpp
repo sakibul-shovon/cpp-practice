@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Notelock.cpp
+// Date: 2025-10-19
+// Time: 20:48:05
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -86,19 +86,37 @@ int main()
     fastio;
     While(T)
     {
-        ll n;
-        cin >> n;
+        ll n, k;
+        cin >> n >> k;
         string s;
         cin >> s;
-        ll cnt = 0;
-        set<ll> st;
 
-        for (ll i = 0; i < n; i++)
+        ll last = -1;
+        ll count = 0;
+
+        for(ll i=0;i<n;i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            if(s[i] == '1' and i ==0)
+            {
+                count++;
+                last = i;
+
+            }
+            else if(s[i] == '1')
+            {
+                if(last == -1){
+                    count++;
+                }
+            
+                else if(i > last+k-1)
+                {
+                    count++;
+                }
+                last = i;
+            }
+           
         }
-        cout << cnt << endl;
+        cout<<count<<endl;
     }
     return 0;
 }

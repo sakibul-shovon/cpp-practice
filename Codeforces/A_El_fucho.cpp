@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_El_fucho.cpp
+// Date: 2025-10-05
+// Time: 22:48:57
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -88,17 +88,13 @@ int main()
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
 
-        for (ll i = 0; i < n; i++)
-        {
-            st.insert(s[i]);
-            cnt += st.size();
-        }
-        cout << cnt << endl;
+        ll match = n-1;
+
+        ll newN = match ;
+        ll newMatch = newN -1;
+
+        cout<<match+newMatch+1<<endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: E_E.cpp
-// Date: 2025-09-29
-// Time: 15:51:21
+// File Name: Cute_Strings.cpp
+// Date: 2025-09-24
+// Time: 20:30:30
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -59,19 +59,12 @@ ll binPowMod(ll n, ll p, ll m) { n %= m; return p == 0 ? 1 : (p % 2 == 0 ? binPo
 int dRow[] = { -1, 0, 1, 0 };
 int dCol[] = { 0, 1, 0, -1 };
 
-struct team{
-    string name;
-    int id;
-    ll time;
-    string verdict;
-};
 int main()
 {
     fastio;
-    team testTeam;
-    testTeam.name = "Testers";
-    testTeam.id = 1;
-    testTeam.time = 12345;
-    testTeam.verdict = "Accepted";
+    string s;cin>>s;
+
+    if(s[0] == s[s.length()-1] and s[1] == 'w') cout<<"Cute"<<endl;
+    else cout<<"No"<<endl;
     return 0;
 }

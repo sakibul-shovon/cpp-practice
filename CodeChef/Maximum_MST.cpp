@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: Maximum_MST.cpp
+// Date: 2025-09-10
+// Time: 21:12:45
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -81,24 +81,40 @@ ll binPowMod(ll n, ll p, ll m)
 int dRow[] = {-1, 0, 1, 0};
 int dCol[] = {0, 1, 0, -1};
 
+void solve() {
+    ll n; cin >> n;
+    map<ll,ll> mp;
+
+    ll len = n * (n-1) / 2;
+
+    for(int i = 0; i < len; i++) {
+        ll x; cin >> x;
+        mp[x]++;
+    }
+
+    ll taken = 0, sum = 0;
+
+    for(auto it : mp) {
+        ll el = it.first;
+        ll cnt = it.second;
+
+        ll curTaken = min(n - taken - 1, cnt);
+
+        taken += curTaken;
+
+        // debug(curTaken);
+        // debug(taken);
+
+        sum += (curTaken * el);
+    }
+
+    cout << sum << endl;
+}
+
 int main()
 {
-    fastio;
-    While(T)
+    While(t)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
-        {
-            st.insert(s[i]);
-            cnt += st.size();
-        }
-        cout << cnt << endl;
+        solve();
     }
-    return 0;
 }

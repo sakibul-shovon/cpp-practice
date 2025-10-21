@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: B_Maximum_Cost_Permutation.cpp
+// Date: 2025-09-15
+// Time: 21:45:54
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,73 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    While(t)
     {
         ll n;
         cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
+        vll v(n + 1);
+        vector<bool> check(n + 1, false);
+        vll zero;
 
-        for (ll i = 0; i < n; i++)
+        for (ll i = 1; i <= n; i++)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            cin >> v[i];
+            if (v[i] != 0)
+            {
+                check[v[i]] = true;
+            }
+            else
+            {
+                zero.pb(i);
+            }
         }
-        cout << cnt << endl;
+
+        vll miss;
+        for (ll i = 1; i <= n; i++)
+        {
+            if (!check[i])
+            {
+                miss.pb(i);
+            }
+        }
+
+        sort_all(miss);
+        reverse(all(miss));
+
+        ll j = 0;
+        for (ll i = 0; i < zero.size(); i++)
+        {
+            ll pos = zero[i];
+            if (j < miss.size() && miss[j] == pos)
+            {
+                if (j + 1 < miss.size())
+                {
+                    swap(miss[j], miss[j + 1]);
+                }
+            }
+            v[pos] = miss[j++];
+        }
+
+        ll first = -1, last = -1;
+        for (ll i = 1; i <= n; i++)
+        {
+            if (v[i] != i)
+            {
+                if (first == -1)
+                    first = i;
+                last = i;
+            }
+        }
+
+        if (first == -1)
+        {
+            cout << 0 << endl;
+        }
+        else
+        {
+            ll cost = last - first + 1;
+            cout << cost << endl;
+        }
     }
     return 0;
 }

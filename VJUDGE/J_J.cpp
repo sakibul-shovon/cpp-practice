@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: J_J.cpp
+// Date: 2025-09-29
+// Time: 15:10:18
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,38 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
-    {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
+    ll n, k;
+    cin >> n >> k;
 
-        for (ll i = 0; i < n; i++)
+    vll v(k);
+    for (ll i = 0; i < k; i++)
+        cin >> v[i];
+
+    vll dp(n + 1, 0);
+    dp[0] = 0;
+    for (ll i = 0; i <= n; i++)
+    {
+        // debug(i);
+        if (dp[i] == 0)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            for (ll j = 0; j < k; j++)
+            {
+                if (i + v[j] <= n)
+                    dp[i + v[j]] = 1;
+            }
         }
-        cout << cnt << endl;
     }
+    for (ll i = 1; i <= n; i++)
+    {
+        if (dp[i] == 1)
+        {
+            cout << "W";
+        }
+        else
+        {
+            cout << "L";
+        }
+    }
+    line;
     return 0;
 }

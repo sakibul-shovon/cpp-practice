@@ -1,6 +1,6 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
+// File Name: A_Sublime_Sequence.cpp
+// Date: 2025-09-14
+// Time: 02:01:51
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,21 +84,11 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    While(T)
+    While(t)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
-        {
-            st.insert(s[i]);
-            cnt += st.size();
-        }
-        cout << cnt << endl;
+        ll a, b;
+        cin >> a >> b;
+        cout << (b % 2 == 0 ? 0 : a) << endl;
     }
     return 0;
 }

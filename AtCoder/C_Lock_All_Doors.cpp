@@ -1,7 +1,3 @@
-// File Name: B_Erase_First_or_Second_Letter.cpp
-// Date: 2025-10-11
-// Time: 02:48:16
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -16,7 +12,7 @@ using namespace std;
 #define pb push_back
 #define maxVecElement(a) (*max_element(all(a)))
 #define minVecElement(a) (*min_element(all(a)))
-#define bin_sc(a, x) binary_search(all(a), x) // 0/1
+#define bin_sc(a, x) binary_search(all(a), x)
 #define PI 3.141592653589793238462
 #define mod 1000000007
 #define inf 1e18
@@ -63,6 +59,7 @@ using namespace std;
         cin >> temp;        \
         v.push_back(temp);  \
     }
+
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
@@ -72,33 +69,81 @@ ll binPowMod(ll n, ll p, ll m)
     n %= m;
     return p == 0 ? 1 : (p % 2 == 0 ? binPowMod((n * n) % m, p / 2, m) : (n * binPowMod((n * n) % m, (p - 1) / 2, m)) % m);
 }
+
 #define read(v)                       \
     for (ll i = 0; i < v.size(); i++) \
         cin >> v[i];
 #define pairLoop(x)  \
     for (auto u : x) \
         cout << u.first << ' ' << u.second << endl;
+
 int dRow[] = {-1, 0, 1, 0};
 int dCol[] = {0, 1, 0, -1};
 
 int main()
 {
     fastio;
-    While(T)
+    ll n, k;
+    cin >> n >> k;
+    vll v(n + 1);
+    for (ll i = 1; i <= n; i++)
+        cin >> v[i];
+    
+    ll first = -1, last = -1;
+    for (ll i = 1; i <= n; i++)
     {
-        ll n;
-        cin >> n;
-        string s;
-        cin >> s;
-        ll cnt = 0;
-        set<ll> st;
-
-        for (ll i = 0; i < n; i++)
+        if (v[i] == 0)
         {
-            st.insert(s[i]);
-            cnt += st.size();
+            if (first == -1) first = i;
+            last = i;
         }
-        cout << cnt << endl;
     }
+    
+    if (first == -1)
+    {
+        cout << 0 << endl;
+        return 0;
+    }
+    
+    ll sum = 0;
+    for (ll i = first; i <= last; i++)
+    {
+        if (v[i] == 0)
+            sum++;
+    }
+    
+    if (k <= first)
+    {
+        for (ll i = first; i < last; i++)
+        {
+            if (v[i] == 1)
+                sum += 2;
+        }
+    }
+    else if (k >= last)
+    {
+        for (ll i = last; i > first; i--)
+        {
+            if (v[i] == 1)
+                sum += 2;
+        }
+    }
+    else
+    {
+        ll cost1 = 0, cost2 = 0;
+        for (ll i = first; i < last; i++)
+        {
+            if (v[i] == 1)
+                cost1 += 2;
+        }
+        for (ll i = last; i > first; i--)
+        {
+            if (v[i] == 1)
+                cost2 += 2;
+        }
+        sum += min(cost1, cost2);
+    }
+    
+    cout << sum << endl;
     return 0;
 }
