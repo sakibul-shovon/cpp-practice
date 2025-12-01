@@ -20,7 +20,7 @@ int main()
         cin >> n >> k;
 
         vector<ll> first(n), second(n);
-        ll maxx = -1, minn = inf;
+        ll maxx = -1, minn = check;
 
         for (ll i = 0; i < n; i++)
         {

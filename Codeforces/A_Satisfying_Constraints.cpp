@@ -64,7 +64,7 @@ int main()
         ll n;
         cin >> n;
         vector<ll> v;
-        ll maxx = inf, minn = LLONG_MIN;
+        ll maxx = check, minn = LLONG_MIN;
         ll t = 0;
         for (int i = 0; i < n; i++)
         {

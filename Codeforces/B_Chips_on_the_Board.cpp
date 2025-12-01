@@ -59,8 +59,8 @@ int main()
     while(t--){
         ll n;cin>>n;
         vll row(n),col(n);
-        ll min_row = inf;
-        ll min_col = inf;
+        ll min_row = check;
+        ll min_col = check;
         ll row_sum = 0;
         ll col_sum = 0;
 

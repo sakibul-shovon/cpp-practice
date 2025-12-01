@@ -1,6 +1,6 @@
 // File Name: B_Collecting_Game.cpp
-// Date: 2025-10-20
-// Time: 01:00:19
+// Date: 2025-11-28
+// Time: 02:44:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -89,32 +89,49 @@ int main()
         ll n;
         cin >> n;
         vll v(n);
+        vll pref(n, 0);
         for (ll i = 0; i < n; i++)
+        {
             cin >> v[i];
-        vll temp = v;
-        sort_all(temp);
-        vll prefix(n);
-        prefix[0] = temp[0];
-        for (ll i = 1; i < n; i++)
+        }
+        vll first = v;
+        sort_all(first);
+        for (ll i = 0; i < n; i++)
         {
-            prefix[i] = prefix[i - 1] + temp[i];
+            if (i == 0)
+                pref[i] = first[i];
+            else
+                pref[i] = pref[i - 1] + first[i];
+        }
+        sort_all(first);
+        // autoLoop(v);line;
+        // autoLoop(first);
+        // line;
+        // autoLoop(pref);
+        // line;
+        vll ans;
 
-        }
-        // autoLoop(temp);line;
-        // autoLoop(prefix);line;
-        unordered_map<ll,ll> mp;
         for(ll i=0;i<n;i++)
         {
-            ll x = prefix[i];
-            ll index = upper_bound(all(temp),x) - temp.begin() - 1;
-            mp[temp[i]] = index;
-            //debug(index);
+            ll x = v[i];
+            while(true)
+            {
+                //debug(x);
+                ll ub = upper_bound(all(first),x) - first.begin()-1;
+                //debug(ub);
+                
+                ll check = pref[ub];//debug(check);
+                if(pref[ub] > first[ub+1]){
+                    x = pref[ub];
+                }else{
+                    //debug(ub);
+                    ans.pb(ub);break;
+                }
+                
+            }//line;
+            
         }
-        for(ll i=0;i<n;i++)
-        {
-            cout<<mp[v[i]]<<' ';
-        }
-        line;
+        autoLoop(ans);line;
     }
     return 0;
 }

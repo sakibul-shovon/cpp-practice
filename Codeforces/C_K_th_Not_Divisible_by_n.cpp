@@ -89,7 +89,7 @@ int main()
         ll a,b;cin>>a>>b;
         ll count = 0 ;
 
-        for(ll i = 1 ; i<=inf;i++){
+        for(ll i = 1 ; i<=check;i++){
 
             if(i % a != 0 ){
                 count++;

@@ -90,7 +90,7 @@ int main()
         cin >> n;
         map<ll, ll> mp;
         vll v(n);
-        ll minn = inf;
+        ll minn = check;
         for (ll i = 0; i < n; i++)
         {
             cin >> v[i];

@@ -1,0 +1,1 @@
+{"name":"Local: b","url":"c:\\Users\\Rider\\Desktop\\Code\\cpp-practice\\Random Contest\\NEUB ICT Fest\\b.cpp","tests":[{"id":1762888916842,"input":"1\n5 2\n5 2 3 7 1\n1\n5\n","output":"7\n18"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Rider\\Desktop\\Code\\cpp-practice\\Random Contest\\NEUB ICT Fest\\b.cpp","group":"local","local":true}

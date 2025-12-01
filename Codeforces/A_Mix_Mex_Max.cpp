@@ -91,13 +91,13 @@ bool can_be_good(int a[], int n) {
         for (int x = 0; x <= 4; x++) {
             for (int y = 0; y <= 4; y++) {
                 for (int z = 0; z <= 4; z++) {
-                    bool ok = true;
+                    bool check = true;
 
-                    if (t1 != -1 && t1 != x) ok = false;
-                    if (t2 != -1 && t2 != y) ok = false;
-                    if (t3 != -1 && t3 != z) ok = false;
+                    if (t1 != -1 && t1 != x) check = false;
+                    if (t2 != -1 && t2 != y) check = false;
+                    if (t3 != -1 && t3 != z) check = false;
 
-                    if (ok && is_good_triplet(x, y, z)) {
+                    if (check && is_good_triplet(x, y, z)) {
                         possible = true;
                         break;
                     }

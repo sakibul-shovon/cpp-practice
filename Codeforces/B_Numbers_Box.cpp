@@ -61,7 +61,7 @@ int main()
         ll n, m;
         cin >> n >> m;
 
-        ll minAbs = inf;  // Track minimum absolute value of all numbers
+        ll minAbs = check;  // Track minimum absolute value of all numbers
         ll countNeg = 0;
         ll sum = 0;
         

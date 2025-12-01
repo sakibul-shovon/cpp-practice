@@ -130,7 +130,7 @@ int main()
 
         ll a, b;
         cin >> a >> b;
-        ll ans = inf;
+        ll ans = check;
         bool check = 0;
         vll v;
         while (n--)

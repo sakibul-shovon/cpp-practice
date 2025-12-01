@@ -79,7 +79,7 @@ int main()
         cin >> v[i];
         prefix[i] = prefix[i - 1] + v[i];
     }
-    ll minn = inf;
+    ll minn = check;
     ll index = -1;
     if (v.size() == 1)
     {

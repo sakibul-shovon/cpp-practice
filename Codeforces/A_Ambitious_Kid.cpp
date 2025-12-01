@@ -61,7 +61,7 @@ int main()
 {
     fastio;
     ll n;cin>>n;
-    ll minn = inf ;
+    ll minn = check ;
     for(ll i = 0 ;i<n;i++){
         ll t;cin>>t;
 

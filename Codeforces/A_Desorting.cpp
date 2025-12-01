@@ -76,7 +76,7 @@ int main()
         ll n;
         cin >> n;
         vll v(n);
-        ll minn = inf;
+        ll minn = check;
         ll index;
         cin >> v[0];
         bool check = true;

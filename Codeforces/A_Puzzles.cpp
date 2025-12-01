@@ -61,7 +61,7 @@ int main()
     }
 
    sort_all(v);
-   ll minn = inf;
+   ll minn = check;
 
    for(ll i =0 ; i<= m - n ;i++){
 
