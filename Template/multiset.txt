@@ -1,0 +1,165 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    multiset<int> ms;
+    
+    cout << "========== INSERT - O(log n) ==========" << endl;
+    ms.insert(5);
+    ms.insert(2);
+    ms.insert(8);
+    ms.insert(2); // duplicate allowed
+    ms.insert(1);
+    ms.insert(10);
+    // ms = {1, 2, 2, 5, 8, 10} - automatically sorted
+    cout << "After insert: ";
+    for (auto x : ms) cout << x << " ";
+    cout << endl;
+    
+    
+    cout << "\n========== SIZE ==========" << endl;
+    cout << "Size: " << ms.size() << endl; // 6
+    
+    
+    cout << "\n========== FIND - O(log n) ==========" << endl;
+    auto it = ms.find(2);
+    if (it != ms.end()) {
+        cout << "Found 2: " << *it << " (first occurrence)" << endl;
+    } else {
+        cout << "Not found" << endl;
+    }
+    
+    auto it2 = ms.find(100);
+    if (it2 != ms.end()) {
+        cout << "Found 100" << endl;
+    } else {
+        cout << "100 Not found" << endl;
+    }
+    
+    
+    cout << "\n========== COUNT - O(log n + k) ==========" << endl;
+    cout << "Count of 2: " << ms.count(2) << endl; // 2
+    cout << "Count of 5: " << ms.count(5) << endl; // 1
+    cout << "Count of 100: " << ms.count(100) << endl; // 0
+    
+    
+    cout << "\n========== ERASE(ms.find(x)) - only 1 occurrence ==========" << endl;
+    ms.erase(ms.find(2)); // only 1 occurrence of 2 remove
+    cout << "After erase(ms.find(2)): ";
+    for (auto x : ms) cout << x << " "; // 1 2 5 8 10
+    cout << endl;
+    
+    
+    cout << "\n========== ERASE(x) - all occurrences ==========" << endl;
+    ms.insert(2);
+    ms.insert(2);
+    ms.insert(2);
+    // ms = {1, 2, 2, 2, 2, 5, 8, 10}
+    cout << "Before erase(2): ";
+    for (auto x : ms) cout << x << " ";
+    cout << endl;
+    
+    ms.erase(2); // all 2 remove hobe
+    cout << "After erase(2): ";
+    for (auto x : ms) cout << x << " "; // 1 5 8 10
+    cout << endl;
+    
+    
+    cout << "\n========== ADVANCE - O(n) ==========" << endl;
+    ms = {1, 3, 5, 7, 9, 11, 13};
+    cout << "Multiset: ";
+    for (auto x : ms) cout << x << " ";
+    cout << endl;
+    
+    // Index 0 element
+    auto adv0 = ms.begin();
+    advance(adv0, 0);
+    cout << "Element at index 0: " << *adv0 << endl; // 1
+    
+    // Index 2 element
+    auto adv2 = ms.begin();
+    advance(adv2, 2);
+    cout << "Element at index 2: " << *adv2 << endl; // 5
+    
+    // Index 4 element
+    auto adv4 = ms.begin();
+    advance(adv4, 4);
+    cout << "Element at index 4: " << *adv4 << endl; // 9
+    
+    // Median element
+    int mid = (ms.size() - 1) / 2;
+    auto advMid = ms.begin();
+    advance(advMid, mid);
+    cout << "Median element (index " << mid << "): " << *advMid << endl; // 7
+    
+    // Move backward
+    advance(advMid, -2); // 2 step back
+    cout << "After moving -2 from median: " << *advMid << endl; // 3
+    
+    
+    cout << "\n========== LOWER_BOUND - O(log n) ==========" << endl;
+    ms = {1, 3, 5, 5, 5, 7, 9};
+    cout << "Multiset: ";
+    for (auto x : ms) cout << x << " ";
+    cout << endl;
+    
+    auto lb1 = ms.lower_bound(5); // first element >= 5
+    cout << "Lower bound of 5: " << *lb1 << endl; // 5 (first occurrence)
+    
+    auto lb2 = ms.lower_bound(6); // first element >= 6
+    cout << "Lower bound of 6: " << *lb2 << endl; // 7
+    
+    auto lb3 = ms.lower_bound(0); // first element >= 0
+    cout << "Lower bound of 0: " << *lb3 << endl; // 1
+    
+    auto lb4 = ms.lower_bound(10); // first element >= 10
+    if (lb4 == ms.end()) {
+        cout << "Lower bound of 10: end() - not found" << endl;
+    }
+    
+    
+    cout << "\n========== UPPER_BOUND - O(log n) ==========" << endl;
+    auto ub1 = ms.upper_bound(5); // first element > 5
+    cout << "Upper bound of 5: " << *ub1 << endl; // 7
+    
+    auto ub2 = ms.upper_bound(3); // first element > 3
+    cout << "Upper bound of 3: " << *ub2 << endl; // 5
+    
+    auto ub3 = ms.upper_bound(9); // first element > 9
+    if (ub3 == ms.end()) {
+        cout << "Upper bound of 9: end() - not found" << endl;
+    }
+    
+    
+    cout << "\n========== FIRST & LAST ELEMENT ==========" << endl;
+    cout << "First element: " << *ms.begin() << endl; // 1
+    cout << "Last element: " << *ms.rbegin() << endl; // 9
+    
+    
+    cout << "\n========== EMPTY & CLEAR ==========" << endl;
+    cout << "Is empty? " << (ms.empty() ? "Yes" : "No") << endl; // No
+    ms.clear();
+    cout << "After clear, size: " << ms.size() << endl; // 0
+    cout << "Is empty? " << (ms.empty() ? "Yes" : "No") << endl; // Yes
+    
+    
+    cout << "\n========== EQUAL_RANGE ==========" << endl;
+    ms = {1, 2, 2, 2, 5, 8};
+    auto range = ms.equal_range(2);
+    cout << "Equal range of 2: ";
+    for (auto it = range.first; it != range.second; it++) {
+        cout << *it << " "; // 2 2 2
+    }
+    cout << endl;
+    
+    
+    cout << "\n========== REVERSE ITERATION ==========" << endl;
+    cout << "Reverse order: ";
+    for (auto it = ms.rbegin(); it != ms.rend(); it++) {
+        cout << *it << " "; // 8 5 2 2 2 1
+    }
+    cout << endl;
+    
+    return 0;
+}
