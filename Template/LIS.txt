@@ -1,0 +1,32 @@
+#include iostream
+#include vector
+#include algorithm
+
+using namespace std;
+
+ Longest Increasing Subsequence (LIS) এর length বের করার ফাংশন
+int lengthOfLIS(vectorint& arr) {
+    if (arr.empty()) return 0;
+
+    vectorint tails;
+
+    for (int x  arr) {
+        auto it = lower_bound(tails.begin(), tails.end(), x);
+
+        if (it == tails.end()) {
+            tails.push_back(x);
+        } else {
+            it = x;
+        }
+    }
+
+    return tails.size();
+}
+
+int main() {
+    vectorint nums = {10, 9, 2, 5, 3, 7, 101, 18};
+
+    cout  Length of LIS   lengthOfLIS(nums)  endl;
+
+    return 0;
+}
