@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers_II.cpp
-// Date: 2026-01-16
-// Time: 16:47:01
+// File Name: Layered_Cake.cpp
+// Date: 2026-01-21
+// Time: 20:38:37
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,57 +84,36 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    ll n, m;
-    cin >> n >> m;
-    vll v(n + 1), pos(n + 2);
-    pos[0] = 0;
-    pos[n + 1] = n + 1;
-
-    for (ll i = 1; i <= n; i++)
+    While(t--)
     {
-        cin >> v[i];
-        pos[v[i]] = i;
-    }
+        ll n, m;
+        cin >> n >> m;
 
-    ll round = 1;
-    for (ll i = 2; i <= n; i++)
-    {
-        if (pos[i] < pos[i - 1])
+        vector<ll> a(n), b(m);
+
+        for (ll i = 0; i < n; i++)
         {
-            round++;
+            cin >> a[i];
         }
+
+        for (ll i = 0; i < m; i++)
+        {
+            cin >> b[i];
+        }
+
+        sort_all(b);
+        // autoLoop(b);line;
+
+        ll cnt = 0;
+
+        for (ll i = 0; i < n; i++)
+        {
+            ll index = lower_bound(all(b), a[i]) - b.begin();
+            cnt += index;
+        }
+
+        cout << cnt << endl;
     }
 
-    while (m--)
-    {
-        ll i, j;
-        cin >> i >> j;
-
-        if (i > j)
-            swap(i, j);
-
-        ll x = v[i];
-        ll y = v[j];
-
-        if (pos[x + 1] > i and pos[x + 1] < j)
-            round++;
-        if (pos[x - 1] > i and pos[x - 1] < j)
-            round--;
-
-        if (pos[y + 1] > i and pos[y + 1] < j)
-            round--;
-        if (pos[y - 1] > i and pos[y - 1] < j)
-            round++;
-
-        if (x == y + 1)
-            round--;
-        if (x == y - 1)
-            round++;
-        cout << round << endl;
-
-        swap(v[i], v[j]);
-        pos[x] = j;
-        pos[y] = i;
-    }
     return 0;
 }

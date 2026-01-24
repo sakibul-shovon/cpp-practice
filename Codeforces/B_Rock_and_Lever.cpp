@@ -1,6 +1,6 @@
-// File Name: A_Array_Coloring.cpp
-// Date: 2026-01-17
-// Time: 20:37:58
+// File Name: B_Rock_and_Lever.cpp
+// Date: 2026-01-16
+// Time: 23:39:10
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -66,28 +66,23 @@ int main()
     {
         ll n;cin>>n;
         vll v(n);
-        vll index(n+1);
+        for(ll i=0;i<n;i++) cin>>v[i];
+        ll cnt = 0;
 
-        for(ll i=0;i<n;i++){
-            cin>>v[i];
-            index[v[i]] = i;
-        }
-
-        bool check = true;
-
-        for(ll i=1;i<n;i++)
+        for(ll i=29;i>=0;i--)
         {
-            if(index[i] % 2 == index[i+1] % 2)
+            ll calc = 0;
+            for(ll j=0;j<n;j++)
             {
-                check = false;break;
+                if(v[j] >= pow(2,i) and v[j] < pow(2,i+1))
+                {
+                    calc++;
+                }
             }
-        }
 
-        if(check){
-            cout<<"YES"<<endl;
-        }else{
-            cout<<"NO"<<endl;
+            cnt+= (calc*(calc-1))/2;
         }
+        cout<<cnt<<endl;
     }
     return 0;
 }

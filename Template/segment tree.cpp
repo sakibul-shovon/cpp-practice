@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers_II.cpp
-// Date: 2026-01-16
-// Time: 16:47:01
+// File Name: D_Swap_and_Range_Sum.cpp
+// Date: 2026-01-24
+// Time: 18:50:48
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -80,61 +80,97 @@ ll binPowMod(ll n, ll p, ll m)
         cout << u.first << ' ' << u.second << endl;
 int dRow[] = {-1, 0, 1, 0};
 int dCol[] = {0, 1, 0, -1};
+#define N 200005
+
+ll tree[4 * N];
+ll v[N];
+
+void build(ll node, ll b, ll e)
+{
+    if (b == e)
+    {
+        tree[node] = v[b];
+        return;
+    }
+    ll mid = (b + e) / 2;
+    ll left = 2 * node;
+    ll right = 2 * node + 1;
+    build(left, b, mid);
+    build(right, mid + 1, e);
+    tree[node] = tree[left] + tree[right];
+}
+
+void update(ll node, ll b, ll e, ll index, ll val)
+{
+    if (index < b || index > e)
+        return;
+    if (b == e)
+    {
+        tree[node] = val;
+        return;
+    }
+    ll mid = (b + e) / 2;
+    ll left = 2 * node;
+    ll right = 2 * node + 1;
+    update(left, b, mid, index, val);
+    update(right, mid + 1, e, index, val);
+    tree[node] = tree[left] + tree[right];
+}
+
+ll query(ll node, ll b, ll e, ll i, ll j)
+{
+    if (i > e || j < b)
+        return 0;
+    if (b >= i && e <= j)
+        return tree[node];
+
+    ll mid = (b + e) / 2;
+    ll left = 2 * node;
+    ll right = 2 * node + 1;
+
+    return query(left, b, mid, i, j) + query(right, mid + 1, e, i, j);
+}
 
 int main()
 {
     fastio;
-    ll n, m;
-    cin >> n >> m;
-    vll v(n + 1), pos(n + 2);
-    pos[0] = 0;
-    pos[n + 1] = n + 1;
+    ll n, q;
+    cin >> n >> q;
 
     for (ll i = 1; i <= n; i++)
-    {
         cin >> v[i];
-        pos[v[i]] = i;
-    }
 
-    ll round = 1;
-    for (ll i = 2; i <= n; i++)
+    build(1, 1, n);
+
+    while (q--)
     {
-        if (pos[i] < pos[i - 1])
+        ll type;
+        cin >> type;
+        if (type == 1)
         {
-            round++;
+            ll x;
+            cin >> x;
+            ll val1 = v[x];
+            ll val2 = v[x + 1];
+
+            update(1, 1, n, x, val2);
+            update(1, 1, n, x + 1, val1);
+
+            swap(v[x], v[x + 1]);
         }
-    }
-
-    while (m--)
-    {
-        ll i, j;
-        cin >> i >> j;
-
-        if (i > j)
-            swap(i, j);
-
-        ll x = v[i];
-        ll y = v[j];
-
-        if (pos[x + 1] > i and pos[x + 1] < j)
-            round++;
-        if (pos[x - 1] > i and pos[x - 1] < j)
-            round--;
-
-        if (pos[y + 1] > i and pos[y + 1] < j)
-            round--;
-        if (pos[y - 1] > i and pos[y - 1] < j)
-            round++;
-
-        if (x == y + 1)
-            round--;
-        if (x == y - 1)
-            round++;
-        cout << round << endl;
-
-        swap(v[i], v[j]);
-        pos[x] = j;
-        pos[y] = i;
+        else
+        {
+            ll l, r;
+            cin >> l >> r;
+            cout << query(1, 1, n, l, r) << "\n";
+        }
     }
     return 0;
 }
+
+// Problem:
+// Given a 1-indexed array A of size N, process Q queries of two types:
+// 1 x   : swap A[x] and A[x+1] (1 <= x < N)
+// 2 l r : print the sum of A[l..r] (inclusive)
+// Input format: N Q, then N array values, then Q queries.
+// Output: For each type-2 query print the range sum on its own line.

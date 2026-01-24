@@ -1,6 +1,6 @@
-// File Name: Winter_is_Coming.cpp
-// Date: 2026-01-14
-// Time: 20:30:59
+// File Name: Sell_Upto_2.cpp
+// Date: 2026-01-21
+// Time: 21:37:16
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -86,36 +86,25 @@ int main()
     fastio;
     While(T)
     {
-        ll n, a, b;
-        cin >> n >> a >> b;
+        ll n;
+        cin >> n;
         vll v(n);
         for (ll i = 0; i < n; i++)
         {
             cin >> v[i];
         }
-        bool check = false;
-
-        ll count = 0;
-
-        for (ll i = 0; i < n; i++)
+        priority_queue<ll> pq;
+        ll ans = 0;
+        for (ll i = n - 1; i >= 0; i--)
         {
-            if (v[i] < a)
-            {
-                if (!check)
-                {
-                    check = true;
-                    count++;
-                }
-            }
-            else if (v[i] > b)
-            {
-                if (check)
-                {
-                    check = false;
-                }
-            }
+            pq.push(v[i]);
+            pq.push(v[i]);
+
+            ans += pq.top();//debug(pq.top());
+            pq.pop();
         }
-        cout << count << endl;
+
+        cout << ans << endl;
     }
     return 0;
 }

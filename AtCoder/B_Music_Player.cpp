@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers_II.cpp
-// Date: 2026-01-16
-// Time: 16:47:01
+// File Name: B_Music_Player.cpp
+// Date: 2026-01-24
+// Time: 18:04:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,57 +84,36 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    ll n, m;
-    cin >> n >> m;
-    vll v(n + 1), pos(n + 2);
-    pos[0] = 0;
-    pos[n + 1] = n + 1;
-
-    for (ll i = 1; i <= n; i++)
+    ll x = 0;
+    bool check = false;
+    While(T)
     {
-        cin >> v[i];
-        pos[v[i]] = i;
-    }
-
-    ll round = 1;
-    for (ll i = 2; i <= n; i++)
-    {
-        if (pos[i] < pos[i - 1])
+        ll a;
+        cin >> a;
+        if (a == 1)
         {
-            round++;
+            x++;
         }
-    }
+        else if (a == 2)
+        {
+            if (x >= 1)
+            {
+                x--;
+            }
+        }
+        else if (a == 3)
+        {
+            check = !check;
+        }
 
-    while (m--)
-    {
-        ll i, j;
-        cin >> i >> j;
-
-        if (i > j)
-            swap(i, j);
-
-        ll x = v[i];
-        ll y = v[j];
-
-        if (pos[x + 1] > i and pos[x + 1] < j)
-            round++;
-        if (pos[x - 1] > i and pos[x - 1] < j)
-            round--;
-
-        if (pos[y + 1] > i and pos[y + 1] < j)
-            round--;
-        if (pos[y - 1] > i and pos[y - 1] < j)
-            round++;
-
-        if (x == y + 1)
-            round--;
-        if (x == y - 1)
-            round++;
-        cout << round << endl;
-
-        swap(v[i], v[j]);
-        pos[x] = j;
-        pos[y] = i;
+        if (check and x >= 3)
+        {
+            cout << "Yes" << endl;
+        }
+        else
+        {
+            cout << "No" << endl;
+        }
     }
     return 0;
 }

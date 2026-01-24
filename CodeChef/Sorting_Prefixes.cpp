@@ -1,6 +1,6 @@
-// File Name: A_Array_Coloring.cpp
-// Date: 2026-01-17
-// Time: 20:37:58
+// File Name: Sorting_Prefixes.cpp
+// Date: 2026-01-21
+// Time: 20:47:58
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -65,28 +65,23 @@ int main()
     While(T)
     {
         ll n;cin>>n;
-        vll v(n);
-        vll index(n+1);
-
-        for(ll i=0;i<n;i++){
-            cin>>v[i];
-            index[v[i]] = i;
-        }
-
-        bool check = true;
-
-        for(ll i=1;i<n;i++)
+        vll v(n+1,0);
+        ll x=1;
+        ll temp = -1;
+        for(ll i=1;i<=n;i++)
         {
-            if(index[i] % 2 == index[i+1] % 2)
-            {
-                check = false;break;
+            cin>>v[i];
+            if(v[i] != x){
+                temp = i;
             }
+            x++;
         }
-
-        if(check){
-            cout<<"YES"<<endl;
-        }else{
-            cout<<"NO"<<endl;
+        if(temp == -1)
+        {
+            cout<<0<<endl;
+        }
+        else{
+            cout<<v[temp]<<endl;
         }
     }
     return 0;

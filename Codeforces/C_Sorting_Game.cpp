@@ -1,7 +1,3 @@
-// File Name: Collecting_Numbers_II.cpp
-// Date: 2026-01-16
-// Time: 16:47:01
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -84,57 +80,64 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    ll n, m;
-    cin >> n >> m;
-    vll v(n + 1), pos(n + 2);
-    pos[0] = 0;
-    pos[n + 1] = n + 1;
-
-    for (ll i = 1; i <= n; i++)
+    While(T)
     {
-        cin >> v[i];
-        pos[v[i]] = i;
-    }
+        ll n;
+        cin >> n;
+        string s;
+        cin >> s;
 
-    ll round = 1;
-    for (ll i = 2; i <= n; i++)
-    {
-        if (pos[i] < pos[i - 1])
+        ll zero = 0;
+        for (ll i = 0; i < n; i++)
         {
-            round++;
+            if (s[i] == '0')
+            {
+                zero++;
+            }
         }
-    }
 
-    while (m--)
-    {
-        ll i, j;
-        cin >> i >> j;
+        bool check = true;
+        for (ll i = 0; i < n - 1; i++)
+        {
+            if (s[i] > s[i + 1])
+            {
+                check = false;
+                break;
+            }
+        }
 
-        if (i > j)
-            swap(i, j);
+        if (check)
+        {
+            cout << "Bob" << endl;
+            continue;
+        }
 
-        ll x = v[i];
-        ll y = v[j];
+        vll ans;
 
-        if (pos[x + 1] > i and pos[x + 1] < j)
-            round++;
-        if (pos[x - 1] > i and pos[x - 1] < j)
-            round--;
+        for (ll i = 0; i < zero; i++)
+        {
+            if (s[i] == '1')
+            {
+                ans.pb(i + 1);
+            }
+        }
 
-        if (pos[y + 1] > i and pos[y + 1] < j)
-            round--;
-        if (pos[y - 1] > i and pos[y - 1] < j)
-            round++;
+        for (ll i = zero; i < n; i++)
+        {
+            if (s[i] == '0')
+            {
+                ans.pb(i + 1);
+            }
+        }
 
-        if (x == y + 1)
-            round--;
-        if (x == y - 1)
-            round++;
-        cout << round << endl;
+        cout << "Alice" << endl;
+        cout << ans.size()<<endl;
 
-        swap(v[i], v[j]);
-        pos[x] = j;
-        pos[y] = i;
+        for (ll i = 0; i < ans.size(); i++)
+        {   space;
+            cout <<  ans[i];
+        }
+        cout << endl;
     }
     return 0;
 }

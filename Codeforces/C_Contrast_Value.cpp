@@ -1,6 +1,6 @@
-// File Name: A_Array_Coloring.cpp
-// Date: 2026-01-17
-// Time: 20:37:58
+// File Name: C_Contrast_Value.cpp
+// Date: 2026-01-19
+// Time: 11:26:48
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -66,28 +66,37 @@ int main()
     {
         ll n;cin>>n;
         vll v(n);
-        vll index(n+1);
-
-        for(ll i=0;i<n;i++){
-            cin>>v[i];
-            index[v[i]] = i;
+        ll check = 0;
+        for(ll i=0;i<n;i++) cin>>v[i];
+        //1 - boro theke soto
+        //-1 soto theke boro
+        if(n == 1 or count(all(v),v[0]) == n){
+            cout<<1<<endl;continue;
         }
-
-        bool check = true;
-
+  
+        ll cnt = 1;
         for(ll i=1;i<n;i++)
         {
-            if(index[i] % 2 == index[i+1] % 2)
+            if(v[i] > v[i-1] )
             {
-                check = false;break;
+               if(check != 1)
+               {
+                cnt++;
+                check = 1;
+               }
+               
+            }
+            else if(v[i] < v[i-1]  )
+            {
+                if(check != -1)
+                {
+                    cnt++;
+                    check = -1;
+                }
+
             }
         }
-
-        if(check){
-            cout<<"YES"<<endl;
-        }else{
-            cout<<"NO"<<endl;
-        }
+        cout<<cnt<<endl;
     }
     return 0;
 }

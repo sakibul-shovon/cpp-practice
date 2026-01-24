@@ -1,6 +1,6 @@
-// File Name: A_Array_Coloring.cpp
-// Date: 2026-01-17
-// Time: 20:37:58
+// File Name: A_Count.cpp
+// Date: 2026-01-24
+// Time: 18:00:36
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -62,32 +62,8 @@ int dCol[] = { 0, 1, 0, -1 };
 int main()
 {
     fastio;
-    While(T)
-    {
-        ll n;cin>>n;
-        vll v(n);
-        vll index(n+1);
-
-        for(ll i=0;i<n;i++){
-            cin>>v[i];
-            index[v[i]] = i;
-        }
-
-        bool check = true;
-
-        for(ll i=1;i<n;i++)
-        {
-            if(index[i] % 2 == index[i+1] % 2)
-            {
-                check = false;break;
-            }
-        }
-
-        if(check){
-            cout<<"YES"<<endl;
-        }else{
-            cout<<"NO"<<endl;
-        }
-    }
+    string s;cin>>s;
+    ll a = count(all(s),'i')+count(all(s),'j');
+    cout<<a<<endl;
     return 0;
 }

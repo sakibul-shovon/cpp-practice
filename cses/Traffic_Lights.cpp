@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers_II.cpp
-// Date: 2026-01-16
-// Time: 16:47:01
+// File Name: Traffic_Lights.cpp
+// Date: 2026-01-17
+// Time: 02:18:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -84,57 +84,30 @@ int dCol[] = {0, 1, 0, -1};
 int main()
 {
     fastio;
-    ll n, m;
-    cin >> n >> m;
-    vll v(n + 1), pos(n + 2);
-    pos[0] = 0;
-    pos[n + 1] = n + 1;
-
-    for (ll i = 1; i <= n; i++)
+    ll n, k;
+    cin >> n >> k;
+    vll v(n);
+    ll maxx = 0;
+    ll currMax ;
+    for (ll i = 0; i < k; i++)
     {
-        cin >> v[i];
-        pos[v[i]] = i;
-    }
-
-    ll round = 1;
-    for (ll i = 2; i <= n; i++)
-    {
-        if (pos[i] < pos[i - 1])
+        ll x;
+        cin >> x;
+        v[i] = x;
+        
+        if (i == 0)
         {
-            round++;
+            maxx = max({x, n - x});
+            currMax = x;
         }
+        else if(x>currMax)
+        {
+            maxx = max({abs(v[i] - v[i - 1]), n - x});
+        }
+        currMax = max(currMax,x);
+
+        cout<<maxx<<' ';
     }
-
-    while (m--)
-    {
-        ll i, j;
-        cin >> i >> j;
-
-        if (i > j)
-            swap(i, j);
-
-        ll x = v[i];
-        ll y = v[j];
-
-        if (pos[x + 1] > i and pos[x + 1] < j)
-            round++;
-        if (pos[x - 1] > i and pos[x - 1] < j)
-            round--;
-
-        if (pos[y + 1] > i and pos[y + 1] < j)
-            round--;
-        if (pos[y - 1] > i and pos[y - 1] < j)
-            round++;
-
-        if (x == y + 1)
-            round--;
-        if (x == y - 1)
-            round++;
-        cout << round << endl;
-
-        swap(v[i], v[j]);
-        pos[x] = j;
-        pos[y] = i;
-    }
+    line;
     return 0;
 }
