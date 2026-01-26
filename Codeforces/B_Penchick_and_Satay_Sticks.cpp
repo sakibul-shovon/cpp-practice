@@ -1,6 +1,6 @@
 // File Name: B_Penchick_and_Satay_Sticks.cpp
-// Date: 2024-11-15
-// Time: 19:20:23
+// Date: 2025-12-31
+// Time: 03:12:50
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,39 +53,27 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-
-
+ll binPowMod(ll n, ll p, ll m) { n %= m; return p == 0 ? 1 : (p % 2 == 0 ? binPowMod((n * n) % m, p / 2, m) : (n * binPowMod((n * n) % m, (p - 1) / 2, m)) % m); }
+#define read(v)    for(ll i = 0; i < v.size(); i++) cin >> v[i];
+#define pairLoop(x)  for(auto u : x) cout << u.first << ' ' << u.second << endl;
+int dRow[] = { -1, 0, 1, 0 };
+int dCol[] = { 0, 1, 0, -1 };
 
 int main()
 {
     fastio;
-    While(t){
-
+    While(T){
         ll n;cin>>n;
-        vll v(n+1);
-        v[0] = 0;
-        for(ll i=1;i<=n;i++) cin>>v[i];
         bool check = true;
-
-        for(ll i=1;i<=n;i++){
-            if(v[i] == i) continue;
-            else{
-                ll x = abs(v[i] - v[v[i]]);
-                if(x == 1){
-                    continue;
-                }else{
-                    check = false;
-                    break;
-                }
-            }
+        for(ll i=1;i<=n;i++)
+        {
+            ll x;cin>>x;
+            ll test = abs(x-i);
+            if(test == 0 or test == 1) continue;
+            else check = false;
         }
-        if(check == true){
-            cout<<"YES"<<endl;
-        }else{
-            cout<<"NO"<<endl;
-        }
-
-
+        if(check) cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
     }
     return 0;
 }

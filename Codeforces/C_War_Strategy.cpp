@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // File Name: C_War_Strategy.cpp
 // Date: 2026-01-08
 // Time: 19:50:34
@@ -115,3 +116,6 @@ int main()
     }
     return 0;
 }
+=======
+\
+>>>>>>> 120e8641cc882464336085e3d15b9bcfbfeeba6a

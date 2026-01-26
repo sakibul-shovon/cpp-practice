@@ -1,6 +1,6 @@
 // File Name: A_Array_Coloring.cpp
-// Date: 2024-03-15
-// Time: 17:15:38
+// Date: 2026-01-17
+// Time: 20:37:58
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -50,25 +50,40 @@ using namespace std;
 #define While(n)      int t; cin>>t;while(t--)
 #define WhileVecInput(v,n)   while(n--){ ll temp;cin>>temp; v.push_back(temp); }
 ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
-long nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
-long nPr(ll n, ll r) { return fact(n) / fact(n - r); }
-int binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-
-
+ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
+ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
+ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
+ll binPowMod(ll n, ll p, ll m) { n %= m; return p == 0 ? 1 : (p % 2 == 0 ? binPowMod((n * n) % m, p / 2, m) : (n * binPowMod((n * n) % m, (p - 1) / 2, m)) % m); }
+#define read(v)    for(ll i = 0; i < v.size(); i++) cin >> v[i];
+#define pairLoop(x)  for(auto u : x) cout << u.first << ' ' << u.second << endl;
+int dRow[] = { -1, 0, 1, 0 };
+int dCol[] = { 0, 1, 0, -1 };
 
 int main()
 {
     fastio;
-    While(t){
-        ll n ;cin>>n;
+    While(T)
+    {
+        ll n;cin>>n;
+        vll v(n);
+        vll index(n+1);
 
-        ll ans = 0 ;
-        for(ll i = 0 ; i < n ; i++){
-            ll t;cin>>t;
-            ans += t;
+        for(ll i=0;i<n;i++){
+            cin>>v[i];
+            index[v[i]] = i;
         }
 
-        if(ans % 2 == 0){
+        bool check = true;
+
+        for(ll i=1;i<n;i++)
+        {
+            if(index[i] % 2 == index[i+1] % 2)
+            {
+                check = false;break;
+            }
+        }
+
+        if(check){
             cout<<"YES"<<endl;
         }else{
             cout<<"NO"<<endl;
