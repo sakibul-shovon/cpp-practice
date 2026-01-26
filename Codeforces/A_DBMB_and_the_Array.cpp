@@ -1,6 +1,6 @@
-// File Name: B_BerSU_Ball.cpp
+// File Name: A_DBMB_and_the_Array.cpp
 // Date: 2026-01-25
-// Time: 19:40:23
+// Time: 20:36:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -62,34 +62,22 @@ int dCol[] = { 0, 1, 0, -1 };
 int main()
 {
     fastio;
-    ll n;cin>>n;
-    vll first(n);
-    for(ll i=0;i<n;i++) cin>>first[i];
-    ll m;cin>>m;
-    vll second(m);
-    for(ll i=0;i<m;i++) cin>>second[i];
-
-    sort_all(first);sort_all(second);
-    //autoLoop(first);line;autoLoop(second);
-    ll i=0,j=0;
-    ll ans = 0 ; 
-
-    while(true)
+    While(T)
     {
-        ll x = abs(first[i]-second[j]);
-        if(x <= 1){
-            i++;j++;
-            ans+=1;
+        ll n,s,x;cin>>n>>s>>x;
+        vll v(n);
+        ll sum = 0;
+        for(ll i=0;i<n;i++) {
+            cin>>v[i];
+            sum += v[i];
         }
-        else if(first[i] < second[j])
-        {
-            i++;
-        }else{
-            j++;
-        }
-        if(i == n or j == m) break;
 
+        if(sum > s)
+        {
+            cout<<"NO"<<endl;
+        }
+        else if((s-sum) % x == 0) cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
     }
-    cout<<ans<<endl;
     return 0;
 }
