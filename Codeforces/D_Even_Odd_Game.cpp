@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: D_Even_Odd_Game.cpp
+// Date: 2026-01-22
+// Time: 12:10:34
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,19 +41,36 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    While(T)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        ll n;cin>>n;
+        priority_queue<ll>pq;
+        for(ll i=0;i<n;i++)
+        {
+            ll x;cin>>x;
+            pq.push(x);
+        }
+        ll alice = 0,bob = 0;
+
+        for(ll i=0;i<n;i++){
+            ll x = pq.top();
+            pq.pop();
+            if(i % 2 == 0) {
+                if(x %2 == 0) {
+                    alice += x;
+                }
+            }
+            else{
+                if(x%2 !=0){
+                    bob += x;
+                }
+            }
+        }
+        if(alice== bob) cout<<"Tie"<<endl;
+        else if(alice>bob) cout<<"Alice"<<endl;
+        else cout<<"Bob"<<endl;
+
+
     }
-    cout<<cnt<<endl;
     return 0;
 }

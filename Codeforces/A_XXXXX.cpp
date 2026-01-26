@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: A_XXXXX.cpp
+// Date: 2026-01-15
+// Time: 21:14:57
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,19 +41,45 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    While(T)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        ll n,k;cin>>n>>k;
+        vll v(n);
+        
+
+        ll sum =0;
+        
+        ll low = -1,high = -1;
+
+        for(ll i=0;i<n;i++)
+        {
+            cin>>v[i];
+            sum+= v[i];
+
+            if(v[i] % k != 0){
+                if(low == -1)
+                {
+                    low = i;
+                }
+                high = i;
+            }
+        }
+
+        if(sum % k != 0)
+        {
+            cout<<n<<endl;continue;
+        }
+        if(low == -1)
+        {
+            cout<<-1<<endl;continue;
+        }
+
+        else{
+            ll left = low+1;
+            ll right = n-high;
+            ll ans = n - min(left,right);
+            cout<<ans<<endl;
+        }
     }
-    cout<<cnt<<endl;
     return 0;
 }

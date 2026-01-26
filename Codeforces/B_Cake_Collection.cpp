@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: B_Cake_Collection.cpp
+// Date: 2025-12-09
+// Time: 18:31:01
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,21 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
+        ll n, m;
+        cin >> n >> m;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+        sort(v.rbegin(), v.rend());
+        ll ans = 0;
 
-        if(u-1>0 and visited[u-1] == 0)
+        for (ll i = 0; i < n; i++)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            ans += v[i] * max(0LL, m - i);
         }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout << ans << endl;
     }
     return 0;
 }

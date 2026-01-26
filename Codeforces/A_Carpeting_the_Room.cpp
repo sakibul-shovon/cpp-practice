@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: A_Carpeting_the_Room.cpp
+// Date: 2025-10-10
+// Time: 02:22:26
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -44,7 +44,7 @@ using namespace std;
     }
 
 int dRow[] = {-1, 0, 1, 0};
-int dCol[] = {0, 1, 0, -1};
+int dCol[] = {0, 1, 0, -1};        
 #define For(a, n) for (int i = a; i < n; i++)
 #define pqs priority_queue<ll, vector<ll>, greater<ll>>
 
@@ -56,39 +56,21 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    ll n, k, x;
+    cin >> n >> k >> x;
+    ll a = (n + x - 1) / x;//debug(a);
+    ll b = (n + x - 1) / x;
+    if(n == x)
     {
-        cout << 0 << endl;
-        return 0;
+        cout<<yes<<endl;
     }
-    while (!q.empty())
+    else if (a + b <= k)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
-
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout << yes << endl;
+    }
+    else
+    {
+        cout << no << endl;
     }
     return 0;
 }

@@ -1,0 +1,1 @@
+{"name":"Local: ai","url":"c:\\Users\\shovon\\Desktop\\cpp-practice\\ai.cpp","tests":[{"id":1769003402452,"input":"5 2\nIvanov 1 800\nAndreev 2 763\nPetrov 1 800\nSidorov 1 800\nSemenov 2 503\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\shovon\\Desktop\\cpp-practice\\ai.cpp","group":"local","local":true}

@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Medicine.cpp
+// Date: 2025-12-08
+// Time: 03:25:13
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,37 +58,43 @@ int main()
     fastio;
     ll n, k;
     cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    map<ll, ll> mp;
+    for (ll i = 0; i < n; i++)
     {
-        cout << 0 << endl;
-        return 0;
+        ll a, b;
+        cin >> a >> b;
+        mp[a] += b;
     }
-    while (!q.empty())
+
+    ll low = 1, high = 3e9;
+    ll ans = -1;
+    while (low <= high)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll mid = low+(high-low)/2;
+        ll count = 0;
+
+        for (auto &it : mp)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            ll first = it.first;
+            ll second = it.second;
+
+            if (first >= mid)
+            {
+                count += second;
+            }
         }
 
-        if(u-1>0 and visited[u-1] == 0)
+        if (count <= k)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            ans = mid;
+           high = mid-1;
         }
-
-        if(u < k and visited[u*2] == 0)
+        else
         {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
+            low = mid+1;
         }
     }
+    cout << ans << endl;
+
     return 0;
 }

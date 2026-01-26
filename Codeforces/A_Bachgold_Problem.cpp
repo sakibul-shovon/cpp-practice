@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: A_Bachgold_Problem.cpp
+// Date: 2025-12-24
+// Time: 01:21:29
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -42,18 +42,13 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main() {
     fastio;
     ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
-    {
-        if(mp[i] < mp[i-1]) cnt++;
-    }
-    cout<<cnt<<endl;
+    vll ans;
+    
+    ll x = n/2;cout<<x<<endl;
+    if(n%2 !=0) x--;
+    
+    for(ll i=0;i<x;i++) cout<<2<<' ';
+    if(n%2!=0) cout<<3;
+    line;
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: B_Lunatic_Never_Content.cpp
+// Date: 2025-12-09
+// Time: 23:08:55
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,19 +41,19 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    While(T)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        ll n;cin>>n;
+        vll v(n);
+        for(ll i=0;i<n;i++) cin>>v[i];
+        ll ans = 0 ;
+
+        for(ll i=0;i<n/2;i++)
+        {
+            ll x =abs (v[i] - v[n-i-1]);
+            ans = gcd(ans,x);
+        }
+        cout<<ans<<endl;
     }
-    cout<<cnt<<endl;
     return 0;
 }

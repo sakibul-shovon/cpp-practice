@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: B_Pleasant_Pairs.cpp
+// Date: 2026-01-05
+// Time: 22:55:13
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,42 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n;
+        cin >> n;
+        vll v(n + 1, 0);
+        map<ll, ll> mp;
+        for (ll i = 1; i <= n; i++)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            cin >> v[i];
+            mp[v[i]] = i;
         }
+        sort_all(v);
+        ll cnt = 0;
+        // autoLoop(v);
+        // line;
+        for (ll i = 1; i < n; i++)
+        {
+            // cout << v[i] << " ";
+            // line;
+            for (ll j = i + 1; j <= n; j++)
+            {
+                
+                ll x = v[i] * v[j];
+                if(x>2*n) break;
+                ll tmp = mp[v[i]] + mp[v[j]];
 
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+                if (x == tmp)
+                {
+                    
+                    cnt++;
+                }
+            }
+            
         }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        // debug(cnt);
+        cout<<cnt<<endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: B_Correct_Solution.cpp
+// Date: 2025-10-11
+// Time: 03:39:41
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,21 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    string a, b;
+    cin >> a >> b;
+    sort_all(a);
+    ll cnt = count(a.begin(), a.end(), '0');
+    // debug(cnt);
+    if (a.size()> 1)
+        swap(a[0], a[cnt]);
+
+    if (a == b)
     {
-        cout << 0 << endl;
-        return 0;
+        cout << "OK" << endl;
     }
-    while (!q.empty())
+    else
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
-
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout << "WRONG_ANSWER" << endl;
     }
     return 0;
 }

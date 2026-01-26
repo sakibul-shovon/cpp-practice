@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: D_Reachability_Query_2.cpp
+// Date: 2025-12-09
+// Time: 00:21:19
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,38 +56,63 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+
+    ll n, m;
+    cin >> n >> m;
+    vector<vector<ll>> rev_graph(n + 1);
+
+    for (ll i = 0; i < m; i++)
     {
-        cout << 0 << endl;
-        return 0;
+        ll a, b;
+        cin >> a >> b;
+        rev_graph[b].pb(a);
     }
-    while (!q.empty())
+
+    vector<bool> can_black(n + 1, 0);
+
+    ll qq;
+    cin >> qq;
+
+    queue<ll> q;
+
+    while (qq--)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
+        ll type, node;
+        cin >> type >> node;
 
-        if(u-1>0 and visited[u-1] == 0)
+        if (type == 1)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
+            if (!can_black[node])
+            {
+                can_black[node] = true;
+                q.push(node);
 
-        if(u < k and visited[u*2] == 0)
+                while (!q.empty())
+                {
+                    ll curr = q.front();
+                    q.pop();
+
+                    for (auto it : rev_graph[curr])
+                    {
+                        if (!can_black[it])
+                        {
+                            can_black[it] = true;
+                            q.push(it);
+                        }
+                    }
+                }
+            }
+        }
+        else
         {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
+            if (can_black[node])
+            {
+                cout << "Yes" << endl;
+            }
+            else
+            {
+                cout << "No" << endl;
+            }
         }
     }
     return 0;

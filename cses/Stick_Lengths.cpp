@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: Stick_Lengths.cpp
+// Date: 2025-12-23
+// Time: 08:24:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -43,17 +43,20 @@ int main() {
     fastio;
     ll n;cin>>n;
     vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    
+    for(ll i=0;i<n;i++)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        cin>>v[i];
+    
+    }
+    sort_all(v);
+    ll mid = v[n/2];
+    // autoLoop(v);
+    ll cnt = 0;
+    for(ll i=0;i<n;i++){
+        cnt += abs(mid-v[i]);
     }
     cout<<cnt<<endl;
+  
     return 0;
 }

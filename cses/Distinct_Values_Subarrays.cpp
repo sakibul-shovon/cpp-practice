@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: Distinct_Values_Subarrays.cpp
+// Date: 2026-01-25
+// Time: 01:28:21
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -43,17 +43,27 @@ int main() {
     fastio;
     ll n;cin>>n;
     vll v(n);
+    for(ll i=0;i<n;i++) cin>>v[i];
     map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    ll i=0,j=0;
+    ll ans = 0;
+    while(j<n)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+       // debug(j);
+        mp[v[j]]++;
+        
+
+        while(mp[v[j]] > 1)
+        {
+            mp[v[i]]--;
+            i++;
+
+        }
+        
+        ll calc = j-i+1;
+        ans += calc;
+        j++;
     }
-    cout<<cnt<<endl;
+    cout<<ans<<endl;
     return 0;
 }

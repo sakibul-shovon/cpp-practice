@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: A_Monsters_easy_version.cpp
+// Date: 2026-01-03
+// Time: 20:56:27
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,19 +41,42 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    While(T)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        ll n;cin>>n;
+        vll v(n);
+        map<ll,ll>mp;
+        for(ll i=0;i<n;i++) {
+            cin>>v[i];
+            mp[v[i]]++;
+        }
+        sort_all(v);
+
+        //autoLoop(v);
+        ll gap = 1;
+        ll sum = 0;
+        // for(auto it:mp) cout<<it.first<<" "<<it.second<<endl;
+        // line;
+        // for(auto it:mp)
+        // {
+        //     sum += abs(gap-it.first);
+        //     gap++;
+        // }
+        // cout<<sum<<endl;
+
+       ll ans = 0;
+        
+        
+        ll need = 1;
+
+        for (ll i = 0; i < n; i++) {
+            if (v[i] >= need) {
+                ans += (v[i] - need);
+                need++;
+            }
+        }
+        
+        cout << ans << endl;
     }
-    cout<<cnt<<endl;
     return 0;
 }

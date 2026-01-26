@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Candy_Tribulation.cpp
+// Date: 2025-12-08
+// Time: 01:22:18
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,45 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    ll n, small, big;
+    cin >> n >> small >> big;
+    vll v(n);
+    ll minn = LLONG_MAX;
+    for (ll i = 0; i < n; i++)
     {
-        cout << 0 << endl;
-        return 0;
+        cin >> v[i];
+        minn = min(minn, v[i]);
     }
-    while (!q.empty())
+
+    ll count = 0;
+    ll weight = minn * big;
+    bool check = true;
+    for (ll i = 0; i < n; i++)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+       
+
+        ll tmp = v[i] * big;
+        ll extra = tmp - weight;
+
+        ll per_small_loss = extra / (big - small);
+
+        if (extra % (big - small) != 0)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            check = false;
+            break;
         }
 
-        if(u-1>0 and visited[u-1] == 0)
+        if (per_small_loss > v[i])
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            check = false;
+            break;
         }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        count += v[i] - per_small_loss;
     }
+    if (!check)
+        cout << -1 << endl;
+    else
+        cout << count << endl;
+
     return 0;
 }

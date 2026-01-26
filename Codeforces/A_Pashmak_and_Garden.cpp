@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: A_Pashmak_and_Garden.cpp
+// Date: 2026-01-05
+// Time: 16:54:57
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,19 +41,42 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
+    ll a,b,c,d;cin>>a>>b>>c>>d;
 
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    if(a == c)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        ll dis = (d-b);
+       
+        ll x1 = a+dis;
+        ll y1 = b;
+
+        ll x2 = x1;
+        ll y2 = y1+dis;
+        cout<<x1<<' '<<y1<<' '<<x2<<' '<<y2<<endl;
+
     }
-    cout<<cnt<<endl;
+    else if(b == d)
+    {
+        ll dis = abs(a-c);
+        ll x1 = a;
+        ll y1 = b+dis;
+
+        ll x2 = c;
+        ll y2 = d+dis;
+        cout<<x1<<' '<<y1<<' '<<x2<<' '<<y2<<endl;
+    }
+    else if(abs(c-a)== abs(d-b))
+    {
+        ll x1 = a;
+        ll y1 = d;
+
+        ll x2 = c;
+        ll y2 = b;
+
+        cout<<x1<<' '<<y1<<' '<<x2<<' '<<y2<<endl;
+    }
+    else{
+        cout<<-1<<endl;
+    }
     return 0;
 }

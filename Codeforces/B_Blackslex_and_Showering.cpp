@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: B_Blackslex_and_Showering.cpp
+// Date: 2025-12-23
+// Time: 20:56:58
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,44 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            cin >> v[i];
         }
 
-        if(u-1>0 and visited[u-1] == 0)
+        
+        ll total = 0;
+        for (ll i = 0; i < n - 1; i++)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            total += abs(v[i] - v[i + 1]);
         }
-
-        if(u < k and visited[u*2] == 0)
+        ll maxx = -1;
+        for (ll i = 0; i < n; i++)
         {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
+            ll x = 0;
+            if (i == 0)
+            {
+                x = abs(v[0] - v[1]);
+            }
+            else if (i == n - 1)
+            {
+                x = abs(v[n - 2] - v[n - 1]);
+            }
+            else
+            {
+                ll a = abs(v[i - 1] - v[i]) + abs(v[i] - v[i + 1]);
+                ll b = abs(v[i - 1] - v[i + 1]);
+                x = a - b; 
+            }
+            maxx = max(maxx, x);
+            // debug(maxx);
         }
+        cout << total - maxx << endl;
     }
     return 0;
 }

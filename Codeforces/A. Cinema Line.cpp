@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
+// File Name: A. Cinema Line.cpp
 // Date: 2026-01-13
-// Time: 19:03:44
+// Time: 20:18:04
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,61 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    ll n;
+    cin >> n;
+    vll v(n);
+    for (ll i = 0; i < n; i++)
+        cin >> v[i];
+    ll fifty = 0, twenty_five = 0;
+    bool possible = true;
+
+    for (ll i = 0; i < n; i++)
     {
-        cout << 0 << endl;
-        return 0;
+        ll x = v[i];
+
+        if (x == 25)
+        {
+            twenty_five++;
+        }
+        else if (x == 50)
+        {
+            if (twenty_five > 0)
+            {
+                twenty_five--;
+                fifty++;
+            }
+            else
+            {
+                possible = false;
+                break;
+            }
+        }
+
+        else if (x == 100)
+        {
+            if (twenty_five > 0 and fifty > 0)
+            {
+                twenty_five--;
+                fifty--;
+            }
+            else if (twenty_five >= 3)
+            {
+                twenty_five -= 3;
+            }
+            else
+            {
+                possible = false;
+                break;
+            }
+        }
     }
-    while (!q.empty())
+    if (possible)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
-
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
     }
     return 0;
 }

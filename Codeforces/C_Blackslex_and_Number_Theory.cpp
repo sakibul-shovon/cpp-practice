@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Blackslex_and_Number_Theory.cpp
+// Date: 2025-12-23
+// Time: 21:19:06
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,25 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            cin >> v[i];
         }
-
-        if(u-1>0 and visited[u-1] == 0)
+        sort_all(v);
+        // autoLoop(v);line;
+        ll minn = inf;
+        for (ll i = 1; i < n; i++)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            ll x = v[i] - v[0];
+            minn = min(minn, x);
         }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        ll ans = max(v[0],minn);
+        cout <<ans<< endl;
     }
     return 0;
 }

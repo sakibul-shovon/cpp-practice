@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// ১. সেই LIS ফাংশন
+int lengthOfLIS(vector<int>& arr) {
+    if (arr.empty()) return 0;
+    vector<int> tails;
+    for (int x : arr) {
+        auto it = lower_bound(tails.begin(), tails.end(), x);
+        if (it == tails.end()) {
+            tails.push_back(x);
+        } else {
+            *it = x;
+        }
+    }
+    return tails.size();
+}
+
+// ২. আলাদা কম্পেয়ার ফাংশন (সহজ ভাষায়)
+bool cmp(const pair<int, int>& a, const pair<int, int>& b) {
+    // যদি দাঁড়ানোর জায়গা (A) একই হয়
+    if (a.first == b.first) {
+        // তাহলে যার ঘুড়ি উপরে (B বড়), সে আগে যাবে (Descending)
+        return a.second > b.second;
+    }
+    // অন্যথায় যার দাঁড়ানোর জায়গা আগে (A ছোট), সে আগে যাবে (Ascending)
+    return a.first < b.first;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int N;
+    if (!(cin >> N)) return 0;
+
+    vector<pair<int, int>> p(N);
+    for (int i = 0; i < N; i++) {
+        cin >> p[i].first >> p[i].second;
+    }
+
+    // ৩. এখন সর্ট করা খুব সহজ, শুধু ফাংশনের নামটা দিয়ে দিন
+    sort(p.begin(), p.end(), cmp);
+
+    vector<int> b_values;
+    for (auto& x : p) {
+        b_values.push_back(x.second);
+    }
+
+    cout << lengthOfLIS(b_values) << endl;
+
+    return 0;
+}

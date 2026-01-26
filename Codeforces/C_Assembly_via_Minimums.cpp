@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Assembly_via_Minimums.cpp
+// Date: 2026-01-05
+// Time: 01:00:38
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,47 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n;
+        cin >> n;
+        
+        ll x = (n * (n - 1)) / 2;
+        vll v(x);
+        ll maxx = -inf;
+  
+        map<ll, ll> mp;
+        for (ll i = 0; i < x; i++)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            cin >> v[i];
+            mp[v[i]]++;
+            maxx = max(maxx,v[i]);
         }
+        vll ans;
 
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
+        ll idx = 1;
 
-        if(u < k and visited[u*2] == 0)
+        // for (auto it : mp)
+        // {
+        //     cout << it.first << ' ' << it.second << endl;
+        // }
+        // line;
+        for (auto it : mp)
         {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
+            ll val = it.first;
+            ll freq = it.second;
+            while(freq>0)
+            {
+                ans.pb(val);
+                freq = freq - (n-idx);
+                idx++;
+
+
+            }
         }
+        ans.pb(maxx);
+        autoLoop(ans);line;
+        
     }
     return 0;
 }

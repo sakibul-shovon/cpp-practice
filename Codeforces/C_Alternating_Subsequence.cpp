@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Alternating_Subsequence.cpp
+// Date: 2025-12-28
+// Time: 21:56:21
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,43 +52,54 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            cin >> v[i];
         }
 
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
+        ll check;
+        if (v[0] > 0)
+            check = 1;
+        else
+            check = 2;
 
-        if(u < k and visited[u*2] == 0)
+        ll sum = 0;
+        ll i = 0;
+
+        while (i < n)
         {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
+            if (check == 1)
+            {
+                ll maxx = -inf;
+                while (i < n and v[i] > 0)
+                {
+                    maxx = max(maxx, v[i]);
+                    i++;
+                }
+                sum += maxx;
+                check = 2;
+            }
+            else
+            {
+                ll maxx = -inf;
+                while (i < n and v[i] < 0)
+                {
+                    maxx = max(maxx, v[i]);
+                    i++;
+                }
+                sum += maxx;
+                check = 1;
+            }
         }
+        cout << sum << endl;
     }
     return 0;
 }

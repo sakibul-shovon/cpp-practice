@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Less_or_Equal.cpp
+// Date: 2025-12-29
+// Time: 17:05:45
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,37 +58,33 @@ int main()
     fastio;
     ll n, k;
     cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    vll v(n);
+    for (ll i = 0; i < n; i++)
+        cin >> v[i];
+    sort_all(v);
+    // autoLoop(v);
+    if (k == 0)
     {
-        cout << 0 << endl;
+        if (v[0] > 1)
+            cout << 1 << endl;
+        else
+            cout << -1 << endl;
         return 0;
     }
-    while (!q.empty())
+
+    if (k == n)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
-
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout << v[n - 1] << endl;
+        return 0;
     }
+    if (v[k - 1] == v[k])
+    {
+        cout << -1 << endl;
+    }
+    else
+    {
+        cout << v[k - 1] << endl;
+    }
+
     return 0;
 }

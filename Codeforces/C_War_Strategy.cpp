@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_War_Strategy.cpp
+// Date: 2026-01-08
+// Time: 19:50:34
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,43 +52,66 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
+ll cost(ll a, ll b)
+{
+    if (a == 0 && b == 0)
+        return 0;
+    return (a + b) + max(a, b) - 1;
+}
 
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n, m, k;
+        cin >> n >> m >> k;
+
+        if (k - 1 > n - k)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            k = n + 1 - k;
         }
 
-        if(u-1>0 and visited[u-1] == 0)
+        ll right = 0;
+        ll left = 0;
+
+        ll left_space = k - 1;
+        ll right_space = n - k;
+
+        while (true)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            bool check = false;
+
+            if (right < right_space and (right <= left or left == left_space))
+            {
+                if (cost(left, right + 1) <= m)
+                {
+                    right++;
+                    check = true;
+                }
+            }
+
+            if (check)
+            {
+                continue;
+            }
+
+            if (left < left_space)
+            {
+                if (cost(left + 1, right) <= m)
+                {
+                    left++;
+                    check = true;
+                }
+            }
+
+            if (!check)
+            {
+                break;
+            }
         }
 
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout << left + right + 1 << endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: Stop_The_Count.cpp
+// Date: 2025-12-24
+// Time: 20:34:54
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,19 +41,19 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    While(T)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        ll n;cin>>n;
+        string s;cin>>s;
+        ll one = 0 ,zero = 0;
+        ll cnt = 0;
+        for(ll i=0;i<n;i++)
+        {
+            if(s[i] =='1') one++;
+            else zero++;
+            if(one>zero) cnt++;
+        }
+        cout<<cnt<<endl;
     }
-    cout<<cnt<<endl;
     return 0;
 }

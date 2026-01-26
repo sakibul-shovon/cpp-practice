@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: D_Plus_Minus_Permutation.cpp
+// Date: 2026-01-06
+// Time: 20:17:51
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,32 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
+        ll n, a, b;
+        cin >> n >> a >> b;
 
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
+        //vll v(n + 10, 0);
+        ll two = 0;
+      
+        ll LCM = (a*b)/gcd(a,b);
+        ll common = n/LCM;
 
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        ll plus = (n/a) - common;
+        ll minus = (n/b) - common;
+
+        // debug(plus);debug(minus);line;
+        ll total_sum = (n*(n+1))/2;
+
+        ll baki = n-plus;
+        baki = (baki*(baki+1))/2;
+        ll plus_sum = total_sum - baki;
+
+        ll minus_sum = (minus*(minus+1))/2;
+
+        cout<<plus_sum-minus_sum<<endl;
+
+
     }
     return 0;
 }

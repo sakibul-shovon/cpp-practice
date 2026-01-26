@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: Sliding_Window_Median.cpp
+// Date: 2026-01-03
+// Time: 11:06:23
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,43 +52,36 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
-
 int main()
 {
     fastio;
     ll n, k;
     cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    vll v(n);
+    multiset<ll> window;
+    for (ll i = 0; i < n; i++)
     {
-        cout << 0 << endl;
-        return 0;
+        cin >> v[i];
+        
     }
-    while (!q.empty())
+    for(ll i=0;i<k;i++) window.insert(v[i]);
+
+    ll mid = (k-1)/2;
+    auto it = window.begin();
+    advance(it,mid);
+    cout<<*it;
+
+    for(ll i=k;i<n;i++)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
+        window.erase(window.find(v[i-k]));
+        window.insert(v[i]);
 
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
+        it = window.begin();
+        advance(it,mid);
 
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout<<" "<<*it;
     }
+    cout<<endl;
+
     return 0;
 }

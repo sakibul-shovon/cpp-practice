@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Shifted_MEX.cpp
+// Date: 2026-01-20
+// Time: 20:03:41
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,42 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
-        {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
+        ll n;
+        cin >> n;
+        vll v(n);
+        for (ll i = 0; i < n; i++)
+            cin >> v[i];
+        sort_all(v);
+        // autoLoop(v);
+        // line
+            ll maxx = 0;
 
-        if(u-1>0 and visited[u-1] == 0)
+        for (ll i = 0; i < n; i++)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            set<ll> st;
+            st.insert(v[i]);
+            //debug(v[i]);
+            for (ll j = i ; j < n; j++)
+            {
+                //debug(v[j]);
+                if (v[j] + 1 == v[j + 1] or v[j] == v[j + 1])
+                {
+                    st.insert(v[j]);
+                }
+                else
+                {
+                    st.insert(v[j]);
+                    break;
+                }
+            }
+            // for(auto it:st) cout<<it<<' ';
+            // line;
+            ll x = st.size();//debug(x);
+            maxx = max(maxx, x);
         }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        cout<<maxx<<endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: Maximum_Subarray_Sum.cpp
+// Date: 2025-12-23
+// Time: 08:11:44
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -43,17 +43,15 @@ int main() {
     fastio;
     ll n;cin>>n;
     vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    for(ll i=0;i<n;i++) cin>>v[i];
+    ll max_sum = -inf;
+    ll curr_sum = 0;
+    for(ll i=0;i<n;i++)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        curr_sum += v[i];
+        max_sum = max(max_sum,curr_sum);
+        if(curr_sum<0) curr_sum  = 0;
     }
-    cout<<cnt<<endl;
+    cout<<max_sum<<endl;
     return 0;
 }

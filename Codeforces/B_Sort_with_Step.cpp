@@ -1,6 +1,6 @@
-// File Name: Collecting_Numbers.cpp
-// Date: 2025-12-27
-// Time: 02:06:45
+// File Name: B_Sort_with_Step.cpp
+// Date: 2025-12-24
+// Time: 16:29:53
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -41,19 +41,67 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 
 int main() {
     fastio;
-    ll n;cin>>n;
-    vll v(n);
-    map<ll,ll>mp;
-    for(ll i=0;i<n;i++){
-        cin>>v[i];
-        mp[v[i]] = i;
-    }
-
-    ll cnt = 1;
-    for(ll i=2;i<=n;i++)
+    While(T)
     {
-        if(mp[i] < mp[i-1]) cnt++;
+        ll n,k;cin>>n>>k;
+        vll v(n+1,0);
+        vll check(n+1,0);
+        ll prblm = 0;
+        vector<pair<ll,ll>> p;//value,index
+        for(ll i=1;i<=n;i++)
+        {
+            cin>>v[i];
+            ll x = abs(i-v[i]);//debug(x);
+            if(x % k == 0 or x == 0){
+                check[i] = 1;
+            }else{
+                check[i] = 0;
+                prblm++;
+                p.pb({v[i],i});
+                
+            }
+        }
+        
+        if(prblm == 0){
+            cout<<0<<endl;continue;
+        }
+        else if(prblm == 2)
+        {
+            ll a = p[0].first;
+            ll b = p[0].second;
+
+            ll c = p[1].first;
+            ll d = p[1].second;
+
+            ll X = abs(a-c);
+            ll Y = abs(b-c);
+            bool check = true;
+            if(X % k ==0 or X == 0){
+                check = true;
+            }
+
+            if(Y%k == 0 or Y == 0)
+            {
+                check = true;
+            }
+
+            if(check){
+                cout<<1<<endl;
+            }else{
+                cout<<-1<<endl;
+            }
+
+
+        }
+        else{
+            cout<<-1<<endl;
+        }
+        // autoLoop(check);
+        // line;
+        // for(auto it:p)
+        // {
+        //     cout<<it.first<<' '<<it.second<<endl;
+        // }
     }
-    cout<<cnt<<endl;
     return 0;
 }

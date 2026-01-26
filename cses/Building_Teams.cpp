@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: Building_Teams.cpp
+// Date: 2026-01-24
+// Time: 16:37:15
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -52,43 +52,66 @@ ll fact(ll num) { return num == 0 ? 1 : num * fact(num - 1); }
 ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
+#define N 100005
+vll adj[N];
+ll visited[N];
+ll color[N];
+bool check = true;
 
+void dfs(ll u, ll c)
+{
+    if (visited[u] == 1)
+    {
+        if (color[u] == c)
+        {
+            return;
+        }
+        else
+        {
+            check = false;
+            return;
+        }
+    }
+
+    visited[u] = 1;
+    color[u] = c;
+    for (auto it : adj[u])
+    {
+        dfs(it, 3 - c);
+    }
+}
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    ll n, m;
+    cin >> n >> m;
+    for (ll i = 0; i < m; i++)
     {
-        cout << 0 << endl;
-        return 0;
+        ll u, v;
+        cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
     }
-    while (!q.empty())
+
+    for (ll i = 1; i <= n; i++)
     {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        if (!visited[i])
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            dfs(i, 1);
         }
+    }
 
-        if(u-1>0 and visited[u-1] == 0)
+    if (check == false)
+    {
+        cout << "IMPOSSIBLE" << endl;return 0;
+    }
+    else
+    {
+        for (ll i = 1; i <= n; i++)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            cout << color[i] << ' ';
         }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+        line;
     }
     return 0;
 }

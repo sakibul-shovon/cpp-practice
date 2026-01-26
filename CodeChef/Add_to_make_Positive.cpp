@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: Add_to_make_Positive.cpp
+// Date: 2025-12-17
+// Time: 21:01:22
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,26 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n;
+        cin >> n;
+        vll v(n);
+        ll sum = 0;
+        for (ll i = 0; i < n; i++)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            cin >> v[i];
+            sum += v[i];
         }
 
-        if(u-1>0 and visited[u-1] == 0)
+        if (sum >= 0)
         {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            cout << 0 << endl;
+            continue;
         }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
-        }
+       
+        ll x =  (abs(sum)+n-1)/n;
+        cout<<x<<endl;
     }
     return 0;
 }

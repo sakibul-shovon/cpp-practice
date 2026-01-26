@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: Flight_Routes_Check.cpp
+// Date: 2025-12-09
+// Time: 16:39:46
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -53,42 +53,66 @@ ll nCr(ll n, ll r) { return fact(n) / (fact(n - r) * fact(r)); }
 ll nPr(ll n, ll r) { return fact(n) / fact(n - r); }
 ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) : n * binPow(n * n, (p - 1) / 2)); }
 
-int main()
+const ll MAXX = 200005;
+vll graph[MAXX], rev_graph[MAXX];
+vll vis(MAXX, 0);
+
+void bfs(ll start, vll g[])
 {
-    fastio;
-    ll n, k;
-    cin >> n >> k;
     queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
-    {
-        cout << 0 << endl;
-        return 0;
-    }
+    q.push(start);
+    vis[start] = 1;
+
     while (!q.empty())
     {
         ll u = q.front();
         q.pop();
-        if (u == k)
+        for (auto it : g[u])
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
-        }
-
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
-        }
-
-        if(u < k and visited[u*2] == 0)
-        {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
+            if (!vis[it])
+            {
+                vis[it] = 1;
+                q.push(it);
+            }
         }
     }
+}
+int main()
+{
+    fastio;
+    ll n, m;
+    cin >> n >> m;
+    for (ll i = 0; i < m; i++)
+    {
+        ll a, b;
+        cin >> a >> b;
+        graph[a].pb(b);
+        rev_graph[b].pb(a);
+    }
+    bfs(1, graph);
+    for (ll i = 1; i <= n; i++)
+    {
+        if (!vis[i])
+        {
+            cout << "NO" << endl;
+            cout << 1 << ' ' << i << endl;
+            return 0;
+        }
+    }
+
+    for (ll i = 1; i <= n; i++)
+        vis[i] = 0;
+
+    bfs(1, rev_graph);
+    for (ll i = 1; i <= n; i++)
+    {
+        if (!vis[i])
+        {
+            cout << "NO" << endl;
+            cout << i << ' ' << 1 << endl;
+            return 0;
+        }
+    }
+    cout<<"YES"<<endl;
     return 0;
 }

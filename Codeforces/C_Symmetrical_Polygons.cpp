@@ -1,6 +1,6 @@
-// File Name: B_Two_Buttons.cpp
-// Date: 2026-01-13
-// Time: 19:03:44
+// File Name: C_Symmetrical_Polygons.cpp
+// Date: 2025-10-12
+// Time: 22:47:20
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -56,39 +56,49 @@ ll binPow(ll n, ll p) { return p == 0 ? 1 : (p % 2 == 0 ? binPow(n * n, p / 2) :
 int main()
 {
     fastio;
-    ll n, k;
-    cin >> n >> k;
-    queue<ll> q;
-    q.push(n);
-    vll visited(2e4 + 10, 0);
-    visited[n] = 1;
-    ll ans = 0;
-    if (n == k)
+    While(T)
     {
-        cout << 0 << endl;
-        return 0;
-    }
-    while (!q.empty())
-    {
-        ll u = q.front();
-        q.pop();
-        if (u == k)
+        ll n;
+        cin >> n;
+        map<ll, ll> mp;
+        for (ll i = 0; i < n; i++)
         {
-            cout << visited[u] - 1 << endl;
-            return 0;
+            ll x;
+            cin >> x;
+            mp[x]++;
         }
+        ll sum = 0;
+        vll v;
+        for (auto &it : mp)
+        {
+            sum += it.first - (it.first % 2);
 
-        if(u-1>0 and visited[u-1] == 0)
-        {
-            q.push(u-1);
-            visited[u-1] = visited[u] + 1;
+            // v.pb(it.second % 2);
+            if (it.second % 2)
+            {
+                v.pb(it.first);
+            }
         }
-
-        if(u < k and visited[u*2] == 0)
+        if (sum == 0)
         {
-            q.push(u*2);
-            visited[u*2] = visited[u] +1;
+            cout << 0 << endl;
+            continue;
         }
+        else if (n == 2)
+        {
+            cout << 0 << endl;
+            continue;
+        }
+        sort(v.rbegin(), v.rend());
+        //autoLoop(v);line;
+        for (ll i = 0; i < v.size(); i++)
+        {
+            if (v[i] < sum)
+            {
+                sum += v[i];
+            }
+        }
+        cout << sum << endl;
     }
     return 0;
 }
